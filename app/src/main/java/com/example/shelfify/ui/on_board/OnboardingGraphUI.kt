@@ -1,4 +1,4 @@
-package com.example.shelfify.ui.on_board
+package com.example.shelfify.ui.OnBoard
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

@@ -23,12 +23,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.shelfify.ui.OnBoard.IndicatorUI
+
+import com.example.shelfify.ui.OnBoard.OnboardingGraphUI
+import com.example.shelfify.ui.OnBoard.OnboardingModel
+import com.example.shelfify.ui.on_board.boardButton.BackButton
+import com.example.shelfify.ui.on_board.boardButton.NextButton
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnboardingScreen(onFinished: () -> Unit) {
-
     val pages = listOf(
         OnboardingModel.FirstPage, OnboardingModel.SecondPage, OnboardingModel.ThirdPages
     )
@@ -90,7 +95,7 @@ fun OnboardingScreen(onFinished: () -> Unit) {
                 ) {
 
                     if (buttonState.value[0].isNotEmpty()) {
-                        BackButton.Button {
+                        BackButton().Button {
                             scope.launch {
                                 if (pagerState.currentPage > 0) {
                                     pagerState.animateScrollToPage(pagerState.currentPage - 1)
@@ -101,7 +106,7 @@ fun OnboardingScreen(onFinished: () -> Unit) {
 
                     Spacer(modifier = Modifier.weight(1f))
 
-                    NextButton.Button {
+                    NextButton().Button {
                         scope.launch {
                             if (pagerState.currentPage < pages.size - 1) {
                                 pagerState.animateScrollToPage(pagerState.currentPage + 1)
