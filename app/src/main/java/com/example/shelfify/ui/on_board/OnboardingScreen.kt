@@ -26,9 +26,9 @@ import androidx.compose.ui.unit.dp
 import com.example.shelfify.ui.OnBoard.IndicatorUI
 
 import com.example.shelfify.ui.OnBoard.OnboardingGraphUI
-import com.example.shelfify.ui.OnBoard.OnboardingModel
-import com.example.shelfify.ui.on_board.boardButton.BackButton
-import com.example.shelfify.ui.on_board.boardButton.NextButton
+import com.example.shelfify.ui.on_board.components.OnboardingModel
+import com.example.shelfify.ui.on_board.components.boardButton.BackButton
+import com.example.shelfify.ui.on_board.components.boardButton.NextButton
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -118,6 +118,7 @@ fun OnboardingScreen(onFinished: () -> Unit) {
                 }
             }
         },
+
         content = {
             Column(Modifier.padding(it)) {
                 HorizontalPager(state = pagerState) { index ->
@@ -126,9 +127,8 @@ fun OnboardingScreen(onFinished: () -> Unit) {
             }
         }
     )
-
-
 }
+
 
 @Preview(showBackground = true)
 @Composable

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -54,21 +55,31 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation(libs.ui)
+    implementation(libs.material3)
+    implementation(libs.ui.tooling.preview)
     implementation(libs.support.annotations)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.compose.material)
     testImplementation(libs.testng)
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("androidx.core:core-splashscreen:1.0.1")
-    implementation("androidx.viewpager2:viewpager2:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5")
-    implementation("androidx.compose.runtime:runtime-livedata")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.runtime.livedata)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit.v115)
+    androidTestImplementation(libs.androidx.espresso.core.v351)
+
+    val roomVersion = "2.6.1"
+
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose.v287)
+
+    val navVersion = "2.8.0"
+
+    implementation(libs.androidx.navigation.compose)
 
 }
