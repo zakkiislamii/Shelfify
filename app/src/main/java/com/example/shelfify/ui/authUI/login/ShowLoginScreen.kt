@@ -9,14 +9,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.shelfify.services.state.LoginState
+import com.example.shelfify.services.viewModel.ProxyViewModel
 import com.example.shelfify.ui.authUI.login.components.HeaderLogin
 import com.example.shelfify.ui.authUI.login.components.LoginButton
 import com.example.shelfify.ui.authUI.login.components.LoginField
@@ -27,11 +31,38 @@ import com.example.shelfify.utils.toast.CustomToast
 
 class ShowLoginScreen {
     @Composable
-    fun Login(onNavigateToHome: () -> Unit, onNavigateToRegister: () -> Unit) {
+    fun Login(
+        viewModel: ProxyViewModel,
+        onNavigateToHome: () -> Unit,
+        onNavigateToRegister: () -> Unit,
+    ) {
         val emailState = remember { mutableStateOf("") }
         val passwordState = remember { mutableStateOf("") }
         val loginField = LoginField()
         val context = LocalContext.current
+
+        val loginState by viewModel.loginState.collectAsState()
+
+        LaunchedEffect(loginState) {
+            when (loginState) {
+                is LoginState.Success -> {
+                    CustomToast().showToast(
+                        context = context,
+                        message = "Login berhasil!"
+                    )
+                    onNavigateToHome()
+                }
+
+                is LoginState.Error -> {
+                    CustomToast().showToast(
+                        context = context,
+                        message = (loginState as LoginState.Error).message
+                    )
+                }
+
+                else -> {}
+            }
+        }
 
         Scaffold(
             topBar = { HeaderLogin() }
@@ -73,11 +104,7 @@ class ShowLoginScreen {
                                 passwordState.value
                             )
                         ) {
-                            CustomToast().showToast(
-                                context = context,
-                                message = "Login berhasil!"
-                            )
-                            onNavigateToHome()
+                            viewModel.login(emailState.value, passwordState.value)
                         }
                     }
 
@@ -88,8 +115,3 @@ class ShowLoginScreen {
     }
 }
 
-@Preview
-@Composable
-private fun LoginPreview() {
-    ShowLoginScreen().Login(onNavigateToHome = {}, onNavigateToRegister = {})
-}

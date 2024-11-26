@@ -10,6 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -18,7 +19,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.shelfify.data.FacultyData
+import com.example.shelfify.services.state.RegisterState
+import com.example.shelfify.services.viewModel.AuthViewModel
 import com.example.shelfify.ui.authUI.register.components.FacultyDropdown
 import com.example.shelfify.ui.authUI.register.components.RegisterButton
 import com.example.shelfify.ui.authUI.register.components.RegisterField
@@ -29,7 +33,7 @@ import com.example.shelfify.utils.toast.CustomToast
 
 class ShowRegisterScreen {
     @Composable
-    fun Register(onNavigateToLogin: () -> Unit) {
+    fun Register(onNavigateToLogin: () -> Unit, authViewModel: AuthViewModel) {
         val fullNameState = remember { mutableStateOf("") }
         val phoneNumberState = remember { mutableStateOf("") }
         val addressState = remember { mutableStateOf("") }
@@ -41,6 +45,9 @@ class ShowRegisterScreen {
         val facultyDropdown = FacultyDropdown()
         val context = LocalContext.current
         val scrollState = rememberScrollState()
+        val isLoadingState = authViewModel.isLoading.collectAsState().value
+
+        val registerState = authViewModel.registerState.collectAsState().value
 
         Scaffold(
             topBar = {
@@ -94,7 +101,7 @@ class ShowRegisterScreen {
                         val validator = RegisterFieldValidate()
 
                         RegisterButton().Button {
-                            if (validator.validateFields(
+                            if (!isLoadingState && validator.validateFields(
                                     context = context,
                                     fullName = fullNameState.value,
                                     email = emailState.value,
@@ -105,14 +112,37 @@ class ShowRegisterScreen {
                                     confirmPassword = confirmPasswordState.value
                                 )
                             ) {
+                                authViewModel.register(
+                                    fullNameState.value,
+                                    emailState.value,
+                                    phoneNumberState.value,
+                                    addressState.value,
+                                    facultyState.value,
+                                    passwordState.value
+                                )
+                            }
+                        }
 
+                        // Handle Registration State
+                        when (registerState) {
+                            is RegisterState.Success -> {
                                 CustomToast().showToast(
                                     context = context,
-                                    message = "Registered with faculty: ${facultyState.value}"
+                                    message = "Registered successfully"
                                 )
                                 onNavigateToLogin()
                             }
+
+                            is RegisterState.Error -> {
+                                CustomToast().showToast(
+                                    context = context,
+                                    message = "Registration failed: ${registerState.message}"
+                                )
+                            }
+
+                            else -> {}
                         }
+
                         ToLogin(onClick = { onNavigateToLogin() })
                     }
                 }
@@ -123,6 +153,7 @@ class ShowRegisterScreen {
 
 @Preview
 @Composable
-private fun LoginPreview() {
-    ShowRegisterScreen().Register(onNavigateToLogin = {})
+private fun RegisterPreview() {
+    val authViewModel: AuthViewModel = viewModel() // Gunakan AuthViewModel untuk preview
+    ShowRegisterScreen().Register(onNavigateToLogin = {}, authViewModel = authViewModel)
 }
