@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.support.annotations)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.appcompat)
     testImplementation(libs.testng)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
@@ -77,6 +78,7 @@ dependencies {
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose.v287)
+    implementation("com.ToxicBakery.library.bcrypt:bcrypt:+")
 
 
 

@@ -19,48 +19,52 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.shelfify.services.state.LoginState
-import com.example.shelfify.services.viewModel.ProxyViewModel
+import com.example.shelfify.services.viewModel.AuthViewModel
 import com.example.shelfify.ui.authUI.login.components.HeaderLogin
 import com.example.shelfify.ui.authUI.login.components.LoginButton
 import com.example.shelfify.ui.authUI.login.components.LoginField
 import com.example.shelfify.ui.authUI.login.components.ToForgotPassword
 import com.example.shelfify.ui.authUI.login.components.ToRegister
 import com.example.shelfify.utils.helpers.LoginFieldValidate
+import com.example.shelfify.utils.response.Result
 import com.example.shelfify.utils.toast.CustomToast
 
 class ShowLoginScreen {
     @Composable
     fun Login(
-        viewModel: ProxyViewModel,
         onNavigateToHome: () -> Unit,
         onNavigateToRegister: () -> Unit,
+        authViewModel: AuthViewModel,
     ) {
         val emailState = remember { mutableStateOf("") }
         val passwordState = remember { mutableStateOf("") }
         val loginField = LoginField()
         val context = LocalContext.current
 
-        val loginState by viewModel.loginState.collectAsState()
+        val loginState by authViewModel.loginState.collectAsState()
 
         LaunchedEffect(loginState) {
             when (loginState) {
-                is LoginState.Success -> {
+                is Result.Success -> {
+                    val user = (loginState as Result.Success).data
                     CustomToast().showToast(
                         context = context,
-                        message = "Login berhasil!"
+                        message = "Login berhasil! Selamat datang ${user.fullName}"
                     )
                     onNavigateToHome()
                 }
 
-                is LoginState.Error -> {
+                is Result.Error -> {
+                    val error = (loginState as Result.Error).message
                     CustomToast().showToast(
                         context = context,
-                        message = (loginState as LoginState.Error).message
+                        message = error
                     )
                 }
 
-                else -> {}
+                Result.Loading -> {
+                    // Handle loading state if needed
+                }
             }
         }
 
@@ -104,7 +108,7 @@ class ShowLoginScreen {
                                 passwordState.value
                             )
                         ) {
-                            viewModel.login(emailState.value, passwordState.value)
+                            authViewModel.login(emailState.value, passwordState.value)
                         }
                     }
 
@@ -114,4 +118,3 @@ class ShowLoginScreen {
         }
     }
 }
-
