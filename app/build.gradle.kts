@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.media3.common.ktx)
     testImplementation(libs.testng)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)

@@ -12,7 +12,7 @@
         android:theme="@style/Theme.MyShelfify"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="shelfify.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.MyShelfify">
             <intent-filter>

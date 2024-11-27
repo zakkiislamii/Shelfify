@@ -13,11 +13,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="394b4b7e-e62f-43c0-8d77-a290854ad1e3" name="Changes" comment="tes2">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/data/Result.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/data/UserSession.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/services/viewModelFactory/AuthViewModelFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/utils/response/Result.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/utils/session/GetUserSession.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/session/UserSessionData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/BottomNavigation.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/forgotPassword/ShowForgotPasswordScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/forgotPassword/components/ForgotPasswordField.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/forgotPassword/components/changePasswordButton.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/forgotPassword/components/changePasswordHeader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/login/components/ToForgotPassword.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/Navbar.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/Search.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/home/components/CategoryBook.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/home/components/HomeHeader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/home/components/SearchButton.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/converter/DateConverter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/helpers/ForgotPasswordValidate.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/helpers/PasswordValidate.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/proxy/RealUserSessionData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/proxy/UserSessionProxy.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/allcategory.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/cart.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/history.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/sha1-checksums.bin" afterDir="false" />
@@ -28,11 +52,66 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/routers/AppNavHost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/routers/AppNavHost.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/login/ShowLoginScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/login/ShowLoginScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/register/ShowRegisterScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/register/ShowRegisterScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/contracts/button/Button.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/button/Button.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/contracts/dropDown/DropdownField.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/dropDown/DropdownField.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/contracts/enumerations/Role.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/enumerations/Role.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/contracts/enumerations/Status.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/enumerations/Status.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/contracts/field/Field.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/field/Field.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/data/FacultyData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/FacultyData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/data/Result.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/Result.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/data/UserSession.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/UserSession.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/domain/dao/UserDAO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/domain/database/ShelfifyDatabase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/domain/models/Book.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/domain/models/Cart.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/domain/models/History.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/domain/models/Notification.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/domain/models/Reservation.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/domain/models/User.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/domain/repositories/UserRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/routers/AppNavHost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/AppNavHost.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/routers/Screen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/Screen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/services/viewModel/AuthViewModel.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/services/viewModelFactory/AuthViewModelFactory.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/login/ShowLoginScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/login/ShowLoginScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/login/components/LoginButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/login/components/LoginButton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/login/components/LoginField.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/login/components/LoginField.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/login/components/LoginHeader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/login/components/LoginHeader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/login/components/ToForgotPassword.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/login/components/ToRegister.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/login/components/ToRegister.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/register/ShowRegisterScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/register/ShowRegisterScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/register/components/FacultyDropdown.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/register/components/FacultyDropdown.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/register/components/RegisterButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/register/components/RegisterButton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/register/components/RegisterField.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/register/components/RegisterField.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/register/components/RegisterHeader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/register/components/RegisterHeader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/authUI/register/components/ToLogin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/register/components/ToLogin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/home/ShowHomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/home/ShowHomeScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/on_board/OnboardingScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/OnboardingScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/on_board/OnboardingUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/OnboardingUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/on_board/components/IndicatorUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/IndicatorUI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/on_board/components/OnboardingGraphUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/OnboardingGraphUI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/on_board/components/OnboardingModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/OnboardingModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/on_board/components/boardButton/BackButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/boardButton/BackButton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/on_board/components/boardButton/NextButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/boardButton/NextButton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/on_board/components/boardButton/PreviewButtonOnBoard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/boardButton/PreviewButtonOnBoard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/theme/Color.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/theme/Theme.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/ui/theme/Type.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/theme/Type.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/utils/converters/DateConverter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/utils/converters/RoleConverter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/utils/helpers/LoginField.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/helpers/LoginFieldValidate.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/utils/helpers/PasswordHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/helpers/PasswordHelper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/utils/helpers/RegisterFieldValidate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/helpers/RegisterFieldValidate.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/utils/response/Result.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/response/Result.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/utils/session/GetUserSession.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shelfify/utils/toast/Toast.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/toast/Toast.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +121,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=7b25779)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\User\.android\avd\Pixel_8_Pro_API_35.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -73,12 +152,12 @@
       <list>
         <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
-        <option value="Kotlin File" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Enum" />
-        <option value="Kotlin Interface" />
         <option value="Kotlin Object" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -123,17 +202,17 @@
     "com.google.services.firebase.aqiPopupShown": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/GitHub/Shelfify",
+    "last_opened_file_path": "E:/Kuliah/Semester 5/Kuliah/Pemrograman Aplikasi Perangkat  Bergerak/Code",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "Errors"
   },
   "keyToStringList": {
     "com.android.tools.idea.sqlite.queryhistory": [
-      "\n\nselect * from Users \n",
-      "\n\nselect * from Users where email = \"mzislami05@gmail.com\"\n",
-      "\n\nselect * from Users\n",
-      "DELETE FROM users\nWHERE user_id = 7\n",
-      "select * from Users"
+      "\nselect * from Users",
+      "UPDATE Users \nSET role = 'ADMIN' \nWHERE email = 'admin@admin.com';\n",
+      "UPDATE Users \nSET role = 'ADMIN' \nWHERE email = 'admin@admin';",
+      "select * from Users",
+      "\n\nselect * from Users \n"
     ],
     "kotlin-gradle-user-dirs": [
       "F:\\GitHub\\Shelfify\\.gradle\\8.5",
@@ -143,14 +222,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\GitHub\Shelfify\app\src\main\java\com\example\shelfify\ui\authUI\forgotPassword\components" />
       <recent name="F:\GitHub\Shelfify\app\src\main\res\font" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\GitHub\Shelfify\app\src\main\java\" />
       <recent name="F:\GitHub\Shelfify\app\src\main\java\com\example\shelfify\ui\on_board\components" />
       <recent name="F:\GitHub\Shelfify\app\src\main\java\com\example\shelfify\ui\login\components" />
       <recent name="F:\GitHub\Shelfify\app\src\main\java\com\example\shelfify\ui\login" />
       <recent name="F:\GitHub\Shelfify\app\src\main\java\com\example\shelfify\ui\login\buttonLogin" />
-      <recent name="F:\GitHub\Shelfify\app\src\main\java\com\example\shelfify\ui\on_board\boardButton" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.example.shelfify.data" />
