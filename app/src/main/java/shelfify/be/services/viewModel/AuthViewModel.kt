@@ -3,19 +3,18 @@ package shelfify.be.services.viewModel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import shelfify.be.domain.models.User
-import shelfify.be.domain.repositories.UserRepository
-import shelfify.utils.response.Result
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import shelfify.be.domain.models.User
+import shelfify.be.domain.repositories.UserRepository
+import shelfify.utils.response.Result
 
-class AuthViewModel(private val userRepository: UserRepository, private val context: Context) :
+class AuthViewModel(private val userRepository: UserRepository) :
     ViewModel() {
-
     private val _loginState = MutableStateFlow<Result<User>>(Result.Loading)
     val loginState: StateFlow<Result<User>> = _loginState
-    fun login(email: String, password: String) {
+    fun login(email: String, password: String, context: Context) {
         viewModelScope.launch {
             _loginState.value = Result.Loading
             try {
@@ -119,7 +118,8 @@ class AuthViewModel(private val userRepository: UserRepository, private val cont
                 )
 
                 if (updatedResult.isSuccess) {
-                    _changePasswordState.value = Result.Success(user.copy(password = confirmPassword))
+                    _changePasswordState.value =
+                        Result.Success(user.copy(password = confirmPassword))
                 } else {
                     _changePasswordState.value = Result.Error("Gagal mengganti password")
                 }
@@ -129,7 +129,6 @@ class AuthViewModel(private val userRepository: UserRepository, private val cont
             }
         }
     }
-
 
 
     private fun saveLoginStatus(

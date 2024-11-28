@@ -35,7 +35,7 @@ fun SearchBar(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
+            .padding(vertical = 30.dp, horizontal = 10.dp)
             .clip(RoundedCornerShape(30.dp))
             .background(Color.White)
             .border(

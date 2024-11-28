@@ -77,16 +77,6 @@ class UserRepository(private val userDao: UserDao) {
     }
 
 
-    suspend fun checkLogin(userId: Int): Result<Boolean> {
-        return try {
-            val user = userDao.getUserById(userId)
-                ?: return Result.failure(Exception("User tidak ditemukan"))
-            Result.success(user.isLoggedIn)
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-    }
-
     suspend fun deleteUser(userId: Int): Result<Boolean> {
         return try {
             val user = userDao.getUserById(userId)

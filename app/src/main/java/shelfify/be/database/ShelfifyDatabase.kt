@@ -6,6 +6,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import shelfify.be.dao.BookDao
 import shelfify.be.dao.UserDao
 import shelfify.be.domain.models.Book
 import shelfify.be.domain.models.CartEntity
@@ -26,6 +27,7 @@ import shelfify.utils.converter.DateConverter
 )
 abstract class ShelfifyDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun bookDao(): BookDao
 
     companion object {
         @Volatile

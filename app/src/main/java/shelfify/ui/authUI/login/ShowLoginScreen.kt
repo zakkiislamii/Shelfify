@@ -109,7 +109,7 @@ class ShowLoginScreen {
                                 passwordState.value
                             )
                         ) {
-                            authViewModel.login(emailState.value, passwordState.value)
+                            authViewModel.login(emailState.value, passwordState.value, context)
                         }
                     }
                     ToRegister(onClick = { navController.navigate(Screen.Register.route) })
