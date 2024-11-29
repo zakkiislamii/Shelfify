@@ -8,16 +8,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import shelfify.ui.homeScreen.history.member.HistoryHeader
 
 class ShowHistoryScreen {
     @Composable
     fun HistoryScreen(navController: NavController) {
         Scaffold(
             topBar = {
-                Text(text = "History")
+                HistoryHeader()
             },
             content = { paddingValues ->
-
                 Box(
                     modifier = Modifier
                         .padding(paddingValues)

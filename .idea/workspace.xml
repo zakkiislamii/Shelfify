@@ -13,24 +13,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="394b4b7e-e62f-43c0-8d77-a290854ad1e3" name="Changes" comment="tes2">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/BookDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/BookRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/BookViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModelFactory/BookViewModelFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/DataCategoryBook.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/NavGraph.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/ShowHomeScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/history/ShowHistoryScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/categoryBook/CategoryItem.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/categoryBook/FullCategoryBook.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/notification/ShowNotificationScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/notification/components/NotificationItem.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/notification/components/NotificationSection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/profile/ShowProfileScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/searchScreen/ShowSearchScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/home.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/notification.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/profile.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/HistoryViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/history/member/HistoryHeader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/profile/components/ProfileHeader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/setting/ShowSettingScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/setting/components/SettingBody.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/setting/components/SettingHeader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/changepassword.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/logout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/vector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
@@ -39,23 +30,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/database/ShelfifyDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/database/ShelfifyDatabase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/UserRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/AuthViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/AuthViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModelFactory/AuthViewModelFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModelFactory/AuthViewModelFactory.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/AppNavHost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/AppNavHost.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/NavGraph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/NavGraph.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/Screen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/Screen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/login/ShowLoginScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/authUI/login/ShowLoginScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/Navbar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/NavigationBar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/Search.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/Search.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/home/ShowHomeScreen.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/home/components/CategoryBook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/categoryBook/CategoryBook.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/home/components/HomeHeader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/HomeHeader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/home/components/SearchButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/searchScreen/components/SearchButton.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/history/ShowHistoryScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/history/ShowHistoryScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/profile/ShowProfileScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/profile/ShowProfileScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,36 +133,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "PROJECT_TRUSTED_KEY": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/GitHub/Shelfify",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "Errors"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/GitHub/Shelfify&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   },
-  "keyToStringList": {
-    "com.android.tools.idea.sqlite.queryhistory": [
-      "select password from Users",
-      "select * from books where category = \"Engineering\"",
-      "select * from books where category = \"Antiques & Collectibles\"",
-      "select * from books where category = \"Action & Adventure\"",
-      "select * from Books"
+  &quot;keyToStringList&quot;: {
+    &quot;com.android.tools.idea.sqlite.queryhistory&quot;: [
+      &quot;select password from Users&quot;,
+      &quot;select * from books where category = \&quot;Engineering\&quot;&quot;,
+      &quot;select * from books where category = \&quot;Antiques &amp; Collectibles\&quot;&quot;,
+      &quot;select * from books where category = \&quot;Action &amp; Adventure\&quot;&quot;,
+      &quot;select * from Books&quot;
     ],
-    "kotlin-gradle-user-dirs": [
-      "F:\\GitHub\\Shelfify\\.gradle\\8.5",
-      "C:\\Users\\User\\.gradle"
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;F:\\GitHub\\Shelfify\\.gradle\\8.5&quot;,
+      &quot;C:\\Users\\User\\.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\GitHub\Shelfify\app\src\main\java\com\example\shelfify\ui\authUI\forgotPassword\components" />

@@ -65,6 +65,7 @@ private fun noNeedNavbar(navController: NavHostController): Boolean {
         Screen.Login.route,
         Screen.Register.route,
         Screen.ForgotPassword.route,
-        Screen.ChangePassword.route + "?email={email}"
+        Screen.ChangePassword.route + "?email={email}",
+        Screen.Setting.route
     )
 }

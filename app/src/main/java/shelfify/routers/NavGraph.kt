@@ -15,7 +15,8 @@ import shelfify.ui.authUI.register.ShowRegisterScreen
 import shelfify.ui.homeScreen.ShowHomeScreen
 import shelfify.ui.homeScreen.history.ShowHistoryScreen
 import shelfify.ui.homeScreen.member.notification.ShowNotificationScreen
-import shelfify.ui.homeScreen.member.notification.profile.ShowProfileScreen
+import shelfify.ui.homeScreen.member.profile.ShowProfileScreen
+import shelfify.ui.homeScreen.member.setting.ShowSettingScreen
 import shelfify.ui.homeScreen.searchScreen.ShowSearchScreen
 
 @Composable
@@ -84,6 +85,11 @@ fun NavGraph(
 
         composable(route = Screen.Profile.route) {
             ShowProfileScreen().ProfileScreen(
+                navController = navController
+            )
+        }
+        composable(route = Screen.Setting.route) {
+            ShowSettingScreen().Setting(
                 navController = navController
             )
         }
