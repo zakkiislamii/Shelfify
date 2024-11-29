@@ -1,6 +1,7 @@
 package shelfify.ui.homeScreen.member.profile.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -29,17 +30,9 @@ fun ProfileHeader(onClick: () -> Unit) {
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            horizontalArrangement = Arrangement.End
         ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Back to Login",
-                tint = colorResource(id = black),
-                modifier = Modifier
-                    .padding(end = 8.dp)
 
-            )
-            Spacer(modifier = Modifier.weight(1f))
             Icon(
                 imageVector = Icons.Filled.Settings,
                 contentDescription = "Settings",

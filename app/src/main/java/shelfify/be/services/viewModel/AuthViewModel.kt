@@ -75,25 +75,25 @@ class AuthViewModel(private val userRepository: UserRepository) :
         }
     }
 
-    private val _forgotPasswordState = MutableStateFlow<Result<User>>(Result.Loading)
-    val forgotPasswordState: StateFlow<Result<User>> = _forgotPasswordState
+    private val _getUserByEmailState = MutableStateFlow<Result<User>>(Result.Loading)
+    val getUserByEmailState: StateFlow<Result<User>> = _getUserByEmailState
     fun getUserByEmail(email: String) {
         viewModelScope.launch {
-            _forgotPasswordState.value = Result.Loading
+            _getUserByEmailState.value = Result.Loading
             try {
                 userRepository.getUserByEmail(
                     email
                 ).fold(
                     onSuccess = { user ->
-                        _forgotPasswordState.value = Result.Success(user)
+                        _getUserByEmailState.value = Result.Success(user)
                     },
                     onFailure = { exception ->
-                        _forgotPasswordState.value =
+                        _getUserByEmailState.value =
                             Result.Error(exception.message ?: "Unknown error occurred")
                     }
                 )
             } catch (e: Exception) {
-                _forgotPasswordState.value = Result.Error(e.message ?: "Unknown error occurred")
+                _getUserByEmailState.value = Result.Error(e.message ?: "Unknown error occurred")
             }
         }
     }

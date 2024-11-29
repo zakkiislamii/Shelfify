@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
+import shelfify.be.services.viewModel.MemberViewModel
 import shelfify.ui.authUI.changePassword.ShowChangePasswordScreen
 import shelfify.ui.authUI.forgotPassword.ShowForgotPasswordScreen
 import shelfify.ui.authUI.login.ShowLoginScreen
@@ -25,6 +26,7 @@ fun NavGraph(
     startDestination: String,
     authViewModel: AuthViewModel,
     bookViewModel: BookViewModel,
+    memberViewModel: MemberViewModel,
     modifier: Modifier = Modifier,
 ) {
     NavHost(
@@ -33,7 +35,10 @@ fun NavGraph(
         modifier = modifier
     ) {
         composable(route = Screen.Home.route) {
-            ShowHomeScreen().Homepage(navController = navController)
+            ShowHomeScreen().Homepage(
+                navController = navController,
+                authViewModel = authViewModel
+            )
         }
 
         composable(route = Screen.ChangePassword.route + "?email={email}") { backStackEntry ->
@@ -85,7 +90,9 @@ fun NavGraph(
 
         composable(route = Screen.Profile.route) {
             ShowProfileScreen().ProfileScreen(
-                navController = navController
+                navController = navController,
+                authViewModel = authViewModel,
+                memberViewModel = memberViewModel
             )
         }
         composable(route = Screen.Setting.route) {

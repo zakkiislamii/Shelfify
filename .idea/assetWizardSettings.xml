@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="logout" />
-                            <entry key="sourceFile" value="F:\GitHub\Shelfify\app\src\main\res\drawable\logout.svg" />
+                            <entry key="outputName" value="camera" />
+                            <entry key="sourceFile" value="F:\GitHub\Shelfify\app\src\main\res\drawable\Camera.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -14,8 +14,10 @@ import shelfify.be.domain.repositories.BookRepository
 import shelfify.be.domain.repositories.UserRepository
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
+import shelfify.be.services.viewModel.MemberViewModel
 import shelfify.be.services.viewModelFactory.AuthViewModelFactory
 import shelfify.be.services.viewModelFactory.BookViewModelFactory
+import shelfify.be.services.viewModelFactory.MemberViewModelFactory
 import shelfify.ui.components.NavigationBar
 
 @Composable
@@ -26,7 +28,7 @@ fun AppNavHost(
     val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
     val isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false)
 
-    val (authViewModel, bookViewModel) = setupViewModels(context)
+    val (authViewModel, bookViewModel, memberViewModel) = setupViewModels(context)
     val startDestination = if (isLoggedIn) Screen.Home.route else Screen.Login.route
     val noNeedNavbar = noNeedNavbar(navController)
 
@@ -42,19 +44,21 @@ fun AppNavHost(
             startDestination = startDestination,
             authViewModel = authViewModel,
             bookViewModel = bookViewModel,
+            memberViewModel = memberViewModel,
             modifier = Modifier.padding(paddingValues)
         )
     }
 }
 
 @Composable
-private fun setupViewModels(context: Context): Pair<AuthViewModel, BookViewModel> {
+private fun setupViewModels(context: Context): Triple<AuthViewModel, BookViewModel, MemberViewModel> {
     val database = ShelfifyDatabase.getInstance(context)
     val userRepository = UserRepository(database.userDao())
     val bookRepository = BookRepository(database.bookDao())
-    return Pair(
+    return Triple(
         viewModel(factory = AuthViewModelFactory(userRepository)),
-        viewModel(factory = BookViewModelFactory(bookRepository))
+        viewModel(factory = BookViewModelFactory(bookRepository)),
+        viewModel(factory = MemberViewModelFactory(userRepository))
     )
 }
 

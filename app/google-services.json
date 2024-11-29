@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "385871278476",
+    "project_id": "nusarasa-444e7",
+    "storage_bucket": "nusarasa-444e7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385871278476:android:b1d2ae9d50edaf2af9a6a9",
+        "android_client_info": {
+          "package_name": "com.example.shelfify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj_KG-yT_LgmwYECD-JLYSV50DN1FjsY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -18,8 +18,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import shelfify.routers.Screen
 import shelfify.be.services.viewModel.AuthViewModel
+import shelfify.routers.Screen
 import shelfify.ui.authUI.forgotPassword.components.ForgotPasswordButton
 import shelfify.ui.authUI.forgotPassword.components.ForgotPasswordField
 import shelfify.ui.authUI.forgotPassword.components.ForgotPasswordHeader
@@ -32,7 +32,7 @@ class ShowForgotPasswordScreen {
     fun ForgotPassword(navController: NavController, authViewModel: AuthViewModel) {
         val emailState = remember { mutableStateOf("") }
         val context = LocalContext.current
-        val forgotPasswordState by authViewModel.forgotPasswordState.collectAsState()
+        val forgotPasswordState by authViewModel.getUserByEmailState.collectAsState()
 
         LaunchedEffect(forgotPasswordState) {
             when (forgotPasswordState) {
