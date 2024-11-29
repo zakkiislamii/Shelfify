@@ -21,7 +21,7 @@ class ShowSearchScreen {
             },
             content = { paddingValues ->
                 Box(modifier = Modifier.padding(paddingValues)) {
-                    FullCategoryBook()
+                    FullCategoryBook(navController = navController)
                 }
             },
         )

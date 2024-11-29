@@ -1,5 +1,6 @@
 package shelfify.ui.homeScreen.home.categoryBook
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,7 +25,9 @@ import shelfify.routers.Screen
 import shelfify.ui.theme.MainColor
 
 @Composable
-fun CategoryBook(navController: NavController) {
+fun CategoryBook(
+    navController: NavController,
+) {
     Column {
         Box(modifier = Modifier.padding(start = 20.dp)) {
             Text(text = "Category", color = MainColor, fontWeight = FontWeight.Bold)
@@ -49,11 +52,16 @@ fun CategoryBook(navController: NavController) {
                         R.drawable.allcategory
                     )
                 ) { category ->
-                    CategoryItem(category = category, onClick = {
-                        if (category.name == "See All") {
-                            navController.navigate(Screen.SearchScreen.route)
+                    CategoryItem(
+                        category = category,
+                        onClick = {
+                            if (category.name == "See All") {
+                                navController.navigate(Screen.SearchScreen.route)
+                            } else {
+                                navController.navigate("book/${Uri.encode(category.name)}")
+                            }
                         }
-                    })
+                    )
                 }
             }
         }

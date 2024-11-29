@@ -4,8 +4,10 @@ package shelfify.routers
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.MemberViewModel
@@ -15,6 +17,7 @@ import shelfify.ui.authUI.login.ShowLoginScreen
 import shelfify.ui.authUI.register.ShowRegisterScreen
 import shelfify.ui.homeScreen.ShowHomeScreen
 import shelfify.ui.homeScreen.history.ShowHistoryScreen
+import shelfify.ui.homeScreen.home.book.ShowBookScreen
 import shelfify.ui.homeScreen.member.notification.ShowNotificationScreen
 import shelfify.ui.homeScreen.member.profile.ShowProfileScreen
 import shelfify.ui.homeScreen.member.setting.ShowSettingScreen
@@ -37,7 +40,8 @@ fun NavGraph(
         composable(route = Screen.Home.route) {
             ShowHomeScreen().Homepage(
                 navController = navController,
-                authViewModel = authViewModel
+                authViewModel = authViewModel,
+                bookViewModel = bookViewModel
             )
         }
 
@@ -101,5 +105,18 @@ fun NavGraph(
                 authViewModel = authViewModel
             )
         }
+
+        composable(
+            route = Screen.BookScreen.route,
+            arguments = listOf(navArgument("category") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val category = backStackEntry.arguments?.getString("category") ?: ""
+            ShowBookScreen().BookScreen(
+                navController = navController,
+                bookViewModel = bookViewModel
+            )
+        }
+
+
     }
 }

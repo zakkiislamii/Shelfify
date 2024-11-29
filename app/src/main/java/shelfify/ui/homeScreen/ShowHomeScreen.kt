@@ -22,6 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import shelfify.be.services.viewModel.AuthViewModel
+import shelfify.be.services.viewModel.BookViewModel
 import shelfify.contracts.session.UserSessionData
 import shelfify.ui.homeScreen.home.HomeHeader
 import shelfify.ui.homeScreen.home.categoryBook.CategoryBook
@@ -33,7 +34,11 @@ import shelfify.utils.toast.CustomToast
 
 class ShowHomeScreen {
     @Composable
-    fun Homepage(navController: NavController, authViewModel: AuthViewModel) {
+    fun Homepage(
+        navController: NavController,
+        authViewModel: AuthViewModel,
+        bookViewModel: BookViewModel,
+    ) {
         val context = LocalContext.current
         val userSessionData: UserSessionData = UserSessionProxy(RealUserSessionData())
         val userSession = userSessionData.getUserSession(context)

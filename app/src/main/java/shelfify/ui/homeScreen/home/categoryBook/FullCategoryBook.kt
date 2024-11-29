@@ -1,7 +1,9 @@
 package shelfify.ui.homeScreen.home.categoryBook
 
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,15 +28,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import shelfify.data.CategoryData
 import shelfify.ui.theme.MainColor
 
-@Preview(showBackground = true)
 @Composable
-fun FullCategoryBook() {
+fun FullCategoryBook(navController: NavController) {
     Column(modifier = Modifier.padding(16.dp)) {
         Box(modifier = Modifier.padding(bottom = 12.dp)) {
             Text(
@@ -57,6 +58,9 @@ fun FullCategoryBook() {
                         .padding(5.dp)
                         .shadow(1.dp, RoundedCornerShape(10.dp))
                         .fillMaxSize()
+                        .clickable {
+                            navController.navigate("book/${Uri.encode(category.name)}")
+                        }
                 ) {
                     Row(
                         modifier = Modifier
