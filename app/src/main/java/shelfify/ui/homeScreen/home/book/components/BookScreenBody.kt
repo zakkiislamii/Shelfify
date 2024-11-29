@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,9 +19,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.data.BookUI
-import shelfify.data.toBookUI
 import shelfify.ui.components.BookCard
 import shelfify.utils.response.Result
 
@@ -30,6 +29,7 @@ import shelfify.utils.response.Result
 fun BookScreenBody(
     category: String,
     bookViewModel: BookViewModel,
+    navController: NavController,
 ) {
     var books by remember { mutableStateOf<List<BookUI>>(emptyList()) }
     var loading by remember { mutableStateOf(true) }
@@ -40,7 +40,7 @@ fun BookScreenBody(
         bookViewModel.booksByCategoryState.collect { result ->
             when (result) {
                 is Result.Success -> {
-                    books = result.data.map { it.toBookUI() }
+                    books = result.data.map { it.BookUI() }
                     loading = false
                 }
 
@@ -89,7 +89,9 @@ fun BookScreenBody(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     items(books) { book ->
-                        BookCard(book = book, modifier = Modifier.fillMaxWidth())
+                        BookCard(book = book, onClick = {
+                            navController.navigate("bookDetail/${book.bookId}")
+                        })
                     }
                 }
             }

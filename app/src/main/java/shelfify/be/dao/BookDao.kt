@@ -29,4 +29,7 @@ interface BookDao {
     // Get books by category
     @Query("SELECT * FROM Books WHERE category = :category")
     suspend fun getBooksByCategory(category: String): List<Book>
+
+    @Query("SELECT * FROM Books WHERE book_id = :id LIMIT 1")
+    suspend fun getBookById(id: Int): Book?
 }

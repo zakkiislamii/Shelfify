@@ -4,7 +4,7 @@ import com.example.shelfify.R
 import shelfify.be.domain.models.Book
 
 data class BookUI(
-    val bookId: Int = 0,
+    val bookId: Int,
     val title: String,
     val writer: String,
     val stock: Int,
@@ -12,7 +12,7 @@ data class BookUI(
     val category: String,
 )
 
-fun Book.toBookUI() = BookUI(
+fun Book.BookUI() = BookUI(
     bookId = bookId,
     title = title,
     writer = writer,

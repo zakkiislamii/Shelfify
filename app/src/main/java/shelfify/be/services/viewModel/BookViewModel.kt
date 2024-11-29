@@ -75,4 +75,19 @@ class BookViewModel(private val bookRepository: BookRepository) : ViewModel() {
         }
     }
 
+    private val _bookByIdState = MutableStateFlow<Result<Book?>>(Result.Loading)
+    val bookByIdState: StateFlow<Result<Book?>> = _bookByIdState
+    // Function to get book by ID
+    fun getBookById(id: Int) {
+        viewModelScope.launch {
+            _bookByIdState.value = Result.Loading
+            try {
+                val book = bookRepository.getBookById(id)
+                _bookByIdState.value =
+                    Result.Success(book)
+            } catch (e: Exception) {
+                _bookByIdState.value = Result.Error(e.message ?: "Error fetching book")
+            }
+        }
+    }
 }

@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import shelfify.be.services.viewModel.BookViewModel
-import shelfify.routers.Screen
 import shelfify.ui.homeScreen.home.book.components.BookScreenBody
 import shelfify.ui.homeScreen.home.book.components.BookScreenHeader
 
@@ -30,7 +29,7 @@ class ShowBookScreen {
             topBar = {
                 BookScreenHeader(
                     category = category,
-                    onClick = { navController.navigate(Screen.Home.route) })
+                    onClick = { navController.popBackStack() })
             },
             content = { paddingValues ->
                 Box(
@@ -47,7 +46,8 @@ class ShowBookScreen {
                     ) {
                         BookScreenBody(
                             category = category,
-                            bookViewModel = bookViewModel
+                            bookViewModel = bookViewModel,
+                            navController = navController
                         )
                     }
                 }

@@ -29,4 +29,8 @@ class BookRepository(private val bookDao: BookDao) {
     suspend fun getBooksByCategory(category: String): List<Book> {
         return bookDao.getBooksByCategory(category)
     }
+
+    suspend fun getBookById(id: Int): Book? {
+        return bookDao.getBookById(id)
+    }
 }

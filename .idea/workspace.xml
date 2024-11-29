@@ -13,24 +13,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="394b4b7e-e62f-43c0-8d77-a290854ad1e3" name="Changes" comment="tes2">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/BookUI.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/BookCard.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/book/ShowBookScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/book/components/BookScreenBody.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/book/components/BookScreenHeader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/BookDetailData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/bookData/ShowBookData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/favoriteBook/ShowFavoriteData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/memberData/ShowMemberData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/reservationData/ShowReservationData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/bookDetail/ShowBookDetail.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/bookDetail/components/BookDetailHeader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/bookDetail/components/buttonBookDetail/BookDetailBody.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/bookDetail/components/buttonBookDetail/ButtonBookDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bookdata.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/favorite.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/member.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/reservation.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/BookDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/BookDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/BookRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/BookRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/BookViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/BookViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/BookUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/BookUI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/AppNavHost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/AppNavHost.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/NavGraph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/NavGraph.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/Screen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/Screen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/ShowHomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/ShowHomeScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/categoryBook/CategoryBook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/categoryBook/CategoryBook.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/categoryBook/FullCategoryBook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/categoryBook/FullCategoryBook.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/searchScreen/ShowSearchScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/searchScreen/ShowSearchScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/BookCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/BookCard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/NavigationBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/NavigationBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/ShowHomeScreen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/book/ShowBookScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/book/ShowBookScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/book/components/BookScreenBody.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/book/components/BookScreenBody.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,8 +108,8 @@
         <option value="Kotlin Object" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -145,11 +160,11 @@
   },
   "keyToStringList": {
     "com.android.tools.idea.sqlite.queryhistory": [
+      "select * from books",
+      "select description from books",
       "select is_logged_in from users where email = \"firman@gmail.com\"",
       "select password from Users",
-      "select * from books where category = \"Engineering\"",
-      "select * from books where category = \"Antiques & Collectibles\"",
-      "select * from books where category = \"Action & Adventure\""
+      "select * from books where category = \"Engineering\""
     ],
     "kotlin-gradle-user-dirs": [
       "F:\\GitHub\\Shelfify\\.gradle\\8.5",
@@ -317,29 +332,5 @@
     <MESSAGE value="tes" />
     <MESSAGE value="tes2" />
     <option name="LAST_COMMIT_MESSAGE" value="tes2" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/build.gradle.kts</url>
-          <line>7</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/build.gradle.kts</url>
-          <line>9</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/build.gradle.kts</url>
-          <line>12</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

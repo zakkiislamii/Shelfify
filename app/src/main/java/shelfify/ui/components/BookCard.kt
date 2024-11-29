@@ -1,6 +1,7 @@
 package shelfify.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -18,21 +19,20 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.shelfify.R
 import shelfify.data.BookUI
 import shelfify.ui.theme.MainColor
 
 @Composable
 fun BookCard(
     book: BookUI,
-    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
 ) {
     Card(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClick() }
             .padding(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
 
@@ -91,19 +91,4 @@ fun BookCard(
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewBookCard() {
-    BookCard(
-        book = BookUI(
-            bookId = 1,
-            title = "The Last of the Mohicans",
-            writer = "James Fenimore Cooper",
-            stock = 5,
-            bookImage = R.drawable.ic_launcher_background, // Placeholder image
-            category = "Classics"
-        )
-    )
 }

@@ -11,13 +11,18 @@ import androidx.navigation.navArgument
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.MemberViewModel
+import shelfify.ui.admin.bookData.ShowBookData
+import shelfify.ui.admin.favoriteBook.ShowFavoriteData
+import shelfify.ui.admin.memberData.ShowMemberData
+import shelfify.ui.admin.reservationData.ShowReservationData
 import shelfify.ui.authUI.changePassword.ShowChangePasswordScreen
 import shelfify.ui.authUI.forgotPassword.ShowForgotPasswordScreen
 import shelfify.ui.authUI.login.ShowLoginScreen
 import shelfify.ui.authUI.register.ShowRegisterScreen
-import shelfify.ui.homeScreen.ShowHomeScreen
 import shelfify.ui.homeScreen.history.ShowHistoryScreen
+import shelfify.ui.homeScreen.home.ShowHomeScreen
 import shelfify.ui.homeScreen.home.book.ShowBookScreen
+import shelfify.ui.homeScreen.home.bookDetail.ShowBookDetail
 import shelfify.ui.homeScreen.member.notification.ShowNotificationScreen
 import shelfify.ui.homeScreen.member.profile.ShowProfileScreen
 import shelfify.ui.homeScreen.member.setting.ShowSettingScreen
@@ -81,10 +86,25 @@ fun NavGraph(
         }
 
         composable(route = Screen.Notification.route) {
-            ShowNotificationScreen().NotificationScreen(
-
-            )
+            ShowNotificationScreen().NotificationScreen()
         }
+
+        composable(route = Screen.MemberData.route) {
+            ShowMemberData().MemberData()
+        }
+
+        composable(route = Screen.FavoriteBook.route) {
+            ShowFavoriteData().FavoriteData()
+        }
+
+        composable(route = Screen.ReservationData.route) {
+            ShowReservationData().ReservationData()
+        }
+
+        composable(route = Screen.BookData.route) {
+            ShowBookData().BookData()
+        }
+
 
         composable(route = Screen.History.route) {
             ShowHistoryScreen().HistoryScreen(
@@ -114,6 +134,24 @@ fun NavGraph(
             ShowBookScreen().BookScreen(
                 navController = navController,
                 bookViewModel = bookViewModel
+            )
+        }
+
+        composable(route = Screen.Setting.route) {
+            ShowSettingScreen().Setting(
+                navController = navController,
+                authViewModel = authViewModel
+            )
+        }
+
+        composable(
+            route = Screen.BookDetail.route,
+            arguments = listOf(navArgument("id") { type = NavType.IntType }) // Gunakan IntType
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getInt("id") ?: 0
+            ShowBookDetail().BookDetail(
+                navController = navController,
+                bookViewModel = bookViewModel,
             )
         }
 
