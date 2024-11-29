@@ -97,7 +97,8 @@ fun NavGraph(
         }
         composable(route = Screen.Setting.route) {
             ShowSettingScreen().Setting(
-                navController = navController
+                navController = navController,
+                authViewModel = authViewModel
             )
         }
     }

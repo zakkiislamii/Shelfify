@@ -174,8 +174,7 @@ class UserRepository(private val userDao: UserDao) {
                 ?: return Result.failure(Exception("User tidak ditemukan"))
 
             val updatedUser = user.copy(
-                isLoggedIn = false,
-                updatedAt = Date()
+                isLoggedIn = false
             )
             userDao.updateUser(updatedUser)
             Result.success(true)

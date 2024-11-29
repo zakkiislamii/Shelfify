@@ -18,18 +18,24 @@ import shelfify.be.services.viewModel.MemberViewModel
 import shelfify.be.services.viewModelFactory.AuthViewModelFactory
 import shelfify.be.services.viewModelFactory.BookViewModelFactory
 import shelfify.be.services.viewModelFactory.MemberViewModelFactory
+import shelfify.contracts.session.UserSessionData
 import shelfify.ui.components.NavigationBar
+import shelfify.utils.proxy.RealUserSessionData
+import shelfify.utils.proxy.UserSessionProxy
 
 @Composable
 fun AppNavHost(
     navController: NavHostController,
 ) {
     val context = LocalContext.current
+
     val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
     val isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false)
-
     val (authViewModel, bookViewModel, memberViewModel) = setupViewModels(context)
-    val startDestination = if (isLoggedIn) Screen.Home.route else Screen.Login.route
+    val userSessionData: UserSessionData = UserSessionProxy(RealUserSessionData())
+    val userSession = userSessionData.getUserSession(context)
+    val startDestination =
+        if (!isLoggedIn) Screen.Login.route else Screen.Home.route
     val noNeedNavbar = noNeedNavbar(navController)
 
     Scaffold(

@@ -12,6 +12,7 @@ import shelfify.utils.response.Result
 
 class AuthViewModel(private val userRepository: UserRepository) :
     ViewModel() {
+
     private val _loginState = MutableStateFlow<Result<User>>(Result.Loading)
     val loginState: StateFlow<Result<User>> = _loginState
     fun login(email: String, password: String, context: Context) {
@@ -126,6 +127,43 @@ class AuthViewModel(private val userRepository: UserRepository) :
 
             } catch (e: Exception) {
                 _changePasswordState.value = Result.Error(e.message ?: "Unknown error occurred")
+            }
+        }
+    }
+
+    private val _logOutState = MutableStateFlow<Result<User>>(Result.Loading)
+    val logOutState: StateFlow<Result<User>> = _logOutState
+    fun logout(email: String) {
+        viewModelScope.launch {
+            _logOutState.value = Result.Loading
+            try {
+                val userResult = userRepository.getUserByEmail(email)
+                if (userResult.isFailure) {
+                    _logOutState.value = Result.Error("User tidak ditemukan")
+                    return@launch
+                }
+                val user = userResult.getOrNull()
+                val logout = userRepository.logout(
+                    user?.userId ?: return@launch
+                )
+
+                if (logout.isSuccess) {
+                    _logOutState.value =
+                        Result.Success(user.copy(isLoggedIn = false))
+//                    saveLoginStatus(
+//                        context,
+//                        false,
+//                        user.userId,
+//                        user.email,
+//                        user.role.name
+//                    )
+
+                } else {
+                    _logOutState.value = Result.Error("Gagal log out")
+                }
+
+            } catch (e: Exception) {
+                _logOutState.value = Result.Error(e.message ?: "Unknown error occurred")
             }
         }
     }

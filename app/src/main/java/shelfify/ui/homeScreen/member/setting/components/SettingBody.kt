@@ -19,12 +19,11 @@ import com.example.shelfify.R.color.black
 
 class SettingBody {
     @Composable
-    fun ChangePasswordSetting(onClick: () -> Unit) {
+    fun ChangePasswordSetting() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
-                .clickable { onClick() },
+                .padding(16.dp),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -67,7 +66,7 @@ class SettingBody {
 @Composable
 fun ChangePasswordSettingPreview() {
     SettingBody().ChangePasswordSetting(
-        onClick = {}
+
     )
 }
 

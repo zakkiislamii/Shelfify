@@ -20,6 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         Firebase.initialize(this)
         installSplashScreen()
+
         setContent {
             ShelfifyTheme {
                 val isOnboardingCompleted = remember {

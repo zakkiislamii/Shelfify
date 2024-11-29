@@ -11,7 +11,6 @@ class UserSessionProxy(private val realUserSessionData: UserSessionData) : UserS
         if (!isLoggedIn) {
             throw IllegalStateException("User not logged in")
         }
-
         return realUserSessionData.getUserSession(context)
     }
 }

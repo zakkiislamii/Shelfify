@@ -1,5 +1,7 @@
 package shelfify.ui.homeScreen.member.profile.components
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -51,7 +53,8 @@ fun ProfileBody(
             .verticalScroll(scrollState)
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -76,6 +79,8 @@ fun ProfileBody(
                 .align(Alignment.CenterHorizontally)
                 .size(150.dp)
                 .clip(CircleShape)
+                .background(color = Color(0xFFD9D9D9))
+                .border(2.dp, Color.Black, CircleShape)
         ) {
             if (!profileImage.isNullOrEmpty()) {
                 AsyncImage(
@@ -116,7 +121,7 @@ private fun ProfileInfoItem(label: String, value: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
+            .padding(vertical = 15.dp)
     ) {
         Text(
             text = label,

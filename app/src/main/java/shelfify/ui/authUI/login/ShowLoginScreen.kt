@@ -52,7 +52,7 @@ class ShowLoginScreen {
                         context = context,
                         message = "Login berhasil! Selamat datang ${user.fullName}"
                     )
-                    navController.navigate(Screen.Home.route + "?full_name=${user.fullName}")
+                    navController.navigate(Screen.Home.route )
                 }
 
                 is Result.Error -> {
