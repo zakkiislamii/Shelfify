@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import shelfify.ui.components.SearchBar
-import shelfify.ui.homeScreen.home.categoryBook.FullCategoryBook
+import shelfify.ui.library.categoryBook.FullCategoryBook
 
 
 class ShowSearchScreen {

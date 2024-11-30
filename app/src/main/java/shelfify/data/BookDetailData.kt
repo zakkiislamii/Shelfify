@@ -23,10 +23,14 @@ fun Book.BookDetailData() = BookDetailData(
     pages = pages,
     description = description,
     stock = stock,
-    bookImage = if (bookImage?.startsWith("http") == true) {
+    bookImage = if (bookImage?.startsWith("http") == true &&
+        (bookImage.endsWith(".jpg", true) ||
+                bookImage.endsWith(".jpeg", true) ||
+                bookImage.endsWith(".png", true))
+    ) {
         R.drawable.ic_launcher_background
     } else {
-        bookImage?.toInt() ?: R.drawable.ic_launcher_background
+        bookImage?.toIntOrNull() ?: R.drawable.ic_launcher_background
     },
     category = category
 )

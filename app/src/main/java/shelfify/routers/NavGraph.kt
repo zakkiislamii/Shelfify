@@ -1,4 +1,3 @@
-// NavGraph.kt
 package shelfify.routers
 
 import androidx.compose.runtime.Composable
@@ -10,23 +9,25 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
+import shelfify.be.services.viewModel.CartViewModel
 import shelfify.be.services.viewModel.MemberViewModel
 import shelfify.ui.admin.bookData.ShowBookData
 import shelfify.ui.admin.favoriteBook.ShowFavoriteData
 import shelfify.ui.admin.memberData.ShowMemberData
 import shelfify.ui.admin.reservationData.ShowReservationData
-import shelfify.ui.authUI.changePassword.ShowChangePasswordScreen
-import shelfify.ui.authUI.forgotPassword.ShowForgotPasswordScreen
-import shelfify.ui.authUI.login.ShowLoginScreen
-import shelfify.ui.authUI.register.ShowRegisterScreen
+import shelfify.ui.auth.changePassword.ShowChangePasswordScreen
+import shelfify.ui.auth.forgotPassword.ShowForgotPasswordScreen
+import shelfify.ui.auth.login.ShowLoginScreen
+import shelfify.ui.auth.register.ShowRegisterScreen
+import shelfify.ui.homeScreen.cart.ShowCartScreen
 import shelfify.ui.homeScreen.history.ShowHistoryScreen
 import shelfify.ui.homeScreen.home.ShowHomeScreen
-import shelfify.ui.homeScreen.home.book.ShowBookScreen
-import shelfify.ui.homeScreen.home.bookDetail.ShowBookDetail
 import shelfify.ui.homeScreen.member.notification.ShowNotificationScreen
 import shelfify.ui.homeScreen.member.profile.ShowProfileScreen
 import shelfify.ui.homeScreen.member.setting.ShowSettingScreen
 import shelfify.ui.homeScreen.searchScreen.ShowSearchScreen
+import shelfify.ui.library.book.ShowBookScreen
+import shelfify.ui.library.bookDetail.ShowBookDetail
 
 @Composable
 fun NavGraph(
@@ -35,6 +36,7 @@ fun NavGraph(
     authViewModel: AuthViewModel,
     bookViewModel: BookViewModel,
     memberViewModel: MemberViewModel,
+    cartViewModel: CartViewModel,
     modifier: Modifier = Modifier,
 ) {
     NavHost(
@@ -46,7 +48,6 @@ fun NavGraph(
             ShowHomeScreen().Homepage(
                 navController = navController,
                 authViewModel = authViewModel,
-                bookViewModel = bookViewModel
             )
         }
 
@@ -152,7 +153,12 @@ fun NavGraph(
             ShowBookDetail().BookDetail(
                 navController = navController,
                 bookViewModel = bookViewModel,
+                cartViewModel = cartViewModel
             )
+        }
+
+        composable(route = Screen.Cart.route) {
+            ShowCartScreen().Cart(navController = navController, cartViewModel = cartViewModel)
         }
 
 

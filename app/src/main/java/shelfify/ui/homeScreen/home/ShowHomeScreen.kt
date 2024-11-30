@@ -22,9 +22,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import shelfify.be.services.viewModel.AuthViewModel
-import shelfify.be.services.viewModel.BookViewModel
 import shelfify.contracts.session.UserSessionData
-import shelfify.ui.homeScreen.home.categoryBook.CategoryBook
+import shelfify.routers.Screen
+import shelfify.ui.homeScreen.home.components.HomeHeader
+import shelfify.ui.library.categoryBook.CategoryBook
+import shelfify.utils.loading.LoadingIndicator
 import shelfify.utils.proxy.RealUserSessionData
 import shelfify.utils.proxy.UserSessionProxy
 import shelfify.utils.response.Result
@@ -36,7 +38,6 @@ class ShowHomeScreen {
     fun Homepage(
         navController: NavController,
         authViewModel: AuthViewModel,
-        bookViewModel: BookViewModel,
     ) {
         val context = LocalContext.current
         val userSessionData: UserSessionData = UserSessionProxy(RealUserSessionData())
@@ -66,6 +67,7 @@ class ShowHomeScreen {
             }
 
             Result.Loading -> {
+                LoadingIndicator()
             }
         }
 
@@ -73,7 +75,9 @@ class ShowHomeScreen {
             "MEMBER" -> {
                 Scaffold(
                     topBar = {
-                        HomeHeader(fullname = firstName, navController)
+                        HomeHeader(fullname = firstName, navController) {
+                            navController.navigate(Screen.Cart.route)
+                        }
                     },
                 ) { paddingValues ->
                     Box(

@@ -21,73 +21,68 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import shelfify.contracts.card.CardComponent
 import shelfify.data.BookUI
 import shelfify.ui.theme.MainColor
 
-@Composable
-fun BookCard(
-    book: BookUI,
-    onClick: () -> Unit,
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick() }
-            .padding(8.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-
+class BookCard : CardComponent<BookUI> {
+    @Composable
+    override fun CreateCard(item: BookUI, onClick: () -> Unit) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onClick() }
+                .padding(8.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
         ) {
-        Row(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            // Image on the left side
-            Image(
-                painter = painterResource(id = book.bookImage),
-                contentDescription = book.title,
-                modifier = Modifier
-                    .width(120.dp)
-                    .fillMaxSize()
-                    .fillMaxHeight(),
-                contentScale = ContentScale.Crop
-            )
+            Row(modifier = Modifier.fillMaxSize()) {
+                Image(
+                    painter = painterResource(id = item.bookImage.toInt()),
+                    contentDescription = item.title,
+                    modifier = Modifier
+                        .width(120.dp)
+                        .fillMaxSize()
+                        .fillMaxHeight(),
+                    contentScale = ContentScale.Crop
+                )
 
-            // Text content on the right side
-            Column(
-                modifier = Modifier
-                    .padding(15.dp)
-                    .fillMaxSize()
-                    .weight(1f) // To take the remaining space
-            ) {
-                Text(
-                    text = book.title,
-                    fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.titleSmall,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.padding(bottom = 8.dp) // Space between title and writer
-                )
-                Text(
-                    text = book.writer,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-                Text(
-                    text = book.category,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-                Text(
-                    text = "Book stock: ${book.stock}",
-                    fontSize = 9.sp,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MainColor
-                )
+                Column(
+                    modifier = Modifier
+                        .padding(15.dp)
+                        .fillMaxSize()
+                        .weight(1f)
+                ) {
+                    Text(
+                        text = item.title,
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.titleSmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                    Text(
+                        text = item.writer,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                    Text(
+                        text = item.category,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                    Text(
+                        text = "Book stock: ${item.stock}",
+                        fontSize = 9.sp,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MainColor
+                    )
+                }
             }
         }
     }
