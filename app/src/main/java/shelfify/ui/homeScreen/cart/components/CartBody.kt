@@ -17,7 +17,7 @@ import com.example.shelfify.R
 import shelfify.be.services.viewModel.CartViewModel
 import shelfify.data.CartBookUI
 import shelfify.data.CartWithBook
-import shelfify.ui.components.CartCard
+import shelfify.ui.components.card.CartCard
 
 @Composable
 fun CartBody(

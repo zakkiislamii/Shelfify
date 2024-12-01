@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.CartViewModel
+import shelfify.be.services.viewModel.HistoryViewModel
 import shelfify.be.services.viewModel.MemberViewModel
 import shelfify.be.services.viewModel.NotificationViewModel
 import shelfify.be.services.viewModel.ReservationViewModel
@@ -38,6 +39,7 @@ fun NavGraph(
     authViewModel: AuthViewModel,
     bookViewModel: BookViewModel,
     memberViewModel: MemberViewModel,
+    historyViewModel: HistoryViewModel,
     cartViewModel: CartViewModel,
     notificationViewModel: NotificationViewModel,
     reservationViewModel: ReservationViewModel,
@@ -114,9 +116,7 @@ fun NavGraph(
 
 
         composable(route = Screen.History.route) {
-            ShowHistoryScreen().HistoryScreen(
-                navController = navController
-            )
+            ShowHistoryScreen().HistoryScreen(historyViewModel = historyViewModel)
         }
 
         composable(route = Screen.Profile.route) {

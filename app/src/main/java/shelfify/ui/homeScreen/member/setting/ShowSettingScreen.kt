@@ -67,12 +67,13 @@ class ShowSettingScreen {
                         .padding(20.dp)
                 ) {
                     Column {
-                        SettingBody().ChangePasswordSetting()
+                        SettingBody().ChangePasswordSetting {
+                            navController.navigate(Screen.ChangePassword.route + "?email=${email}")
+                        }
                         SettingBody().LogoutSetting(onClick = {
                             // Trigger logout
                             authViewModel.logout(email)
                             navController.navigate(Screen.Login.route)
-
                         })
                     }
                 }

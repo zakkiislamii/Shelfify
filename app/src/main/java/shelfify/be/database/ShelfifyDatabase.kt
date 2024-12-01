@@ -8,11 +8,13 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import shelfify.be.dao.BookDao
 import shelfify.be.dao.CartDao
+import shelfify.be.dao.HistoryDao
 import shelfify.be.dao.NotificationDao
 import shelfify.be.dao.ReservationDao
 import shelfify.be.dao.UserDao
 import shelfify.be.domain.models.Book
 import shelfify.be.domain.models.CartEntity
+import shelfify.be.domain.models.History
 import shelfify.be.domain.models.Notification
 import shelfify.be.domain.models.Reservation
 import shelfify.be.domain.models.User
@@ -25,8 +27,9 @@ import shelfify.utils.converter.DateConverter
         Book::class,
         Reservation::class,
         Notification::class,
+        History::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(
@@ -38,6 +41,7 @@ abstract class ShelfifyDatabase : RoomDatabase() {
     abstract fun cartDao(): CartDao
     abstract fun reservationDao(): ReservationDao
     abstract fun notificationDao(): NotificationDao
+    abstract fun historyDao(): HistoryDao
 
     companion object {
         @Volatile

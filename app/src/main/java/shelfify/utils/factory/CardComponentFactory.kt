@@ -3,7 +3,7 @@ package shelfify.utils.factory
 import shelfify.contracts.card.CardComponent
 import shelfify.data.BaseUI
 import shelfify.data.BookUI
-import shelfify.ui.components.BookCard
+import shelfify.ui.components.card.BookCard
 import kotlin.reflect.KClass
 
 object CardComponentFactory {

@@ -5,13 +5,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import shelfify.be.domain.models.History
 import shelfify.be.domain.models.Notification
 import shelfify.be.domain.models.Reservation
 import shelfify.be.domain.repositories.BookRepository
 import shelfify.be.domain.repositories.CartRepository
+import shelfify.be.domain.repositories.HistoryRepository
 import shelfify.be.domain.repositories.NotificationRepository
 import shelfify.be.domain.repositories.ReservationRepository
 import shelfify.contracts.enumerations.Status
@@ -22,6 +27,7 @@ class ReservationViewModel(
     private val notificationRepository: NotificationRepository,
     private val cartRepository: CartRepository,
     private val bookRepository: BookRepository,
+    private val historyRepository: HistoryRepository,
 ) : ViewModel() {
 
     private val _reservations = MutableStateFlow<List<Reservation>>(emptyList())
@@ -43,6 +49,25 @@ class ReservationViewModel(
         }
     }
 
+    suspend fun checkUserHasActiveReservation(userId: Int): Flow<Result<Boolean>> {
+        return flow {
+            try {
+                reservationRepository.getReservationsByUserId(userId)
+                    .map { reservations ->
+                        val hasActive =
+                            reservations.any {
+                                it.status == Status.PENDING || it.status == Status.BORROWED
+                            }
+                        Result.Success(hasActive)
+                    }
+                    .collect { emit(it) }
+            } catch (e: Exception) {
+                emit(Result.Error(e.message ?: "Error checking reservations"))
+            }
+        }
+    }
+
+
     // Add reservation from book detail
     suspend fun addReservationFromBookDetail(bookId: Int, reservation: Reservation) {
         try {
@@ -53,7 +78,13 @@ class ReservationViewModel(
                 reservationId = reservationId.toInt(),
                 message = getNotificationMessage(Status.PENDING, book.title)
             )
+            val history = History(
+                userId = reservation.userId,
+                reservationId = reservationId.toInt(),
+                bookId = reservation.bookId
+            )
             notificationRepository.addNotification(notification)
+            historyRepository.addHistory(history)
         } catch (e: Exception) {
             Log.e("ReservationViewModel", "Error adding reservation: ${e.message}", e)
             _addReservationState.value = Result.Error(e.message ?: "Failed to add reservation")
@@ -82,8 +113,13 @@ class ReservationViewModel(
                             reservationId = id.toInt(),
                             message = getNotificationMessage(Status.PENDING, bookTitle)
                         )
+                        val history = History(
+                            userId = reservation.userId,
+                            reservationId = id.toInt(),
+                            bookId = reservation.bookId
+                        )
                         notificationRepository.addNotification(notification)
-
+                        historyRepository.addHistory(history)
                         cartRepository.deleteCartAfterReserve(bookId = reservation.bookId)
 
                     } catch (e: Exception) {

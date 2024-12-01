@@ -12,17 +12,19 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import shelfify.be.database.ShelfifyDatabase
 import shelfify.be.domain.repositories.BookRepository
 import shelfify.be.domain.repositories.CartRepository
+import shelfify.be.domain.repositories.HistoryRepository
 import shelfify.be.domain.repositories.NotificationRepository
 import shelfify.be.domain.repositories.ReservationRepository
 import shelfify.be.domain.repositories.UserRepository
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.CartViewModel
+import shelfify.be.services.viewModel.HistoryViewModel
 import shelfify.be.services.viewModel.MemberViewModel
 import shelfify.be.services.viewModel.NotificationViewModel
 import shelfify.be.services.viewModel.ReservationViewModel
 import shelfify.be.services.viewModelFactory.ViewModelFactory
-import shelfify.ui.components.NavigationBar
+import shelfify.ui.components.navbar.NavigationBar
 
 @Composable
 fun AppNavHost(navController: NavHostController) {
@@ -46,6 +48,7 @@ fun AppNavHost(navController: NavHostController) {
             bookViewModel = viewModels.bookViewModel,
             memberViewModel = viewModels.memberViewModel,
             cartViewModel = viewModels.cartViewModel,
+            historyViewModel = viewModels.historyViewModel,
             reservationViewModel = viewModels.reservationViewModel,
             notificationViewModel = viewModels.notificationViewModel,
             modifier = Modifier.padding(paddingValues)
@@ -67,18 +70,31 @@ private fun setupViewModels(context: Context): DataViewModel {
         BookRepository(database.bookDao()),
         CartRepository(database.cartDao()),
         NotificationRepository(database.notificationDao()),
-        ReservationRepository(database.reservationDao())
+        ReservationRepository(database.reservationDao()),
+        HistoryRepository(database.historyDao())
     )
 
+    // Inisialisasi ViewModel dengan factory
+    val authViewModel: AuthViewModel = viewModel(factory = viewModelFactory)
+    val bookViewModel: BookViewModel = viewModel(factory = viewModelFactory)
+    val cartViewModel: CartViewModel = viewModel(factory = viewModelFactory)
+    val historyViewModel: HistoryViewModel = viewModel(factory = viewModelFactory)
+    val reservationViewModel: ReservationViewModel = viewModel(factory = viewModelFactory)
+    val notificationViewModel: NotificationViewModel = viewModel(factory = viewModelFactory)
+    val memberViewModel: MemberViewModel = viewModel(factory = viewModelFactory)
+
+    // Kembalikan DataViewModel yang berisi semua ViewModel
     return DataViewModel(
-        viewModel(factory = viewModelFactory),
-        viewModel(factory = viewModelFactory),
-        viewModel(factory = viewModelFactory),
-        viewModel(factory = viewModelFactory),
-        viewModel(factory = viewModelFactory),
-        viewModel(factory = viewModelFactory)
+        authViewModel = authViewModel,
+        bookViewModel = bookViewModel,
+        memberViewModel = memberViewModel,
+        cartViewModel = cartViewModel,
+        historyViewModel = historyViewModel,
+        reservationViewModel = reservationViewModel,
+        notificationViewModel = notificationViewModel
     )
 }
+
 
 private fun getStartDestination(isLoggedIn: Boolean): String {
     return if (!isLoggedIn) Screen.Login.route else Screen.Home.route
@@ -105,4 +121,5 @@ private data class DataViewModel(
     val cartViewModel: CartViewModel,
     val reservationViewModel: ReservationViewModel,
     val notificationViewModel: NotificationViewModel,
+    val historyViewModel: HistoryViewModel,
 )

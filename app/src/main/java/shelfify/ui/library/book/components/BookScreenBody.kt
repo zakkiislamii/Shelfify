@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.data.BookUI
-import shelfify.ui.components.BookCard
+import shelfify.ui.components.card.BookCard
 import shelfify.utils.response.Result
 
 @Composable

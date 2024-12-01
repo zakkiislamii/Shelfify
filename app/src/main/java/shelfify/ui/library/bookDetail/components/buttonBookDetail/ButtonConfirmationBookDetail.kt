@@ -68,6 +68,19 @@ class ButtonConfirmationBookDetail : Button {
             onClick = onClick
         )
     }
+
+    @Composable
+    fun OKButton(onClick: () -> Unit) {
+        CreateButton(
+            text = "OK",
+            backgroundColor = MainColor,
+            textColor = Color.White,
+            textStyle = MaterialTheme.typography.titleMedium,
+            fontSize = 14,
+            borderColor = Color.Transparent,
+            onClick = onClick
+        )
+    }
 }
 
 @Preview(showBackground = true)

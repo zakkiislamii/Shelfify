@@ -8,7 +8,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -21,8 +25,8 @@ import shelfify.be.services.viewModel.CartViewModel
 import shelfify.be.services.viewModel.ReservationViewModel
 import shelfify.contracts.session.UserSessionData
 import shelfify.data.BookDetailData
+import shelfify.ui.library.bookDetail.components.BookDetailBody
 import shelfify.ui.library.bookDetail.components.BookDetailHeader
-import shelfify.ui.library.bookDetail.components.buttonBookDetail.BookDetailBody
 import shelfify.utils.loading.LoadingIndicator
 import shelfify.utils.proxy.RealUserSessionData
 import shelfify.utils.proxy.UserSessionProxy
@@ -44,7 +48,18 @@ class ShowBookDetail {
         val userSession = userSessionData.getUserSession(context)
         val userId = userSession.userId.toInt()
         val bookState = bookViewModel.bookByIdState.collectAsState()
-        val addCartState = cartViewModel.addCartState.collectAsState()
+        var hasActiveReservation by remember { mutableStateOf(false) }
+
+        LaunchedEffect(userId) {
+            reservationViewModel.checkUserHasActiveReservation(userId)
+                .collect { result ->
+                    hasActiveReservation = when (result) {
+                        is Result.Success -> result.data
+                        else -> false
+                    }
+                }
+        }
+
 
         LaunchedEffect(id) {
             if (id != 0) {
@@ -72,7 +87,7 @@ class ShowBookDetail {
                             BookDetailBody().BookDetail(
                                 book = book,
                                 onAddToCart = {
-                                    if (userId != 0) {
+                                    if (userId != 0 && !hasActiveReservation) {
                                         scope.launch {
                                             val existsResult =
                                                 cartViewModel.isBookExistsInCart(userId, id)
@@ -97,15 +112,18 @@ class ShowBookDetail {
                                                     )
                                                 }
 
-                                                is Result.Loading -> {
-
-                                                }
+                                                is Result.Loading -> {}
                                             }
                                         }
+                                    } else {
+                                        CustomToast().showToast(
+                                            context = context,
+                                            message = "Anda memiliki reservasi aktif, tidak dapat menambahkan buku ke keranjang"
+                                        )
                                     }
                                 },
                                 onReserve = {
-                                    if (userId != 0) {
+                                    if (userId != 0 && !hasActiveReservation) {
                                         scope.launch {
                                             try {
                                                 reservationViewModel.addReservationFromBookDetail(
@@ -126,9 +144,15 @@ class ShowBookDetail {
                                                 )
                                             }
                                         }
+                                    } else {
+                                        CustomToast().showToast(
+                                            context = context,
+                                            message = "Anda memiliki reservasi aktif, tidak dapat memesan buku"
+                                        )
                                     }
                                 },
-                                navController = navController
+                                navController = navController,
+                                hasActiveReservation = hasActiveReservation
                             )
                         }
                     }
