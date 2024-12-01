@@ -5,7 +5,6 @@ import shelfify.be.domain.models.Reservation
 
 interface ReservationRepositoryContract {
     fun getReservationsByUserId(userId: Int): Flow<List<Reservation>>
-    suspend fun addReservation(reservations: List<Reservation>)
     suspend fun insertReservation(reservation: Reservation): Long
-    suspend fun addReservationSingle(bookId: Int, reservations: Reservation):Long
+    suspend fun addReservationSingle(bookId: Int, reservations: Reservation): Long
 }

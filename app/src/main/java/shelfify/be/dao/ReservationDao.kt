@@ -16,17 +16,12 @@ interface ReservationDao {
     @Transaction
     suspend fun insertReserveAndUpdateStock(bookId: Int, reservations: Reservation): Long {
         decreaseBookStock(bookId)
-        return addReservationsOnBookDetail(reservations)
+        return insertReservation(reservations)
     }
 
     @Query("SELECT * FROM Reservations WHERE user_id = :userId")
     fun getReservationsByUserId(userId: Int): Flow<List<Reservation>>
 
-    @Insert
-    suspend fun addReservations(reservations: List<Reservation>)
-
-    @Insert
-    suspend fun addReservationsOnBookDetail(reservations: Reservation): Long
 
     @Insert
     suspend fun insertReservation(reservation: Reservation): Long

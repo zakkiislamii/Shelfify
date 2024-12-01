@@ -11,8 +11,8 @@ import androidx.compose.ui.unit.sp
 fun NotificationSection(title: String) {
     Text(
         text = title,
-        fontSize = 18.sp,
+        fontSize = 15.sp,
         fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
-        modifier = Modifier.padding(10.dp)
+        modifier = Modifier.padding(1.dp)
     )
 }

@@ -14,18 +14,18 @@ import androidx.compose.ui.unit.sp
 fun NotificationItem(message: String, time: String) {
     Row(
         modifier = Modifier
-            .padding(10.dp)
+            .padding(8.dp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         Text(
             text = message,
-            fontSize = 14.sp,
+            fontSize = 13.sp,
             modifier = Modifier.weight(1f)
         )
         Text(
             text = time,
-            fontSize = 12.sp,
+            fontSize = 10.sp,
             modifier = Modifier.weight(0.5f)
         )
     }

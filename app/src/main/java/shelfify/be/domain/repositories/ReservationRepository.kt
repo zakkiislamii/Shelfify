@@ -19,7 +19,5 @@ class ReservationRepository(private val reservationDao: ReservationDao) :
         return reservationDao.insertReserveAndUpdateStock(bookId, reservations)
     }
 
-    override suspend fun addReservation(reservations: List<Reservation>) {
-        return reservationDao.addReservations(reservations)
-    }
+
 }

@@ -13,9 +13,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="394b4b7e-e62f-43c0-8d77-a290854ad1e3" name="Changes" comment="tes2">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/book/components/BookScreenBody.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/book/components/BookScreenBody.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/bookDetail/components/buttonBookDetail/BookDetailBody.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/bookDetail/components/buttonBookDetail/BookDetailBody.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/ReservationDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/ReservationDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/ReservationRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/ReservationRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/ReservationRepositoryContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/ReservationRepositoryContract.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/NotificationViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/NotificationViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/AppNavHost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/AppNavHost.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/NavGraph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/NavGraph.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/notification/ShowNotificationScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/notification/ShowNotificationScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/notification/components/NotificationItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/notification/components/NotificationItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/notification/components/NotificationSection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/notification/components/NotificationSection.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,11 +321,19 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/bookDetail/components/buttonBookDetail/BookDetailBody.kt</url>
-          <line>42</line>
+          <line>44</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/bookDetail/components/buttonBookDetail/BookDetailBody.kt</url>
+          <line>44</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

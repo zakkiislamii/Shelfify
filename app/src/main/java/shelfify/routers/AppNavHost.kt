@@ -19,6 +19,7 @@ import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.CartViewModel
 import shelfify.be.services.viewModel.MemberViewModel
+import shelfify.be.services.viewModel.NotificationViewModel
 import shelfify.be.services.viewModel.ReservationViewModel
 import shelfify.be.services.viewModelFactory.ViewModelFactory
 import shelfify.ui.components.NavigationBar
@@ -46,6 +47,7 @@ fun AppNavHost(navController: NavHostController) {
             memberViewModel = viewModels.memberViewModel,
             cartViewModel = viewModels.cartViewModel,
             reservationViewModel = viewModels.reservationViewModel,
+            notificationViewModel = viewModels.notificationViewModel,
             modifier = Modifier.padding(paddingValues)
         )
     }
@@ -69,6 +71,7 @@ private fun setupViewModels(context: Context): DataViewModel {
     )
 
     return DataViewModel(
+        viewModel(factory = viewModelFactory),
         viewModel(factory = viewModelFactory),
         viewModel(factory = viewModelFactory),
         viewModel(factory = viewModelFactory),
@@ -101,4 +104,5 @@ private data class DataViewModel(
     val memberViewModel: MemberViewModel,
     val cartViewModel: CartViewModel,
     val reservationViewModel: ReservationViewModel,
+    val notificationViewModel: NotificationViewModel,
 )
