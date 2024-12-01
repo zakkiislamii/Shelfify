@@ -6,12 +6,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import shelfify.be.dao.UserDao
 import shelfify.be.domain.models.User
+import shelfify.be.domain.repositoryContract.UserRepositoryContract
 import shelfify.contracts.enumerations.Role
 import java.util.Date
 import java.util.Locale
 
-class UserRepository(private val userDao: UserDao) {
-    suspend fun login(email: String, password: String): Result<User> {
+class UserRepository(private val userDao: UserDao) : UserRepositoryContract {
+    override suspend fun login(email: String, password: String): Result<User> {
         return try {
             val user = userDao.getUserByEmail(email)
                 ?: return Result.failure(Exception("User tidak ditemukan"))
@@ -32,7 +33,7 @@ class UserRepository(private val userDao: UserDao) {
         }
     }
 
-    suspend fun register(
+    override suspend fun register(
         fullName: String,
         email: String,
         phoneNumber: String,
@@ -77,7 +78,7 @@ class UserRepository(private val userDao: UserDao) {
     }
 
 
-    suspend fun deleteUser(userId: Int): Result<Boolean> {
+    override suspend fun deleteUser(userId: Int): Result<Boolean> {
         return try {
             val user = userDao.getUserById(userId)
                 ?: return Result.failure(Exception("User tidak ditemukan"))
@@ -89,7 +90,7 @@ class UserRepository(private val userDao: UserDao) {
         }
     }
 
-    suspend fun getProfile(userId: Int): Result<User> {
+    override suspend fun getProfile(userId: Int): Result<User> {
         return try {
             val user = userDao.getUserById(userId)
             if (user != null) {
@@ -102,7 +103,7 @@ class UserRepository(private val userDao: UserDao) {
         }
     }
 
-    fun getAllUsers(): Flow<List<User>> = flow {
+    override fun getAllUsers(): Flow<List<User>> = flow {
         try {
             emit(userDao.getAllUsers())
         } catch (e: Exception) {
@@ -110,7 +111,7 @@ class UserRepository(private val userDao: UserDao) {
         }
     }
 
-    fun searchUsers(query: String): Flow<List<User>> = flow {
+    override fun searchUsers(query: String): Flow<List<User>> = flow {
         try {
             emit(userDao.searchUsers("%$query%"))
         } catch (e: Exception) {
@@ -118,7 +119,7 @@ class UserRepository(private val userDao: UserDao) {
         }
     }
 
-    suspend fun getUserByEmail(email: String): Result<User> {
+    override suspend fun getUserByEmail(email: String): Result<User> {
         return try {
             val sanitizedEmail = email.trim().lowercase(Locale.getDefault())
             val user = userDao.getUserByEmail(sanitizedEmail)
@@ -132,7 +133,7 @@ class UserRepository(private val userDao: UserDao) {
         }
     }
 
-    suspend fun changePassword(
+    override suspend fun changePassword(
         userId: Int,
         password: String,
     ): Result<Boolean> {
@@ -159,7 +160,7 @@ class UserRepository(private val userDao: UserDao) {
     }
 
 
-    suspend fun updateUser(user: User): Result<User> {
+    override suspend fun updateUser(user: User): Result<User> {
         return try {
             userDao.updateUser(user)
             Result.success(user)
@@ -168,7 +169,7 @@ class UserRepository(private val userDao: UserDao) {
         }
     }
 
-    suspend fun logout(userId: Int): Result<Boolean> {
+    override suspend fun logout(userId: Int): Result<Boolean> {
         return try {
             val user = userDao.getUserById(userId)
                 ?: return Result.failure(Exception("User tidak ditemukan"))

@@ -44,7 +44,7 @@ class ShowHomeScreen {
         val userSession = userSessionData.getUserSession(context)
         var fullName by remember { mutableStateOf("") }
         var firstName by remember { mutableStateOf("") }
-        val userState = authViewModel.getUserByEmailState.collectAsState()
+        val userState by authViewModel.getUserByEmailState.collectAsState()
 
         LaunchedEffect(userSession.email) {
             userSession.email?.let { email ->
@@ -52,68 +52,80 @@ class ShowHomeScreen {
             }
         }
 
-        when (val state = userState.value) {
-            is Result.Success -> {
-                fullName = state.data.fullName
-                firstName = state.data.fullName.split(" ")[0]
-            }
+        // Handle user state in a side effect to avoid recomposition issues
+        LaunchedEffect(userState) {
+            when (userState) {
+                is Result.Success -> {
+                    val userData = (userState as Result.Success).data
+                    fullName = userData.fullName
+                    firstName = userData.fullName.split(" ")[0]
+                }
 
-            is Result.Error -> {
-                val error = (userState as Result.Error).message
-                CustomToast().showToast(
-                    context = context,
-                    message = error
-                )
-            }
+                is Result.Error -> {
+                    val error = (userState as Result.Error).message
+                    CustomToast().showToast(
+                        context = context,
+                        message = error
+                    )
+                }
 
-            Result.Loading -> {
-                LoadingIndicator()
+                is Result.Loading -> {
+                    // Loading state handled in UI
+                }
             }
         }
 
-        when (userSession.role) {
-            "MEMBER" -> {
-                Scaffold(
-                    topBar = {
-                        HomeHeader(fullname = firstName, navController) {
-                            navController.navigate(Screen.Cart.route)
-                        }
-                    },
-                ) { paddingValues ->
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color.White)
-                            .padding(paddingValues)
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.spacedBy(16.dp)
-                        ) {
-                            CategoryBook(navController)
-                        }
-                    }
-                }
-
+        when (userState) {
+            is Result.Loading -> {
+                LoadingIndicator()
             }
 
             else -> {
-                Scaffold(
-                    topBar = {
-                        Text(text = "Selamat datang, Admin!")
-                    },
-                ) { paddingValues ->
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color.White)
-                            .padding(paddingValues)
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.spacedBy(16.dp)
-                        ) {
+                // Main content
+                when (userSession.role) {
+                    "MEMBER" -> {
+                        Scaffold(
+                            topBar = {
+                                HomeHeader(fullname = firstName, navController) {
+                                    navController.navigate(Screen.Cart.route)
+                                }
+                            },
+                        ) { paddingValues ->
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(Color.White)
+                                    .padding(paddingValues)
+                            ) {
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                                ) {
+                                    CategoryBook(navController)
+                                }
+                            }
+                        }
+                    }
 
+                    else -> {
+                        Scaffold(
+                            topBar = {
+                                Text(text = "Selamat datang, Admin!")
+                            },
+                        ) { paddingValues ->
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .background(Color.White)
+                                    .padding(paddingValues)
+                            ) {
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                                ) {
+                                    // Admin content
+                                }
+                            }
                         }
                     }
                 }

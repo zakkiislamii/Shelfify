@@ -3,6 +3,7 @@ package shelfify.be.services.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import shelfify.be.domain.models.CartEntity
@@ -23,8 +24,8 @@ class CartViewModel(
             try {
                 _addCartState.value = Result.Loading
                 cartRepository.addCart(cart)
-                _addCartState.value = Result.Success(Unit)
                 bookRepository.getBookById(cart.bookId)
+                _addCartState.value = Result.Success(Unit)
             } catch (e: Exception) {
                 _addCartState.value = Result.Error(e.message ?: "Gagal menambahkan ke keranjang")
             }
@@ -61,13 +62,16 @@ class CartViewModel(
 
 
     private val _cartsState = MutableStateFlow<Result<List<CartWithBook>>>(Result.Loading)
-    val cartsState = _cartsState.asStateFlow()
+    val cartsState: StateFlow<Result<List<CartWithBook>>> = _cartsState.asStateFlow()
+
     fun getCartsByUserId(userId: Int) {
         viewModelScope.launch {
             try {
                 _cartsState.value = Result.Loading
-                val carts = cartRepository.getCartsWithBooksByUserId(userId)
-                _cartsState.value = Result.Success(carts)
+                cartRepository.getCartsWithBooksByUserId(userId)
+                    .collect { carts ->
+                        _cartsState.value = Result.Success(carts)
+                    }
             } catch (e: Exception) {
                 _cartsState.value = Result.Error(e.message ?: "Gagal mengambil data keranjang")
             }

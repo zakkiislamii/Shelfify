@@ -3,6 +3,7 @@ package shelfify.be.domain.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.Date
 
@@ -12,13 +13,19 @@ import java.util.Date
         ForeignKey(
             entity = User::class,
             parentColumns = ["user_id"],
-            childColumns = ["user_id"]
+            childColumns = ["user_id"],
+            onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
             entity = Reservation::class,
             parentColumns = ["reservation_id"],
-            childColumns = ["reservation_id"]
+            childColumns = ["reservation_id"],
+            onDelete = ForeignKey.CASCADE
         )
+    ],
+    indices = [
+        Index(value = ["user_id"]),
+        Index(value = ["reservation_id"])
     ]
 )
 data class Notification(

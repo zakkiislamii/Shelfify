@@ -12,11 +12,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import shelfify.be.database.ShelfifyDatabase
 import shelfify.be.domain.repositories.BookRepository
 import shelfify.be.domain.repositories.CartRepository
+import shelfify.be.domain.repositories.NotificationRepository
+import shelfify.be.domain.repositories.ReservationRepository
 import shelfify.be.domain.repositories.UserRepository
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.CartViewModel
 import shelfify.be.services.viewModel.MemberViewModel
+import shelfify.be.services.viewModel.ReservationViewModel
 import shelfify.be.services.viewModelFactory.ViewModelFactory
 import shelfify.ui.components.NavigationBar
 
@@ -38,10 +41,11 @@ fun AppNavHost(navController: NavHostController) {
         NavGraph(
             navController = navController,
             startDestination = startDestination,
-            authViewModel = viewModels.first,
-            bookViewModel = viewModels.second,
-            memberViewModel = viewModels.third,
-            cartViewModel = viewModels.fourth,
+            authViewModel = viewModels.authViewModel,
+            bookViewModel = viewModels.bookViewModel,
+            memberViewModel = viewModels.memberViewModel,
+            cartViewModel = viewModels.cartViewModel,
+            reservationViewModel = viewModels.reservationViewModel,
             modifier = Modifier.padding(paddingValues)
         )
     }
@@ -59,14 +63,17 @@ private fun setupViewModels(context: Context): DataViewModel {
     val viewModelFactory = ViewModelFactory(
         UserRepository(database.userDao()),
         BookRepository(database.bookDao()),
-        CartRepository(database.cartDao())
+        CartRepository(database.cartDao()),
+        NotificationRepository(database.notificationDao()),
+        ReservationRepository(database.reservationDao())
     )
 
     return DataViewModel(
-        first = viewModel(factory = viewModelFactory),
-        second = viewModel(factory = viewModelFactory),
-        third = viewModel(factory = viewModelFactory),
-        fourth = viewModel(factory = viewModelFactory)
+        viewModel(factory = viewModelFactory),
+        viewModel(factory = viewModelFactory),
+        viewModel(factory = viewModelFactory),
+        viewModel(factory = viewModelFactory),
+        viewModel(factory = viewModelFactory)
     )
 }
 
@@ -89,8 +96,9 @@ private fun shouldHideNavbar(navController: NavHostController): Boolean {
 }
 
 private data class DataViewModel(
-    val first: AuthViewModel,
-    val second: BookViewModel,
-    val third: MemberViewModel,
-    val fourth: CartViewModel
+    val authViewModel: AuthViewModel,
+    val bookViewModel: BookViewModel,
+    val memberViewModel: MemberViewModel,
+    val cartViewModel: CartViewModel,
+    val reservationViewModel: ReservationViewModel,
 )

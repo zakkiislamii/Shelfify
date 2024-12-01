@@ -5,16 +5,22 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.storage.FirebaseStorage
 import shelfify.be.domain.repositories.BookRepository
 import shelfify.be.domain.repositories.CartRepository
+import shelfify.be.domain.repositories.NotificationRepository
+import shelfify.be.domain.repositories.ReservationRepository
 import shelfify.be.domain.repositories.UserRepository
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.CartViewModel
 import shelfify.be.services.viewModel.MemberViewModel
+import shelfify.be.services.viewModel.NotificationViewModel
+import shelfify.be.services.viewModel.ReservationViewModel
 
 class ViewModelFactory(
     private val userRepository: UserRepository,
     private val bookRepository: BookRepository,
     private val cartRepository: CartRepository,
+    private val notificationRepository: NotificationRepository,
+    private val reservationRepository: ReservationRepository,
 ) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -26,6 +32,17 @@ class ViewModelFactory(
         }
         if (modelClass.isAssignableFrom(CartViewModel::class.java)) {
             return CartViewModel(cartRepository, bookRepository) as T
+        }
+        if (modelClass.isAssignableFrom(NotificationViewModel::class.java)) {
+            return NotificationViewModel(notificationRepository) as T
+        }
+        if (modelClass.isAssignableFrom(ReservationViewModel::class.java)) {
+            return ReservationViewModel(
+                reservationRepository,
+                notificationRepository,
+                cartRepository,
+                bookRepository
+            ) as T
         }
         if (modelClass.isAssignableFrom(MemberViewModel::class.java)) {
             return MemberViewModel(

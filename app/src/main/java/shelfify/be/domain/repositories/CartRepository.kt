@@ -1,24 +1,31 @@
 package shelfify.be.domain.repositories
 
+import kotlinx.coroutines.flow.Flow
 import shelfify.be.dao.CartDao
 import shelfify.be.domain.models.CartEntity
+import shelfify.be.domain.repositoryContract.CartRepositoryContract
 import shelfify.data.CartWithBook
 
-class CartRepository(private val cartDao: CartDao) {
+class CartRepository(private val cartDao: CartDao) : CartRepositoryContract {
 
-    suspend fun addCart(cart: CartEntity) {
+    override suspend fun addCart(cart: CartEntity) {
         return cartDao.insertCartAndUpdateStock(cart)
     }
 
-    suspend fun deleteCart(cartId: Int, bookId: Int) {
+    override suspend fun deleteCart(cartId: Int, bookId: Int) {
         return cartDao.deleteCartAndUpdateStock(cartId, bookId)
     }
 
-    suspend fun isBookExistsInCart(userId: Int, bookId: Int): Boolean {
+    override suspend fun deleteCartAfterReserve(bookId: Int) {
+        return cartDao.deleteCartAfterReserve(bookId)
+    }
+
+    override suspend fun isBookExistsInCart(userId: Int, bookId: Int): Boolean {
         return cartDao.isBookExistsInCart(userId, bookId)
     }
 
-    suspend fun getCartsWithBooksByUserId(userId: Int): List<CartWithBook> {
+    override suspend fun getCartsWithBooksByUserId(userId: Int): Flow<List<CartWithBook>> {
         return cartDao.getCartsWithBooksByUserId(userId)
     }
+
 }

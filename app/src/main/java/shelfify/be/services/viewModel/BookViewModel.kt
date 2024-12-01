@@ -90,4 +90,8 @@ class BookViewModel(private val bookRepository: BookRepository) : ViewModel() {
             }
         }
     }
+
+    suspend fun getBookByIdSync(id: Int): Book? {
+        return bookRepository.getBookById(id)
+    }
 }

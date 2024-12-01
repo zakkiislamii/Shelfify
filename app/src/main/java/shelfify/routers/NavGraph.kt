@@ -11,6 +11,7 @@ import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.CartViewModel
 import shelfify.be.services.viewModel.MemberViewModel
+import shelfify.be.services.viewModel.ReservationViewModel
 import shelfify.ui.admin.bookData.ShowBookData
 import shelfify.ui.admin.favoriteBook.ShowFavoriteData
 import shelfify.ui.admin.memberData.ShowMemberData
@@ -37,6 +38,7 @@ fun NavGraph(
     bookViewModel: BookViewModel,
     memberViewModel: MemberViewModel,
     cartViewModel: CartViewModel,
+    reservationViewModel: ReservationViewModel,
     modifier: Modifier = Modifier,
 ) {
     NavHost(
@@ -153,12 +155,18 @@ fun NavGraph(
             ShowBookDetail().BookDetail(
                 navController = navController,
                 bookViewModel = bookViewModel,
-                cartViewModel = cartViewModel
+                cartViewModel = cartViewModel,
+                reservationViewModel = reservationViewModel,
             )
         }
 
         composable(route = Screen.Cart.route) {
-            ShowCartScreen().Cart(navController = navController, cartViewModel = cartViewModel)
+            ShowCartScreen().Cart(
+                navController = navController,
+                cartViewModel = cartViewModel,
+                reservationViewModel = reservationViewModel,
+                bookViewModel = bookViewModel
+            )
         }
 
 

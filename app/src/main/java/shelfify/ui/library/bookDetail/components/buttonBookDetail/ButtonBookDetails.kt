@@ -37,7 +37,7 @@ class ButtonBookDetails : Button {
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(30.dp, 0.dp, 30.dp, 0.dp),
+                .padding(30.dp, 0.dp, 30.dp, 15.dp),
             border = BorderStroke(1.dp, borderColor)
         ) {
             Text(
@@ -73,7 +73,7 @@ class ButtonBookDetails : Button {
     }
 }
 
-@Preview (
+@Preview(
     showBackground = true
 )
 @Composable

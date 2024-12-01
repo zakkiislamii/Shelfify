@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
+import kotlinx.coroutines.flow.Flow
 import shelfify.be.domain.models.CartEntity
 import shelfify.data.CartWithBook
 
@@ -34,6 +35,9 @@ interface CartDao {
     @Query("DELETE FROM Carts WHERE cart_id = :cartId")
     suspend fun deleteCartById(cartId: Int)
 
+    @Query("DELETE FROM Carts WHERE book_id = :bookId")
+    suspend fun deleteCartAfterReserve(bookId: Int)
+
     @Query("SELECT EXISTS(SELECT 1 FROM Carts WHERE user_id = :userId AND book_id = :bookId)")
     suspend fun isBookExistsInCart(userId: Int, bookId: Int): Boolean
 
@@ -52,5 +56,5 @@ interface CartDao {
         WHERE c.user_id = :userId
     """
     )
-    suspend fun getCartsWithBooksByUserId(userId: Int): List<CartWithBook>
+    fun getCartsWithBooksByUserId(userId: Int): Flow<List<CartWithBook>>
 }

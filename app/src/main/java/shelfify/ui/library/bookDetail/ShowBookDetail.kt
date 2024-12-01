@@ -15,8 +15,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 import shelfify.be.domain.models.CartEntity
+import shelfify.be.domain.models.Reservation
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.CartViewModel
+import shelfify.be.services.viewModel.ReservationViewModel
 import shelfify.contracts.session.UserSessionData
 import shelfify.data.BookDetailData
 import shelfify.ui.library.bookDetail.components.BookDetailHeader
@@ -33,9 +35,10 @@ class ShowBookDetail {
         navController: NavController,
         bookViewModel: BookViewModel,
         cartViewModel: CartViewModel,
+        reservationViewModel: ReservationViewModel,
     ) {
         val context = LocalContext.current
-        val scope = rememberCoroutineScope()  // Tambahkan ini
+        val scope = rememberCoroutineScope()
         val id = navController.currentBackStackEntry?.arguments?.getInt("id") ?: 0
         val userSessionData: UserSessionData = UserSessionProxy(RealUserSessionData())
         val userSession = userSessionData.getUserSession(context)
@@ -70,13 +73,11 @@ class ShowBookDetail {
                                 book = book,
                                 onAddToCart = {
                                     if (userId != 0) {
-                                        scope.launch {  // Gunakan scope dari rememberCoroutineScope
-                                            // Cek dulu apakah buku sudah ada di cart
+                                        scope.launch {
                                             val existsResult =
                                                 cartViewModel.isBookExistsInCart(userId, id)
                                             when (existsResult) {
                                                 is Result.Success -> {
-                                                    // Buku belum ada di cart, aman untuk menambahkan
                                                     val cartEntity = CartEntity(
                                                         userId = userId,
                                                         bookId = id
@@ -86,23 +87,48 @@ class ShowBookDetail {
                                                         context = context,
                                                         message = "Buku berhasil ditambahkan ke keranjang"
                                                     )
+                                                    bookViewModel.getBookById(id)
                                                 }
 
                                                 is Result.Error -> {
-                                                    // Buku sudah ada di cart
                                                     CustomToast().showToast(
                                                         context = context,
-                                                        message = existsResult.message  // Sesuaikan dengan struktur Result.Error Anda
+                                                        message = existsResult.message
                                                     )
                                                 }
 
                                                 is Result.Loading -> {
-                                                    // Handle loading state if needed
+
                                                 }
                                             }
                                         }
                                     }
+                                },
+                                onReserve = {
+                                    if (userId != 0) {
+                                        scope.launch {
+                                            try {
+                                                reservationViewModel.addReservationFromBookDetail(
+                                                    id, Reservation(
+                                                        userId = userId,
+                                                        bookId = id
+                                                    )
+                                                )
+                                                CustomToast().showToast(
+                                                    context = context,
+                                                    message = "Buku berhasil dipesan"
+                                                )
+                                                bookViewModel.getBookById(id)
+                                            } catch (e: Exception) {
+                                                CustomToast().showToast(
+                                                    context = context,
+                                                    message = "Gagal memesan buku: ${e.message}"
+                                                )
+                                            }
+                                        }
+                                    }
                                 }
+
                             )
                         }
                     }

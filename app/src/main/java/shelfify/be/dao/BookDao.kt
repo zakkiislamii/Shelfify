@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 import shelfify.be.domain.models.Book
 
 @Dao
@@ -24,12 +25,12 @@ interface BookDao {
 
     // Get all books
     @Query("SELECT * FROM Books")
-    suspend fun getAllBooks(): List<Book>
+    fun getAllBooks(): Flow<List<Book>>
 
     // Get books by category
     @Query("SELECT * FROM Books WHERE category = :category")
-    suspend fun getBooksByCategory(category: String): List<Book>
+    fun getBooksByCategory(category: String): Flow<List<Book>>
 
-    @Query("SELECT * FROM Books WHERE book_id = :id LIMIT 1")
-    suspend fun getBookById(id: Int): Book?
+    @Query("SELECT * FROM Books WHERE book_id = :id")
+    fun getBookById(id: Int): Flow<Book?>
 }

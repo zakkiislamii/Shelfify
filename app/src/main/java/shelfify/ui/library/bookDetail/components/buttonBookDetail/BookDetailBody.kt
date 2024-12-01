@@ -37,8 +37,10 @@ class BookDetailBody {
     fun BookDetail(
         book: BookDetailData,
         onAddToCart: () -> Unit,
+        onReserve: () -> Unit,
     ) {
         var showConfirmDialog by remember { mutableStateOf(false) }
+        var showConfirmReservationDialog by remember { mutableStateOf(false) }
         val scrollState = rememberScrollState()
 
         // Modal configuration
@@ -51,11 +53,27 @@ class BookDetailBody {
             )
         }
 
+        // Modal configuration for Reservation
+        val reservationModalConfig = remember {
+            ModalConfig(
+                title = "Reservation Confirmation",
+                message = "Are you sure to reservation this book?",
+                onConfirm = onReserve,
+                onCancel = {}
+            )
+        }
+
         // Confirmation Modal
         ConfirmationModal(
             isVisible = showConfirmDialog,
             config = cartModalConfig,
             onDismiss = { showConfirmDialog = false }
+        )
+
+        ConfirmationModal(
+            isVisible = showConfirmReservationDialog,
+            config = reservationModalConfig,
+            onDismiss = { showConfirmReservationDialog = false }
         )
 
         Column(
@@ -68,10 +86,23 @@ class BookDetailBody {
             BookImage(book)
             BookStats(book, scrollState)
             BookActions(
-                onReservationClick = {},
+                onReservationClick = { showConfirmReservationDialog = true },
                 onCartClick = { showConfirmDialog = true }
             )
             BookDescription(book)
+        }
+    }
+
+    @Composable
+    private fun BookActions(onReservationClick: () -> Unit, onCartClick: () -> Unit) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 30.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ButtonBookDetails().ReservationButton(onReservationClick)
+            ButtonBookDetails().CartButton(onCartClick)
         }
     }
 
@@ -138,19 +169,6 @@ class BookDetailBody {
                 color = MainColor,
                 fontSize = if (label.contains("\n")) 10.sp else 8.sp,
             )
-        }
-    }
-
-    @Composable
-    private fun BookActions(onReservationClick: () -> Unit, onCartClick: () -> Unit) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 30.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            ButtonBookDetails().ReservationButton(onReservationClick)
-            ButtonBookDetails().CartButton(onCartClick)
         }
     }
 

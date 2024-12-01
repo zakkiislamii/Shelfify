@@ -65,7 +65,7 @@ fun ConfirmationModal(
                 ) {
                     Text(
                         text = config.title,
-                        fontSize = 18.sp,
+                        fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
                         color = MainColor
                     )
