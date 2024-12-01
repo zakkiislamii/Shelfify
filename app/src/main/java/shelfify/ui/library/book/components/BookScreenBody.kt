@@ -84,15 +84,20 @@ fun BookScreenBody(
             }
 
             else -> {
-                // Use LazyColumn to display one card per row
-                LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    items(books) { book ->
-                        BookCard().CreateCard(item = book, onClick = {
-                            navController.navigate("bookDetail/${book.bookId}")
-                        })
+                // Filter out books with stock 0
+                val availableBooks = books.filter { it.stock > 0 }
 
+                if (availableBooks.isEmpty()) {
+                    Text(text = "No books available in this category")
+                } else {
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        items(availableBooks) { book ->
+                            BookCard().CreateCard(item = book, onClick = {
+                                navController.navigate("bookDetail/${book.bookId}")
+                            })
+                        }
                     }
                 }
             }

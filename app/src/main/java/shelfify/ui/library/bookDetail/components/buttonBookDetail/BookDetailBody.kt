@@ -14,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import shelfify.data.BookDetailData
 import shelfify.data.ModalConfig
 import shelfify.ui.components.ConfirmationModal
@@ -38,11 +40,17 @@ class BookDetailBody {
         book: BookDetailData,
         onAddToCart: () -> Unit,
         onReserve: () -> Unit,
+        navController: NavController,
     ) {
         var showConfirmDialog by remember { mutableStateOf(false) }
         var showConfirmReservationDialog by remember { mutableStateOf(false) }
         val scrollState = rememberScrollState()
-
+        if (book.stock == 0) {
+            LaunchedEffect(Unit) {
+                navController.navigate("home")
+            }
+            return
+        }
         // Modal configuration
         val cartModalConfig = remember {
             ModalConfig(

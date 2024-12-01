@@ -127,8 +127,8 @@ class ShowBookDetail {
                                             }
                                         }
                                     }
-                                }
-
+                                },
+                                navController = navController
                             )
                         }
                     }
