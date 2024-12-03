@@ -1,13 +1,14 @@
 package shelfify.utils.factory
 
-import shelfify.contracts.card.CardComponent
-import shelfify.data.BaseUI
-import shelfify.data.BookUI
+import shelfify.contracts.card.CardBookComponent
+import shelfify.data.baseUI.BookDataBaseUI
+import shelfify.data.dataMapping.BookUI
 import shelfify.ui.components.card.BookCard
 import kotlin.reflect.KClass
 
-object CardComponentFactory {
-    private val cardMap = mutableMapOf<KClass<out BaseUI>, CardComponent<out BaseUI>>()
+object CardBookComponentFactory {
+    private val cardMap =
+        mutableMapOf<KClass<out BookDataBaseUI>, CardBookComponent<out BookDataBaseUI>>()
 
     init {
         // Mendaftarkan card component default
@@ -15,13 +16,16 @@ object CardComponentFactory {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : BaseUI> create(type: KClass<out T>): CardComponent<T> {
-        return (cardMap[type] as? CardComponent<T>)
+    fun <T : BookDataBaseUI> create(type: KClass<out T>): CardBookComponent<T> {
+        return (cardMap[type] as? CardBookComponent<T>)
             ?: throw IllegalArgumentException("Unsupported card type: ${type.simpleName}")
     }
 
     // Metode untuk mendaftarkan card component baru secara dinamis
-    fun <T : BaseUI> register(type: KClass<out T>, cardComponent: CardComponent<T>) {
-        cardMap[type] = cardComponent
+    fun <T : BookDataBaseUI> register(
+        type: KClass<out T>,
+        CardBookComponent: CardBookComponent<T>,
+    ) {
+        cardMap[type] = CardBookComponent
     }
 }

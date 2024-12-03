@@ -169,18 +169,4 @@ class UserRepository(private val userDao: UserDao) : UserRepositoryContract {
         }
     }
 
-    override suspend fun logout(userId: Int): Result<Boolean> {
-        return try {
-            val user = userDao.getUserById(userId)
-                ?: return Result.failure(Exception("User tidak ditemukan"))
-
-            val updatedUser = user.copy(
-                isLoggedIn = false
-            )
-            userDao.updateUser(updatedUser)
-            Result.success(true)
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-    }
 }

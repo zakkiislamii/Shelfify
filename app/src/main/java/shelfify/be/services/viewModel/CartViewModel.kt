@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import shelfify.be.domain.models.CartEntity
 import shelfify.be.domain.repositories.BookRepository
 import shelfify.be.domain.repositories.CartRepository
-import shelfify.data.CartWithBook
+import shelfify.data.dataMapping.CartWithBook
 import shelfify.utils.response.Result
 
 class CartViewModel(

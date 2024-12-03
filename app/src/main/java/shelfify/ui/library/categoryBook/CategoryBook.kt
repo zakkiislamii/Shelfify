@@ -19,8 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.shelfify.R
-import shelfify.data.CategoryData
-import shelfify.data.DataCategoryBook
+import shelfify.data.categoryBook.CategoryData
+import shelfify.data.categoryBook.DataCategoryBook
 import shelfify.routers.Screen
 import shelfify.ui.theme.MainColor
 

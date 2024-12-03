@@ -11,8 +11,8 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.initialize
 import shelfify.routers.AppNavHost
-import shelfify.ui.on_board.OnboardingScreen
-import shelfify.ui.on_board.OnboardingUtils
+import shelfify.ui.onBoard.OnboardingScreen
+import shelfify.ui.onBoard.OnboardingUtils
 import shelfify.ui.theme.ShelfifyTheme
 
 class MainActivity : ComponentActivity() {

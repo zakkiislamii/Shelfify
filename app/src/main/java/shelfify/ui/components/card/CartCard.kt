@@ -26,10 +26,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import shelfify.contracts.card.CardComponent
-import shelfify.data.CartBookUI
+import shelfify.contracts.card.CardBookComponent
+import shelfify.data.dataMapping.CartBookUI
 
-class CartCard : CardComponent<CartBookUI> {
+class CartCard : CardBookComponent<CartBookUI> {
     @Composable
     override fun CreateCard(item: CartBookUI, onClick: () -> Unit) {
         Card(

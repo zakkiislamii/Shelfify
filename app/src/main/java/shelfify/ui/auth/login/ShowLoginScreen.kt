@@ -47,12 +47,7 @@ class ShowLoginScreen {
         LaunchedEffect(loginState) {
             when (loginState) {
                 is Result.Success -> {
-                    val user = (loginState as Result.Success).data
-                    CustomToast().showToast(
-                        context = context,
-                        message = "Login berhasil! Selamat datang ${user.fullName}"
-                    )
-                    navController.navigate(Screen.Home.route )
+                    navController.navigate(Screen.Home.route)
                 }
 
                 is Result.Error -> {

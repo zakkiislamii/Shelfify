@@ -21,7 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import shelfify.data.FacultyData
+import shelfify.data.faculty.FacultyData
 import shelfify.routers.Screen
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.ui.auth.register.components.FacultyDropdown

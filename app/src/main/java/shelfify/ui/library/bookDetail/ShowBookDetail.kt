@@ -24,7 +24,7 @@ import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.CartViewModel
 import shelfify.be.services.viewModel.ReservationViewModel
 import shelfify.contracts.session.UserSessionData
-import shelfify.data.BookDetailData
+import shelfify.data.dataMapping.BookDetailData
 import shelfify.ui.library.bookDetail.components.BookDetailBody
 import shelfify.ui.library.bookDetail.components.BookDetailHeader
 import shelfify.utils.loading.LoadingIndicator
@@ -40,10 +40,10 @@ class ShowBookDetail {
         bookViewModel: BookViewModel,
         cartViewModel: CartViewModel,
         reservationViewModel: ReservationViewModel,
+        id: Int,
     ) {
         val context = LocalContext.current
         val scope = rememberCoroutineScope()
-        val id = navController.currentBackStackEntry?.arguments?.getInt("id") ?: 0
         val userSessionData: UserSessionData = UserSessionProxy(RealUserSessionData())
         val userSession = userSessionData.getUserSession(context)
         val userId = userSession.userId.toInt()

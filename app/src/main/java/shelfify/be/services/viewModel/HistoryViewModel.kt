@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.Flow
 import shelfify.be.domain.repositories.HistoryRepository
 import shelfify.contracts.enumerations.Status
-import shelfify.data.HistoryWithBooksAndReservation
+import shelfify.data.dataMapping.HistoryWithBooksAndReservation
 
 class HistoryViewModel(private val historyRepository: HistoryRepository) : ViewModel() {
 

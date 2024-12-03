@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import shelfify.be.dao.CartDao
 import shelfify.be.domain.models.CartEntity
 import shelfify.be.domain.repositoryContract.CartRepositoryContract
-import shelfify.data.CartWithBook
+import shelfify.data.dataMapping.CartWithBook
 
 class CartRepository(private val cartDao: CartDao) : CartRepositoryContract {
 

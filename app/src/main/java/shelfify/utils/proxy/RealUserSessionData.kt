@@ -2,7 +2,7 @@ package shelfify.utils.proxy
 
 import android.content.Context
 import shelfify.contracts.session.UserSessionData
-import shelfify.data.UserSession
+import shelfify.data.session.UserSession
 
 class RealUserSessionData : UserSessionData {
     override fun getUserSession(context: Context): UserSession {

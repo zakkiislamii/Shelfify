@@ -1,10 +1,12 @@
 package shelfify.be.services.viewModel
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import shelfify.be.domain.models.User
 import shelfify.be.domain.repositories.UserRepository
@@ -21,14 +23,12 @@ class AuthViewModel(private val userRepository: UserRepository) :
             try {
                 userRepository.login(email, password).fold(
                     onSuccess = { user ->
-                        _loginState.value = Result.Success(user)
-                        saveLoginStatus(
-                            context,
-                            true,
-                            user.userId,
-                            user.email,
-                            user.role.name
+                        updateLoginSession(
+                            context = context,
+                            user = user,
+                            isLoggedIn = true
                         )
+                        _loginState.value = Result.Success(user)
                     },
                     onFailure = { exception ->
                         _loginState.value =
@@ -131,57 +131,45 @@ class AuthViewModel(private val userRepository: UserRepository) :
         }
     }
 
-    private val _logOutState = MutableStateFlow<Result<User>>(Result.Loading)
-    val logOutState: StateFlow<Result<User>> = _logOutState
-    fun logout(email: String) {
-        viewModelScope.launch {
-            _logOutState.value = Result.Loading
-            try {
-                val userResult = userRepository.getUserByEmail(email)
-                if (userResult.isFailure) {
-                    _logOutState.value = Result.Error("User tidak ditemukan")
-                    return@launch
-                }
-                val user = userResult.getOrNull()
-                val logout = userRepository.logout(
-                    user?.userId ?: return@launch
-                )
 
-                if (logout.isSuccess) {
-                    _logOutState.value =
-                        Result.Success(user.copy(isLoggedIn = false))
-//                    saveLoginStatus(
-//                        context,
-//                        false,
-//                        user.userId,
-//                        user.email,
-//                        user.role.name
-//                    )
-
-                } else {
-                    _logOutState.value = Result.Error("Gagal log out")
-                }
-
-            } catch (e: Exception) {
-                _logOutState.value = Result.Error(e.message ?: "Unknown error occurred")
-            }
+    private val _logOutState = MutableStateFlow<Result<Unit>>(Result.Success(Unit))
+    val logOutState: StateFlow<Result<Unit>> = _logOutState.asStateFlow()
+    fun logout(context: Context) {
+        try {
+            clearLoginStatus(context)
+            Log.d("AuthViewModel", "Logout successful")
+            _logOutState.value = Result.Success(Unit)
+        } catch (e: Exception) {
+            Log.e("AuthViewModel", "Logout failed: ${e.message}")
+            _logOutState.value = Result.Error(e.message ?: "Logout failed")
         }
     }
 
 
-    private fun saveLoginStatus(
+    private fun updateLoginSession(
         context: Context,
+        user: User,
         isLoggedIn: Boolean,
-        userId: Int,
-        email: String,
-        role: String,
     ) {
         val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putBoolean("is_logged_in", isLoggedIn)
-        editor.putInt("user_id", userId)
-        editor.putString("email", email)
-        editor.putString("role", role)
-        editor.apply()
+        sharedPreferences.edit().apply {
+            if (isLoggedIn) {
+                putBoolean("is_logged_in", true)
+                putInt("user_id", user.userId)
+                putString("email", user.email)
+                putString("role", user.role.name)
+                Log.d("AuthViewModel", "User logged in: ${user.email}")
+            } else {
+                clear()
+                Log.d("AuthViewModel", "User session cleared")
+            }
+            apply()
+        }
+    }
+
+    private fun clearLoginStatus(context: Context) {
+        val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+
     }
 }

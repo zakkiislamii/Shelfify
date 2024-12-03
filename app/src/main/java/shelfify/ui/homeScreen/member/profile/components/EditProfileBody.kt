@@ -50,7 +50,7 @@ import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.example.shelfify.R
-import shelfify.data.FacultyData
+import shelfify.data.faculty.FacultyData
 import shelfify.ui.homeScreen.member.profile.components.customButton.CustomButton
 import shelfify.ui.homeScreen.member.profile.components.customField.CustomField
 

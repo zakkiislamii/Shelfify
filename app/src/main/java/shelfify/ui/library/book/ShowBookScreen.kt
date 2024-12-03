@@ -22,9 +22,9 @@ class ShowBookScreen {
     fun BookScreen(
         navController: NavController,
         bookViewModel: BookViewModel,
+        category: String,
     ) {
-        val category =
-            Uri.decode(navController.currentBackStackEntry?.arguments?.getString("category") ?: "")
+
         Scaffold(
             topBar = {
                 BookScreenHeader(

@@ -7,7 +7,8 @@ import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
 import shelfify.be.domain.models.History
 import shelfify.contracts.enumerations.Status
-import shelfify.data.HistoryWithBooksAndReservation
+import shelfify.data.dataMapping.HistoryWithBooksAndReservation
+import shelfify.data.dataMapping.MemberHistoryCardUI
 
 @Dao
 interface HistoryDao {
@@ -35,4 +36,25 @@ interface HistoryDao {
         userId: Int,
         status: Status,
     ): Flow<List<HistoryWithBooksAndReservation>>
+
+    @Transaction
+    @Query(
+        """
+    SELECT h.user_id AS userId,
+           r.status AS reservationStatus,
+           COUNT(r.reservation_id) AS totalReserve,
+           h.created_at AS createdAt,
+           GROUP_CONCAT(b.title, ', ') AS bookTitles
+    FROM Histories h
+    INNER JOIN Reservations r ON h.reservation_id = r.reservation_id
+    INNER JOIN Books b ON h.book_id = b.book_id
+    WHERE h.user_id = :userId
+    GROUP BY h.user_id, r.status, h.created_at
+    ORDER BY h.created_at DESC
+    """
+    )
+    fun getMemberHistoryByUserId(
+        userId: Int,
+    ): Flow<List<MemberHistoryCardUI>>
+
 }

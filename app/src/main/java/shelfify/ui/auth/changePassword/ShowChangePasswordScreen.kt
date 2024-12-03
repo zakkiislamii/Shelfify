@@ -18,21 +18,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import shelfify.routers.Screen
 import shelfify.be.services.viewModel.AuthViewModel
+import shelfify.routers.Screen
 import shelfify.ui.auth.changePassword.components.ChangePasswordButton
 import shelfify.ui.auth.changePassword.components.ChangePasswordField
 import shelfify.ui.auth.changePassword.components.ChangePasswordHeader
 import shelfify.utils.helpers.PasswordValidate
-import shelfify.utils.loading.LoadingIndicator
 import shelfify.utils.response.Result
 import shelfify.utils.toast.CustomToast
 
 class ShowChangePasswordScreen {
     @Composable
-    fun ChangePassword(navController: NavController, authViewModel: AuthViewModel) {
-        // Ambil email dari argumen navigasi
-        val emailState = navController.currentBackStackEntry?.arguments?.getString("email") ?: ""
+    fun ChangePassword(navController: NavController, authViewModel: AuthViewModel, email: String) {
         val passwordState = remember { mutableStateOf("") }
         val confirmPasswordState = remember { mutableStateOf("") }
         val context = LocalContext.current
@@ -44,7 +41,7 @@ class ShowChangePasswordScreen {
                     val user = (changePasswordState as Result.Success).data
                     CustomToast().showToast(
                         context = context,
-                        message = "Password telah diubah! Silahkan login ${user.email}"
+                        message = "Password telah diubah! Silahkan login $email"
                     )
                     navController.navigate(Screen.Login.route)
                 }
@@ -100,7 +97,7 @@ class ShowChangePasswordScreen {
                                 )
                             ) {
                                 authViewModel.changePassword(
-                                    emailState,
+                                    email,
                                     passwordState.value
                                 )
                             }

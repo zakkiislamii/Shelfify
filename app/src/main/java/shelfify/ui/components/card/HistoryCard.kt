@@ -23,10 +23,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.shelfify.R
-import shelfify.contracts.card.CardComponent
-import shelfify.data.HistoryBookUI
+import shelfify.contracts.card.CardBookComponent
+import shelfify.data.dataMapping.HistoryBookUI
 
-class HistoryCard : CardComponent<HistoryBookUI> {
+class HistoryCard : CardBookComponent<HistoryBookUI> {
     @Composable
     override fun CreateCard(item: HistoryBookUI, onClick: () -> Unit) {
         Card(

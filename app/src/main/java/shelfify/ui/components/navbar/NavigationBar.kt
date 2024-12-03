@@ -22,7 +22,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.shelfify.R
 import shelfify.contracts.session.UserSessionData
-import shelfify.data.NavItem
+import shelfify.data.navbar.NavItem
 import shelfify.routers.Screen
 import shelfify.ui.theme.MainColor
 import shelfify.utils.proxy.RealUserSessionData
@@ -76,7 +76,7 @@ class NavigationBar {
                         "History" -> Screen.History.route
                         "Notifications" -> Screen.Notification.route
                         "Profile" -> Screen.Profile.route
-                        "Member\nData" -> Screen.MemberData.route
+                        "Member\nData" -> Screen.Home.route
                         "Book\nData" -> Screen.BookData.route
                         "Favorite\nBook" -> Screen.FavoriteBook.route
                         "Reservation\nData" -> Screen.ReservationData.route
@@ -109,7 +109,7 @@ class NavigationBar {
                                     restoreState = true
                                 }
 
-                                "Member\nData" -> navController.navigate(Screen.MemberData.route) {
+                                "Member\nData" -> navController.navigate(Screen.Home.route) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
@@ -142,15 +142,15 @@ class NavigationBar {
                                 text = item.title,
                                 color = if (isSelected) MainColor else Color.DarkGray,
                                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-                                maxLines = 2,  // Allow up to two lines
-                                overflow = TextOverflow.Ellipsis, // Add ellipsis if text overflows
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
                                 style = MaterialTheme.typography.bodyMedium,
                                 textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-                                fontSize = 13.sp// Center the text
+                                fontSize = 13.sp
                             )
                         },
                         modifier = Modifier
-                            .weight(1f) // Spread items evenly across the row
+                            .weight(1f)
 
                     )
                 }

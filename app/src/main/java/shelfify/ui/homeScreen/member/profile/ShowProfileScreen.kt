@@ -57,7 +57,6 @@ class ShowProfileScreen {
                         message = "Profile updated successfully"
                     )
                     isEditing = false
-                    // Refresh profile data
                     userSession.email?.let { email ->
                         authViewModel.getUserByEmail(email)
                     }

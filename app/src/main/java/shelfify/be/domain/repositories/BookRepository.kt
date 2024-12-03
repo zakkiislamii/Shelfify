@@ -1,9 +1,11 @@
 package shelfify.be.domain.repositories
 
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import shelfify.be.dao.BookDao
 import shelfify.be.domain.models.Book
 import shelfify.be.domain.repositoryContract.BookRepositoryContract
+import shelfify.data.dataMapping.BookUI
 
 class BookRepository(private val bookDao: BookDao) : BookRepositoryContract {
     override suspend fun insertBook(book: Book) {
@@ -14,8 +16,8 @@ class BookRepository(private val bookDao: BookDao) : BookRepositoryContract {
         bookDao.updateBook(book)
     }
 
-    override suspend fun deleteBook(book: Book) {
-        bookDao.deleteBook(book)
+    override suspend fun deleteBook(bookId: Int) {
+        bookDao.deleteBook(bookId)
     }
 
     override suspend fun getAllBooks(): List<Book> {
@@ -28,5 +30,9 @@ class BookRepository(private val bookDao: BookDao) : BookRepositoryContract {
 
     override suspend fun getBookById(id: Int): Book? {
         return bookDao.getBookById(id).first()
+    }
+
+    override suspend fun getAllBooksForUI(): Flow<List<BookUI>> {
+        return bookDao.getAllBooksForUI()
     }
 }

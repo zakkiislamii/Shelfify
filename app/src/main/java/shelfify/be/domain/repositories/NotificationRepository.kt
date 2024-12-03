@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import shelfify.be.dao.NotificationDao
 import shelfify.be.domain.models.Notification
 import shelfify.be.domain.repositoryContract.NotificationRepositoryContract
-import shelfify.data.NotificationWithBooksAndReservation
+import shelfify.data.dataMapping.NotificationWithBooksAndReservation
 
 class NotificationRepository(private val notificationDao: NotificationDao) :
     NotificationRepositoryContract {

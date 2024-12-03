@@ -5,7 +5,8 @@ import shelfify.be.dao.HistoryDao
 import shelfify.be.domain.models.History
 import shelfify.be.domain.repositoryContract.HistoryRepositoryContract
 import shelfify.contracts.enumerations.Status
-import shelfify.data.HistoryWithBooksAndReservation
+import shelfify.data.dataMapping.HistoryWithBooksAndReservation
+import shelfify.data.dataMapping.MemberHistoryCardUI
 
 class HistoryRepository(private val historyDao: HistoryDao) : HistoryRepositoryContract {
     override fun getHistoryByUserIdAndStatus(
@@ -13,6 +14,12 @@ class HistoryRepository(private val historyDao: HistoryDao) : HistoryRepositoryC
         status: Status,
     ): Flow<List<HistoryWithBooksAndReservation>> {
         return historyDao.getHistoryByUserIdAndStatus(userId, status)
+    }
+
+    override fun getMemberHistoryByUserId(
+        userId: Int,
+    ): Flow<List<MemberHistoryCardUI>> {
+        return historyDao.getMemberHistoryByUserId(userId)
     }
 
     override suspend fun addHistory(history: History) {

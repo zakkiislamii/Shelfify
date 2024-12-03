@@ -6,7 +6,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
 import shelfify.be.domain.models.Notification
-import shelfify.data.NotificationWithBooksAndReservation
+import shelfify.data.dataMapping.NotificationWithBooksAndReservation
 
 @Dao
 interface NotificationDao {

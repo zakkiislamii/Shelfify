@@ -6,7 +6,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
 import shelfify.be.domain.models.CartEntity
-import shelfify.data.CartWithBook
+import shelfify.data.dataMapping.CartWithBook
 
 @Dao
 interface CartDao {

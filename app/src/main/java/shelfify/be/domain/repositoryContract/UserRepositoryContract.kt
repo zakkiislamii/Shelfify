@@ -25,5 +25,4 @@ interface UserRepositoryContract {
     ): Result<Boolean>
 
     suspend fun updateUser(user: User): Result<User>
-    suspend fun logout(userId: Int): Result<Boolean>
 }

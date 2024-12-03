@@ -1,12 +1,12 @@
 package shelfify.be.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import shelfify.be.domain.models.Book
+import shelfify.data.dataMapping.BookUI
 
 @Dao
 interface BookDao {
@@ -20,8 +20,8 @@ interface BookDao {
     suspend fun updateBook(book: Book)
 
     // Delete a book
-    @Delete
-    suspend fun deleteBook(book: Book)
+    @Query("DELETE FROM Books WHERE book_id = :bookId")
+    suspend fun deleteBook(bookId: Int)
 
     // Get all books
     @Query("SELECT * FROM Books")
@@ -33,4 +33,18 @@ interface BookDao {
 
     @Query("SELECT * FROM Books WHERE book_id = :id")
     fun getBookById(id: Int): Flow<Book?>
+
+    @Query(
+        """
+        SELECT 
+            book_id AS bookId,
+            title,
+            writer,
+            stock,
+            book_image AS bookImage,
+            category
+        FROM Books
+    """
+    )
+    fun getAllBooksForUI(): Flow<List<BookUI>>
 }

@@ -29,9 +29,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import shelfify.data.BookDetailData
-import shelfify.data.ModalConfig
-import shelfify.data.ModalConfigWarning
+import shelfify.data.dataMapping.BookDetailData
+import shelfify.data.modal.ModalConfig
+import shelfify.data.modal.ModalConfigWarning
 import shelfify.ui.components.modal.ConfirmationModal
 import shelfify.ui.components.modal.WarningModal
 import shelfify.ui.library.bookDetail.components.buttonBookDetail.ButtonBookDetails

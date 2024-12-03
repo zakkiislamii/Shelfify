@@ -1,5 +1,6 @@
 package shelfify.ui.homeScreen.home
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -7,8 +8,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -21,38 +22,54 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import shelfify.be.services.viewModel.AdminViewModel
 import shelfify.be.services.viewModel.AuthViewModel
-import shelfify.contracts.session.UserSessionData
 import shelfify.routers.Screen
+import shelfify.ui.admin.memberData.components.MemberDataBody
 import shelfify.ui.homeScreen.home.components.HomeHeader
 import shelfify.ui.library.categoryBook.CategoryBook
 import shelfify.utils.loading.LoadingIndicator
-import shelfify.utils.proxy.RealUserSessionData
-import shelfify.utils.proxy.UserSessionProxy
 import shelfify.utils.response.Result
-import shelfify.utils.toast.CustomToast
-
 
 class ShowHomeScreen {
     @Composable
     fun Homepage(
         navController: NavController,
         authViewModel: AuthViewModel,
+        adminViewModel: AdminViewModel,
     ) {
         val context = LocalContext.current
-        val userSessionData: UserSessionData = UserSessionProxy(RealUserSessionData())
-        val userSession = userSessionData.getUserSession(context)
+        val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false)
+        val email = sharedPreferences.getString("email", "") ?: ""
+        val role = sharedPreferences.getString("role", "") ?: ""
         var fullName by remember { mutableStateOf("") }
         var firstName by remember { mutableStateOf("") }
         val userState by authViewModel.getUserByEmailState.collectAsState()
 
-        LaunchedEffect(userSession.email) {
-            userSession.email?.let { email ->
+        // Cek login status
+        if (!isLoggedIn) {
+            DisposableEffect(Unit) {
+                navController.navigate(Screen.Login.route) {
+                    popUpTo(navController.graph.startDestinationId) {
+                        inclusive = true
+                    }
+                }
+
+                onDispose { }
+            }
+            return
+        }
+
+        // Get user data saat pertama kali masuk
+        LaunchedEffect(Unit) {
+            if (email.isNotEmpty()) {
                 authViewModel.getUserByEmail(email)
             }
         }
 
-        // Handle user state in a side effect to avoid recomposition issues
+
+        // Handle user data state
         LaunchedEffect(userState) {
             when (userState) {
                 is Result.Success -> {
@@ -62,16 +79,10 @@ class ShowHomeScreen {
                 }
 
                 is Result.Error -> {
-                    val error = (userState as Result.Error).message
-                    CustomToast().showToast(
-                        context = context,
-                        message = error
-                    )
+                    // Handle error silently
                 }
 
-                is Result.Loading -> {
-                    // Loading state handled in UI
-                }
+                is Result.Loading -> {}
             }
         }
 
@@ -81,14 +92,17 @@ class ShowHomeScreen {
             }
 
             else -> {
-                // Main content
-                when (userSession.role) {
+                when (role) {
                     "MEMBER" -> {
                         Scaffold(
                             topBar = {
-                                HomeHeader(fullname = firstName, navController) {
-                                    navController.navigate(Screen.Cart.route)
-                                }
+                                HomeHeader(
+                                    fullname = firstName,
+                                    navController = navController,
+                                    onClick = {
+                                        navController.navigate(Screen.Cart.route)
+                                    }
+                                )
                             },
                         ) { paddingValues ->
                             Box(
@@ -108,11 +122,7 @@ class ShowHomeScreen {
                     }
 
                     else -> {
-                        Scaffold(
-                            topBar = {
-                                Text(text = "Selamat datang, Admin!")
-                            },
-                        ) { paddingValues ->
+                        Scaffold { paddingValues ->
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
@@ -123,7 +133,10 @@ class ShowHomeScreen {
                                     horizontalAlignment = Alignment.CenterHorizontally,
                                     verticalArrangement = Arrangement.spacedBy(16.dp)
                                 ) {
-                                    // Admin content
+                                    MemberDataBody(
+                                        adminViewModel = adminViewModel,
+                                        navController = navController
+                                    )
                                 }
                             }
                         }

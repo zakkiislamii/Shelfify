@@ -24,11 +24,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.shelfify.R
-import shelfify.contracts.card.CardComponent
-import shelfify.data.BookUI
+import shelfify.contracts.card.CardBookComponent
+import shelfify.data.dataMapping.BookUI
 import shelfify.ui.theme.MainColor
 
-class BookCard : CardComponent<BookUI> {
+class BookCard : CardBookComponent<BookUI> {
     @Composable
     override fun CreateCard(item: BookUI, onClick: () -> Unit) {
         Card(

@@ -9,6 +9,7 @@ import shelfify.be.domain.repositories.HistoryRepository
 import shelfify.be.domain.repositories.NotificationRepository
 import shelfify.be.domain.repositories.ReservationRepository
 import shelfify.be.domain.repositories.UserRepository
+import shelfify.be.services.viewModel.AdminViewModel
 import shelfify.be.services.viewModel.AuthViewModel
 import shelfify.be.services.viewModel.BookViewModel
 import shelfify.be.services.viewModel.CartViewModel
@@ -38,6 +39,9 @@ class ViewModelFactory(
         }
         if (modelClass.isAssignableFrom(CartViewModel::class.java)) {
             return CartViewModel(cartRepository, bookRepository) as T
+        }
+        if (modelClass.isAssignableFrom(AdminViewModel::class.java)) {
+            return AdminViewModel(userRepository, historyRepository, bookRepository) as T
         }
         if (modelClass.isAssignableFrom(ReservationViewModel::class.java)) {
             return ReservationViewModel(

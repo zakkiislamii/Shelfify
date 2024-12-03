@@ -53,7 +53,7 @@ class ShowForgotPasswordScreen {
                 }
 
                 Result.Loading -> {
-                    // Handle loading state if needed
+
                 }
             }
         }
@@ -89,7 +89,7 @@ class ShowForgotPasswordScreen {
                                 )
                             ) {
                                 authViewModel.getUserByEmail(emailState.value)
-                                navController.navigate(Screen.ChangePassword.route + "?email=${emailState.value}")
+                                navController.navigate("changePassword/${emailState.value}")
                             }
                         }
                     }

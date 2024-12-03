@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import shelfify.be.services.viewModel.BookViewModel
-import shelfify.data.BookUI
+import shelfify.data.dataMapping.BookUI
 import shelfify.ui.components.card.BookCard
 import shelfify.utils.response.Result
 

@@ -2,7 +2,7 @@ package shelfify.be.domain.repositoryContract
 
 import kotlinx.coroutines.flow.Flow
 import shelfify.be.domain.models.CartEntity
-import shelfify.data.CartWithBook
+import shelfify.data.dataMapping.CartWithBook
 
 interface CartRepositoryContract {
     suspend fun addCart(cart: CartEntity)
