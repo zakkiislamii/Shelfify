@@ -13,110 +13,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="394b4b7e-e62f-43c0-8d77-a290854ad1e3" name="Changes" comment="tes2">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/AdminViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/card/CardBookDataMemberComponent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/card/CardMemberComponent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/card/CardMemberHistoryComponent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/baseUI/MemberDataBaseUI.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/dataMapping/MemberDataCardUI.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/dataMapping/MemberHistoryCardUI.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/historyMember/ShowHistoryMemberScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/historyMember/components/HistoryMemberHeader.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/memberData/components/MemberDataBody.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/memberData/components/MemberDataHeader.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/card/BookDataCard.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/card/MemberDataCard.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/card/MemberHistoryCard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/BookDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/BookDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/CartDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/CartDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/HistoryDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/HistoryDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/NotificationDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/dao/NotificationDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/BookRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/BookRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/CartRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/CartRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/HistoryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/HistoryRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/NotificationRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/NotificationRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositories/UserRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/BookRepositoryContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/BookRepositoryContract.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/CartRepositoryContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/CartRepositoryContract.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/HistoryRepositoryContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/HistoryRepositoryContract.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/NotificationRepositoryContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/NotificationRepositoryContract.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/UserRepositoryContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/domain/repositoryContract/UserRepositoryContract.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/AuthViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/AuthViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/BookViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/BookViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/CartViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/CartViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/HistoryViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/HistoryViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/NotificationViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModel/NotificationViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModelFactory/ViewModelFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModelFactory/ViewModelFactory.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/card/CardComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/card/CardBookComponent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/session/UserSessionData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/session/UserSessionData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/BaseUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/baseUI/BookDataBaseUI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/BookDetailData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/dataMapping/BookDetailData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/BookUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/dataMapping/BookUI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/BottomNavigation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/navbar/BottomNavigation.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/CartBookUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/dataMapping/CartBookUI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/CartWithBook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/dataMapping/CartWithBook.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/DataCategoryBook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/categoryBook/DataCategoryBook.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/FacultyData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/faculty/FacultyData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/HistoryBookUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/dataMapping/HistoryBookUI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/HistoryWithBooksAndReservation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/dataMapping/HistoryWithBooksAndReservation.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/ModalConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/modal/ModalConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/ModalConfigWarning.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/modal/ModalConfigWarning.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/NotificationWithBooksAndReservation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/dataMapping/NotificationWithBooksAndReservation.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/Result.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/data/UserSession.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/data/session/UserSession.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/AppNavHost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/AppNavHost.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/NavGraph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/NavGraph.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/Screen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/routers/Screen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/bookData/ShowBookData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/bookData/ShowBookData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/admin/memberData/ShowMemberData.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/auth/changePassword/ShowChangePasswordScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/auth/changePassword/ShowChangePasswordScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/auth/forgotPassword/ShowForgotPasswordScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/auth/forgotPassword/ShowForgotPasswordScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/auth/login/ShowLoginScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/auth/login/ShowLoginScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/auth/register/ShowRegisterScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/auth/register/ShowRegisterScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/card/BookCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/card/BookCard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/card/CartCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/card/CartCard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/card/HistoryCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/card/HistoryCard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/modal/ConfirmationModal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/modal/ConfirmationModal.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/modal/WarningModal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/modal/WarningModal.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/navbar/NavigationBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/components/navbar/NavigationBar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/cart/ShowCartScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/cart/ShowCartScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/cart/components/CartBody.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/cart/components/CartBody.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/cart/components/CartHeader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/cart/components/CartHeader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/history/ShowHistoryScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/history/ShowHistoryScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/history/components/HistoryBody.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/history/components/HistoryBody.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/history/member/HistoryHeader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/history/components/HistoryHeader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/ShowHomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/home/ShowHomeScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/profile/ShowProfileScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/profile/ShowProfileScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/profile/components/EditProfileBody.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/profile/components/EditProfileBody.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/setting/ShowSettingScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/homeScreen/member/setting/ShowSettingScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/book/ShowBookScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/book/ShowBookScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/book/components/BookScreenBody.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/book/components/BookScreenBody.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/bookDetail/ShowBookDetail.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/bookDetail/ShowBookDetail.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/bookDetail/components/BookDetailBody.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/bookDetail/components/BookDetailBody.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/categoryBook/CategoryBook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/categoryBook/CategoryBook.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/categoryBook/CategoryItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/categoryBook/CategoryItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/categoryBook/FullCategoryBook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/categoryBook/FullCategoryBook.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/OnboardingScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/onBoard/OnboardingScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/OnboardingUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/onBoard/OnboardingUtils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/IndicatorUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/onBoard/components/IndicatorUI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/OnboardingGraphUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/onBoard/components/OnboardingGraphUI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/OnboardingModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/onBoard/components/OnboardingModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/boardButton/BackButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/onBoard/components/boardButton/BackButton.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/boardButton/NextButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/onBoard/components/boardButton/NextButton.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/on_board/components/boardButton/PreviewButtonOnBoard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/onBoard/components/boardButton/PreviewButtonOnBoard.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/factory/CardComponentFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/factory/CardComponentFactory.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/proxy/RealUserSessionData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/proxy/RealUserSessionData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/proxy/UserSessionProxy.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/proxy/UserSessionProxy.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +26,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\User\.android\avd\Medium_Phone_API_35_1.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=D:\Android\.android\.android\avd\Pixel_7_Pro_API_33.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -213,36 +113,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
-    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Kuliah/Semester 5/Kuliah/Pemrograman Aplikasi Perangkat  Bergerak/Praktikumm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.app.executor": "Run",
+    "PROJECT_TRUSTED_KEY": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Project/FindIT/Shelfify",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "Errors",
+    "show.migrate.to.gradle.popup": "false"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.android.tools.idea.sqlite.queryhistory&quot;: [
-      &quot;select * from books where title = \&quot;Amor Eterno\&quot;&quot;,
-      &quot;select * from books where title = \&quot;Amor\&quot;&quot;,
-      &quot;select * from books where title = \&quot;Romeo and Juliet\&quot;&quot;,
-      &quot;select book_image from Books&quot;,
-      &quot;DELETE FROM Books\nWHERE book_image IS NULL;\n&quot;
+  "keyToStringList": {
+    "com.android.tools.idea.sqlite.queryhistory": [
+      "INSERT INTO Books (title, writer, isbn, publisher, publication_year, language, stock, pages, description, category, book_image, created_at, updated_at) \nVALUES \n('The Adventure of Sherlock Holmes', 'Arthur Conan Doyle', '9780451524935', 'Penguin Classics', 1892, 'English', 10, 320, 'Sherlock Holmes solves a variety of mysteries.', 'Action & Adventure', 'sherlock_holmes.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Treasure Island', 'Robert Louis Stevenson', '9780486289443', 'Dover Thrift Editions', 1883, 'English', 8, 240, 'A story of pirates and buried treasure.', 'Action & Adventure', 'treasure_island.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Batu dan Api', 'Rizki D. Alimudin', '9786020883702', 'Gramedia', 2015, 'Indonesian', 15, 350, 'Cerita petualangan penuh teka-teki dan misteri.', 'Action & Adventure', 'batu_dan_api.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('La Isla del Tesoro', 'Robert Louis Stevenson', '9780142437247', 'Penguin Classics', 1883, 'Spanish', 12, 280, 'Una historia de piratas y aventuras en busca de un tesoro.', 'Action & Adventure', 'isla_tesoro.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Penghancur Segitiga Bermuda', 'Muhammad Arif', '9786023701422', 'Mizan', 2017, 'Indonesian', 5, 190, 'Novel petualangan yang penuh dengan ketegangan.', 'Action & Adventure', 'segitiga_bermuda.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Antiques: The Collector Guide', 'John Smith', '9780764312018', 'Schiffer Publishing', 2000, 'English', 7, 215, 'A guide to collecting antiques, from furniture to glassware.', 'Antiques & Collectibles', 'antiques_guide.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Art of the 19th Century', 'Alice Johnson', '9780393038324', 'Norton', 1998, 'English', 10, 350, 'Explores the evolution of art movements and famous artists of the 19th century.', 'Antiques & Collectibles', 'art_19th_century.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Koleksi Seni Klasik', 'Dewi Pratama', '9786022346789', 'Gramedia', 2010, 'Indonesian', 20, 290, 'Panduan untuk koleksi seni klasik Indonesia dan dunia.', 'Antiques & Collectibles', 'koleksi_seni.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Coleccionando Antigüedades', 'Luis Sánchez', '9788435002789', 'RBA', 2005, 'Spanish', 6, 210, 'Guía para coleccionar antigüedades, desde relojes hasta cerámica.', 'Antiques & Collectibles', 'coleccionando_antiguedades.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Kolektor Barang Antik', 'Andi Setiawan', '9786028477598', 'Erlangga', 2013, 'Indonesian', 9, 330, 'Cara sukses mengoleksi barang antik dengan nilai sejarah.', 'Antiques & Collectibles', 'kolektor_barang_antik.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Principles of Economics', 'N. Gregory Mankiw', '9780538453057', 'Cengage Learning', 2014, 'English', 20, 450, 'Comprehensive introduction to economic theory.', 'Business & Economics', 'principles_economics.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('The Intelligent Investor', 'Benjamin Graham', '9780060555665', 'HarperBusiness', 1949, 'English', 18, 600, 'The classic book on value investing and financial analysis.', 'Business & Economics', 'intelligent_investor.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Ekonomi Makro', 'M. Yuliana', '9789797637220', 'Alfabeta', 2012, 'Indonesian', 25, 400, 'Buku ini menjelaskan teori-teori ekonomi makro yang berlaku.', 'Business & Economics', 'ekonomi_makro.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('El Capital', 'Karl Marx', '9780140447982', 'Penguin Classics', 1867, 'Spanish', 22, 800, 'La obra maestra de Marx sobre la economía capitalista.', 'Business & Economics', 'el_capital.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Manajemen Bisnis', 'Budi Santosa', '9786021188997', 'Erlangga', 2014, 'Indonesian', 30, 500, 'Pendekatan praktis untuk memahami manajemen bisnis.', 'Business & Economics', 'manajemen_bisnis.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Introduction to Algorithms', 'Thomas H. Cormen', '9780262033848', 'MIT Press', 2009, 'English', 40, 1312, 'Comprehensive guide to algorithms and data structures.', 'Computer', 'intro_algorithms.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Clean Code: A Handbook of Agile Software Craftsmanship', 'Robert C. Martin', '9780132350884', 'Prentice Hall', 2008, 'English', 35, 464, 'Guide to writing clean, readable, and maintainable code.', 'Computer', 'clean_code.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Pemrograman Java untuk Pemula', 'Andi Wijaya', '9786022405971', 'Erlangga', 2015, 'Indonesian', 10, 500, 'Buku ini mengajarkan dasar-dasar pemrograman Java.', 'Computer', 'pemrograman_java.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Estructura de Datos', 'José A. Romero', '9788433960195', 'McGraw-Hill', 2010, 'Spanish', 15, 320, 'Explicación de las estructuras de datos básicas y su implementación.', 'Computer', 'estructura_datos.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Algoritmos: Teoría y Práctica', 'Gerardo López', '9788499545156', 'Anaya Multimedia', 2018, 'Spanish', 20, 480, 'Introducción a los algoritmos y su aplicación práctica.', 'Computer', 'algoritmos_practica.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('The Art of Electronics', 'Paul Horowitz', '9780521809269', 'Cambridge University Press', 2015, 'English', 12, 1312, 'Comprehensive resource for electronic circuit design.', 'Engineering', 'art_of_electronics.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Electrical Engineering: Principles and Applications', 'Allan R. Hambley', '9780134602911', 'Pearson', 2017, 'English', 15, 800, 'Covers the fundamentals of electrical engineering and its applications.', 'Engineering', 'electrical_engineering.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Dasar Teknik Elektro', 'Budi Santosa', '9786022348900', 'Erlangga', 2014, 'Indonesian', 18, 750, 'Buku yang membahas dasar-dasar teknik elektro dan aplikasinya.', 'Engineering', 'dasar_teknik_ elektro.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Ingeniería Industrial', 'Carlos García', '9788491728005', 'McGraw-Hill', 2016, 'Spanish', 10, 640, 'Guía completa sobre la ingeniería industrial y sus aplicaciones.', 'Engineering', 'ingenieria_industrial.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Rekayasa Perangkat Lunak', 'Ika Pratiwi', '9786023453723', 'Erlangga', 2017, 'Indonesian', 20, 400, 'Buku ini memberikan pemahaman tentang rekayasa perangkat lunak.', 'Engineering', 'rekayasa_perangkat_lunak.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Dracula', 'Bram Stoker', '9780141439846', 'Penguin Classics', 1897, 'English', 8, 500, 'The classic Gothic horror novel about Count Dracula.', 'Horror', 'dracula.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Frankenstein', 'Mary Shelley', '9780486282114', 'Dover Thrift Editions', 1818, 'English', 7, 280, 'A tale of horror and science gone awry.', 'Horror', 'frankenstein.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Hantu-hantu Indonesia', 'Sari Dewi', '9786022283700', 'Erlangga', 2015, 'Indonesian', 12, 400, 'Kisah-kisah hantu dan mitos-mitos terkenal di Indonesia.', 'Horror', 'hantu_indonesia.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('El Exorcista', 'William Peter Blatty', '9788497595207', 'Alianza Editorial', 1971, 'Spanish', 10, 400, 'Un thriller psicológico de horror que explora la posesión demoníaca.', 'Horror', 'el_exorcista.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Kisah Horor Tersembunyi', 'Aditya Putra', '9786028456727', 'Mizan', 2018, 'Indonesian', 8, 320, 'Cerita horor yang datang dari tempat-tempat tak terduga.', 'Horror', 'kisah_horor_tersembunyi.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('The 7 Habits of Highly Effective Families', 'Stephen R. Covey', '9780743556311', 'Free Press', 2004, 'English', 14, 400, 'A guide to building strong family relationships and success.', 'Family & Relationship', '7_habits_families.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('The Family Table', 'Vicki Lansky', '9781884734691', 'Book Peddlers', 2000, 'English', 16, 200, 'Practical advice for creating a warm family environment.', 'Family & Relationship', 'family_table.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Membangun Keluarga Bahagia', 'Hendri S. Soesanto', '9789797917252', 'Mizan', 2015, 'Indonesian', 12, 280, 'Panduan untuk menciptakan keharmonisan dalam keluarga.', 'Family & Relationship', 'keluarga_bahagia.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('La Familia Primero', 'Ana María García', '9788497776349', 'Editorial Planeta', 2012, 'Spanish', 10, 340, 'Una guía para fortalecer los lazos familiares y mejorar las relaciones.', 'Family & Relationship', 'familia_primero.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Menjadi Keluarga Sehat', 'Taufik Hidayat', '9786022317242', 'Erlangga', 2018, 'Indonesian', 18, 320, 'Cara menciptakan keluarga yang sehat dan harmonis.', 'Family & Relationship', 'keluarga_sehat.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Pride and Prejudice', 'Jane Austen', '9780141040349', 'Penguin Classics', 1813, 'English', 25, 480, 'A classic love story about Elizabeth Bennet and Mr. Darcy.', 'Love & Romance', 'pride_prejudice.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Romeo and Juliet', 'William Shakespeare', '9780743477116', 'Simon & Schuster', 1597, 'English', 30, 200, 'A timeless tragedy of two young lovers.', 'Love & Romance', 'romeo_juliet.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Cinta Sejati', 'Rina Indra', '9786020342920', 'Gramedia', 2015, 'Indonesian', 20, 350, 'Cerita tentang cinta sejati yang penuh emosi.', 'Love & Romance', 'cinta_sejati.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Amor Eterno', 'Isabel Allende', '9780060090840', 'HarperCollins', 1987, 'Spanish', 18, 400, 'Una historia de amor que desafía al tiempo y al destino.', 'Love & Romance', 'amor_eterno.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Kisah Cinta Tak Terlupakan', 'Ayu Lestari', '9786023084723', 'Gramedia', 2020, 'Indonesian', 15, 380, 'Cerita cinta yang mengharukan dan penuh makna.', 'Love & Romance', 'kisah_cinta.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);",
+      "select * from books where title = \"Amor Eterno\"",
+      "select * from books where title = \"Amor\"",
+      "select * from books where title = \"Romeo and Juliet\"",
+      "select book_image from Books"
     ],
-    &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;F:\\GitHub\\Shelfify\\.gradle\\8.5&quot;,
-      &quot;C:\\Users\\User\\.gradle&quot;
+    "kotlin-gradle-user-dirs": [
+      "C:\\Users\\ASUS\\.gradle"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\GitHub\Shelfify\app\src\main\java\com\example\shelfify\ui\authUI\forgotPassword\components" />
