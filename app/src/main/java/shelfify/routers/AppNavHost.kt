@@ -56,7 +56,11 @@ fun AppNavHost(navController: NavHostController) {
     ) { paddingValues ->
         NavGraph(
             navController = navController,
+<<<<<<< Updated upstream
             startDestination = Screen.Home.route,
+=======
+            startDestination = if (sessionManager.isLoggedIn) Screen.Home.route else Screen.Login.route,
+>>>>>>> Stashed changes
             viewModels = viewModels,
             modifier = Modifier.padding(paddingValues)
         )

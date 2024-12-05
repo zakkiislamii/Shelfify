@@ -21,15 +21,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.shelfify.R
 import shelfify.contracts.card.CardBookComponent
-import shelfify.data.dataMapping.HistoryBookUI
+import shelfify.data.dataMapping.FavBooks
 
-class HistoryCard : CardBookComponent<HistoryBookUI> {
+class FrequentlyBorrowedBooksCard : CardBookComponent<FavBooks> {
     @Composable
-    override fun CreateCard(item: HistoryBookUI, onClick: () -> Unit) {
+    override fun CreateCard(item: FavBooks, onClick: () -> Unit) {
         Card(
             modifier = Modifier
-                .width(160.dp)  // Set fixed width for the card
+                .width(160.dp)
                 .clickable { onClick() }
         ) {
             Column(
@@ -39,7 +40,9 @@ class HistoryCard : CardBookComponent<HistoryBookUI> {
             ) {
                 // Image filling the width of card
                 Image(
-                    painter = painterResource(id = item.bookImage.toInt()),
+                    painter = painterResource(
+                        id = item.bookImage?.toInt() ?: R.drawable.ic_launcher_background
+                    ),
                     contentDescription = item.title,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -65,6 +68,20 @@ class HistoryCard : CardBookComponent<HistoryBookUI> {
                     )
                     Text(
                         text = item.writer,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.Black,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = item.category,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Color.Black,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = "Total Reservations ${item.category}",
                         style = MaterialTheme.typography.bodySmall,
                         color = Color.Black,
                         maxLines = 1,

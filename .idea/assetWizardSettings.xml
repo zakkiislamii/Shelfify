@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="reservation" />
-                            <entry key="sourceFile" value="F:\GitHub\Shelfify\app\src\main\res\drawable\reservation.svg" />
+                            <entry key="outputName" value="upload" />
+                            <entry key="sourceFile" value="F:\GitHub\Shelfify\app\src\main\res\drawable\upload.svg" />
                           </map>
                         </option>
                       </PersistentState>
