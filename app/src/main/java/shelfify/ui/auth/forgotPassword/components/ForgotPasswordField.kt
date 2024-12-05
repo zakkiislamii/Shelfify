@@ -11,9 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import shelfify.contracts.field.Field
+import shelfify.contracts.field.UserField
 
-class ForgotPasswordField : Field {
+class ForgotPasswordField : UserField {
     @Composable
     override fun CreateField(
         value: String,

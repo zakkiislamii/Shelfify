@@ -15,7 +15,7 @@ class UserSessionProxy(private val realUserSessionData: UserSessionData) : UserS
                 isLoggedIn = false,
                 userId = 0,
                 email = null,
-                role = null
+                role = null,
             )
         }
         return realUserSessionData.getUserSession(context)

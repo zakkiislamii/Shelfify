@@ -42,27 +42,6 @@ class ShowLoginScreen {
         val loginField = LoginField()
         val context = LocalContext.current
 
-        val loginState by authViewModel.loginState.collectAsState()
-
-        LaunchedEffect(loginState) {
-            when (loginState) {
-                is Result.Success -> {
-                    navController.navigate(Screen.Home.route)
-                }
-
-                is Result.Error -> {
-                    val error = (loginState as Result.Error).message
-                    CustomToast().showToast(
-                        context = context,
-                        message = error
-                    )
-                }
-
-                Result.Loading -> {
-                    // Handle loading state if needed
-                }
-            }
-        }
 
         Scaffold(
             topBar = { HeaderLogin() }
@@ -105,6 +84,7 @@ class ShowLoginScreen {
                             )
                         ) {
                             authViewModel.login(emailState.value, passwordState.value, context)
+                            navController.navigate(Screen.Home.route)
                         }
                     }
                     ToRegister(onClick = { navController.navigate(Screen.Register.route) })

@@ -6,6 +6,6 @@ data class CartWithBook(
     val bookId: Int,
     val bookTitle: String,
     val bookWriter: String,
-    val bookImage: String,
+    val bookImage: String?,
     val bookCategory: String,
 )

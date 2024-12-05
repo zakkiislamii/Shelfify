@@ -4,10 +4,12 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import shelfify.be.domain.models.User
 import shelfify.be.domain.repositories.UserRepository
 import shelfify.utils.response.Result
@@ -134,14 +136,24 @@ class AuthViewModel(private val userRepository: UserRepository) :
 
     private val _logOutState = MutableStateFlow<Result<Unit>>(Result.Success(Unit))
     val logOutState: StateFlow<Result<Unit>> = _logOutState.asStateFlow()
+
     fun logout(context: Context) {
-        try {
-            clearLoginStatus(context)
-            Log.d("AuthViewModel", "Logout successful")
-            _logOutState.value = Result.Success(Unit)
-        } catch (e: Exception) {
-            Log.e("AuthViewModel", "Logout failed: ${e.message}")
-            _logOutState.value = Result.Error(e.message ?: "Logout failed")
+        viewModelScope.launch(Dispatchers.Main) {
+            try {
+                // Clear shared preferences
+                withContext(Dispatchers.IO) {
+                    clearLoginStatus(context)
+                }
+
+                // Reset semua state
+                _loginState.value = Result.Loading
+                _getUserByEmailState.value = Result.Loading
+                // Set success setelah semua clear
+                _logOutState.value = Result.Success(Unit)
+
+            } catch (e: Exception) {
+                _logOutState.value = Result.Error(e.message ?: "Logout failed")
+            }
         }
     }
 
@@ -169,7 +181,8 @@ class AuthViewModel(private val userRepository: UserRepository) :
 
     private fun clearLoginStatus(context: Context) {
         val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
-        sharedPreferences.edit().clear().apply()
-
+        sharedPreferences.edit()
+            .clear()
+            .apply()
     }
 }

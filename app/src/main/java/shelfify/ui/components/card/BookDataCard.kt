@@ -2,6 +2,7 @@ package shelfify.ui.components.card
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,7 +37,7 @@ import shelfify.ui.theme.MainColor
 class BookDataCard : CardBookDataMemberComponent<BookUI> {
     @Composable
     override fun CreateCard(
-        item: BookUI, onUpdateClick: () -> Unit,
+        item: BookUI, onUpdateClick: () -> Unit, openBook: () -> Unit,
         onDeleteClick: () -> Unit,
     ) {
         Card(
@@ -48,6 +49,7 @@ class BookDataCard : CardBookDataMemberComponent<BookUI> {
                     RoundedCornerShape(8.dp)
                 )
                 .fillMaxSize()
+                .clickable { openBook() }
                 .clip(RoundedCornerShape(8.dp)),
             elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
         ) {

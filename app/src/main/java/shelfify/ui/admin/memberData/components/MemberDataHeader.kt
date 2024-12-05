@@ -17,9 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import shelfify.ui.homeScreen.searchScreen.components.SearchButton
 import shelfify.ui.theme.MainColor
 
 @Composable
@@ -27,55 +27,46 @@ fun MemberDataHeader(onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(210.dp)
-    ) {
-
-        Box(
+            .height(170.dp)
+            .clip(RoundedCornerShape(bottomStart = 40.dp, bottomEnd = 40.dp))
+            .background(MainColor)
+    )
+    Column {
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(170.dp)
-                .clip(RoundedCornerShape(bottomStart = 40.dp, bottomEnd = 40.dp))
-                .background(MainColor)
-        )
-        Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(30.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Text(
-                        text = "Hi, Admin",
-                        color = Color.White,
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "Let's reservation a book today",
-                        color = Color.White,
-                        fontSize = 8.sp,
-                    )
-                }
+                .padding(30.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
                 Text(
-                    text = "Logout",
+                    text = "Hi, Admin",
                     color = Color.White,
-                    fontSize = 18.sp,
-                    modifier = Modifier.clickable { onClick() }
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "Let's reservation a book today",
+                    color = Color.White,
+                    fontSize = 8.sp,
                 )
             }
-        }
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomEnd)
-                .padding(10.dp, 10.dp, 10.dp, 15.dp)
-        ) {
-            SearchButton().Button {
-
-            }
+            Text(
+                text = "Logout",
+                color = Color.White,
+                fontSize = 18.sp,
+                modifier = Modifier.clickable { onClick() }
+            )
         }
     }
+
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MemberDataHeaderPreview() {
+    MemberDataHeader(onClick = {
+        // Handle the click event for the preview, such as logging to console or leaving empty
+    })
 }

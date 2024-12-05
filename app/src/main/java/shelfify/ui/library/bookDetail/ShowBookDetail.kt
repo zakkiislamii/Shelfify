@@ -51,13 +51,12 @@ class ShowBookDetail {
         var hasActiveReservation by remember { mutableStateOf(false) }
 
         LaunchedEffect(userId) {
-            reservationViewModel.checkUserHasActiveReservation(userId)
-                .collect { result ->
-                    hasActiveReservation = when (result) {
-                        is Result.Success -> result.data
-                        else -> false
-                    }
+            reservationViewModel.checkUserHasActiveReservation(userId).collect { result ->
+                hasActiveReservation = when (result) {
+                    is Result.Success -> result.data
+                    else -> false
                 }
+            }
         }
 
 
@@ -70,7 +69,7 @@ class ShowBookDetail {
         Scaffold(
             topBar = {
                 BookDetailHeader {
-                    navController.popBackStack()
+                    navController.popBackStack("bookDetail/{id}", inclusive = true)
                 }
             },
         ) { paddingValues ->
@@ -94,8 +93,7 @@ class ShowBookDetail {
                                             when (existsResult) {
                                                 is Result.Success -> {
                                                     val cartEntity = CartEntity(
-                                                        userId = userId,
-                                                        bookId = id
+                                                        userId = userId, bookId = id
                                                     )
                                                     cartViewModel.addCart(cartEntity)
                                                     CustomToast().showToast(
@@ -128,8 +126,7 @@ class ShowBookDetail {
                                             try {
                                                 reservationViewModel.addReservationFromBookDetail(
                                                     id, Reservation(
-                                                        userId = userId,
-                                                        bookId = id
+                                                        userId = userId, bookId = id
                                                     )
                                                 )
                                                 CustomToast().showToast(
@@ -163,8 +160,7 @@ class ShowBookDetail {
 
                     is Result.Error -> {
                         CustomToast().showToast(
-                            context = context,
-                            message = "Gagal memuat detail buku"
+                            context = context, message = "Gagal memuat detail buku"
                         )
                     }
                 }

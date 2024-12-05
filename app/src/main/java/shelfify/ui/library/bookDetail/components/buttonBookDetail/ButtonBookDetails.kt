@@ -72,15 +72,3 @@ class ButtonBookDetails : Button {
         )
     }
 }
-
-@Preview(
-    showBackground = true
-)
-@Composable
-private fun ButtonPreviews() {
-    Column {
-        ButtonBookDetails().ReservationButton {}
-        ButtonBookDetails().CartButton {}
-    }
-
-}

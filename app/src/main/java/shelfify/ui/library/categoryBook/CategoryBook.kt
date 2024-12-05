@@ -29,7 +29,7 @@ fun CategoryBook(
     navController: NavController,
 ) {
     Column {
-        Box(modifier = Modifier.padding(start = 20.dp)) {
+        Box(modifier = Modifier.padding(start = 20.dp, top = 30.dp)) {
             Text(text = "Category", color = MainColor, fontWeight = FontWeight.Bold)
         }
 

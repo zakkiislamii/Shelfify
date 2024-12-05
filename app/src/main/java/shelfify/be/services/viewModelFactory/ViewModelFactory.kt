@@ -41,7 +41,13 @@ class ViewModelFactory(
             return CartViewModel(cartRepository, bookRepository) as T
         }
         if (modelClass.isAssignableFrom(AdminViewModel::class.java)) {
-            return AdminViewModel(userRepository, historyRepository, bookRepository) as T
+            return AdminViewModel(
+                userRepository,
+                reservationRepository,
+                historyRepository,
+                bookRepository,
+                storage = FirebaseStorage.getInstance()
+            ) as T
         }
         if (modelClass.isAssignableFrom(ReservationViewModel::class.java)) {
             return ReservationViewModel(

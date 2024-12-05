@@ -11,31 +11,6 @@ import shelfify.utils.response.Result
 
 class BookViewModel(private val bookRepository: BookRepository) : ViewModel() {
 
-    // Insert Book
-    fun insertBook(book: Book, onResult: (Result<Book>) -> Unit) {
-        viewModelScope.launch {
-            try {
-                bookRepository.insertBook(book)
-                onResult(Result.Success(book))
-            } catch (e: Exception) {
-                onResult(Result.Error(e.message ?: "Unknown error occurred"))
-            }
-        }
-    }
-
-    // Update Book
-    fun updateBook(book: Book, onResult: (Result<Book>) -> Unit) {
-        viewModelScope.launch {
-            try {
-                bookRepository.updateBook(book)
-                onResult(Result.Success(book))
-            } catch (e: Exception) {
-                onResult(Result.Error(e.message ?: "Unknown error occurred"))
-            }
-        }
-    }
-
-
     private val _booksByCategoryState = MutableStateFlow<Result<List<Book>>>(Result.Loading)
     val booksByCategoryState: StateFlow<Result<List<Book>>> = _booksByCategoryState
 

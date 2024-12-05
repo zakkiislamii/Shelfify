@@ -7,9 +7,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.VisualTransformation
-import shelfify.contracts.field.Field
+import shelfify.contracts.field.UserField
 
-class CustomField : Field {
+class CustomField : UserField {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun CreateField(

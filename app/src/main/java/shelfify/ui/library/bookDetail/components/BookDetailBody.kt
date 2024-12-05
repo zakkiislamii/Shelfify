@@ -1,5 +1,6 @@
 package shelfify.ui.library.bookDetail.components
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.horizontalScroll
@@ -24,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -46,10 +48,13 @@ class BookDetailBody {
         navController: NavController,
         hasActiveReservation: Boolean,
     ) {
+        val context = LocalContext.current
         var showConfirmDialog by remember { mutableStateOf(false) }
         var showConfirmReservationDialog by remember { mutableStateOf(false) }
         var showWarningDialog by remember { mutableStateOf(false) }
         val scrollState = rememberScrollState()
+        val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val role = sharedPreferences.getString("role", "") ?: ""
 
         // Memastikan book tidak kosong dan masih tersedia
         if (book.stock == 0) {
@@ -118,22 +123,24 @@ class BookDetailBody {
         ) {
             BookImage(book)
             BookStats(book, scrollState)
-            BookActions(
-                onReservationClick = {
-                    if (hasActiveReservation) {
-                        showWarningDialog = true
-                    } else {
-                        showConfirmReservationDialog = true
+            if (role != "ADMIN") {
+                BookActions(
+                    onReservationClick = {
+                        if (hasActiveReservation) {
+                            showWarningDialog = true
+                        } else {
+                            showConfirmReservationDialog = true
+                        }
+                    },
+                    onCartClick = {
+                        if (hasActiveReservation) {
+                            showWarningDialog = true
+                        } else {
+                            showConfirmDialog = true
+                        }
                     }
-                },
-                onCartClick = {
-                    if (hasActiveReservation) {
-                        showWarningDialog = true
-                    } else {
-                        showConfirmDialog = true
-                    }
-                }
-            )
+                )
+            }
             BookDescription(book)
         }
     }

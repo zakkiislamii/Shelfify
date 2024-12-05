@@ -18,4 +18,6 @@ sealed class Screen(val route: String) {
     data object BookDetail : Screen("bookDetail/{id}")
     data object Cart : Screen("cart")
     data object HistoryMember : Screen("historyMember/{userId}/{fullName}")
+    data object AddBook : Screen("addBook")
+    data object EditBook : Screen("editBook/{bookId}")
 }

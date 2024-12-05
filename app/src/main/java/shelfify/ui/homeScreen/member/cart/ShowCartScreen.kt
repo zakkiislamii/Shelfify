@@ -99,7 +99,7 @@ class ShowCartScreen {
                         }
                     }
 
-                    else -> {} // Untuk kasus Loading atau Error, tidak ada tombol
+                    else -> {}
                 }
             }
         ) { paddingValues ->

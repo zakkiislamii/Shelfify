@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -24,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import shelfify.be.services.viewModel.AdminViewModel
 import shelfify.be.services.viewModel.AuthViewModel
+import shelfify.contracts.enumerations.Role
 import shelfify.routers.Screen
 import shelfify.ui.admin.memberData.components.MemberDataBody
 import shelfify.ui.homeScreen.home.components.HomeHeader
@@ -46,28 +46,12 @@ class ShowHomeScreen {
         var fullName by remember { mutableStateOf("") }
         var firstName by remember { mutableStateOf("") }
         val userState by authViewModel.getUserByEmailState.collectAsState()
-
-        // Cek login status
-        if (!isLoggedIn) {
-            DisposableEffect(Unit) {
-                navController.navigate(Screen.Login.route) {
-                    popUpTo(navController.graph.startDestinationId) {
-                        inclusive = true
-                    }
-                }
-
-                onDispose { }
-            }
-            return
-        }
-
         // Get user data saat pertama kali masuk
         LaunchedEffect(Unit) {
             if (email.isNotEmpty()) {
                 authViewModel.getUserByEmail(email)
             }
         }
-
 
         // Handle user data state
         LaunchedEffect(userState) {
@@ -93,12 +77,11 @@ class ShowHomeScreen {
 
             else -> {
                 when (role) {
-                    "MEMBER" -> {
+                    Role.MEMBER.toString() -> {
                         Scaffold(
                             topBar = {
                                 HomeHeader(
                                     fullname = firstName,
-                                    navController = navController,
                                     onClick = {
                                         navController.navigate(Screen.Cart.route)
                                     }
@@ -121,7 +104,7 @@ class ShowHomeScreen {
                         }
                     }
 
-                    else -> {
+                    Role.ADMIN.toString() -> {
                         Scaffold { paddingValues ->
                             Box(
                                 modifier = Modifier
@@ -141,6 +124,7 @@ class ShowHomeScreen {
                             }
                         }
                     }
+
                 }
             }
         }

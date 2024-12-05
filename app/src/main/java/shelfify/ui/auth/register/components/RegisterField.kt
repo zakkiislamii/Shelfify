@@ -17,10 +17,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import shelfify.contracts.field.Field
+import shelfify.contracts.field.UserField
 import shelfify.utils.helpers.PasswordHelper
 
-class RegisterField : Field {
+class RegisterField : UserField {
     @Composable
     override fun CreateField(
         value: String,

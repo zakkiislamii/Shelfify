@@ -69,7 +69,6 @@ class UserRepository(private val userDao: UserDao) : UserRepositoryContract {
                 updatedAt = Date(),
                 isLoggedIn = false
             )
-
             val userId = userDao.insertUser(newUser)
             Result.success(newUser.copy(userId = userId.toInt()))
         } catch (e: Exception) {

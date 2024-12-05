@@ -6,7 +6,7 @@ import shelfify.data.baseUI.BookDataBaseUI
 interface CardBookDataMemberComponent<T : BookDataBaseUI> {
     @Composable
     fun CreateCard(
-        item: T, onUpdateClick: () -> Unit,
+        item: T, onUpdateClick: () -> Unit, openBook: () -> Unit,
         onDeleteClick: () -> Unit,
     )
 }

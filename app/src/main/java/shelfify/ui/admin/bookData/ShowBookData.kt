@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -17,13 +18,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import shelfify.be.services.viewModel.AdminViewModel
+import shelfify.routers.Screen
+import shelfify.ui.admin.bookData.components.button.AddBookButton
 import shelfify.ui.components.card.BookDataCard
 
 
 class ShowBookData {
     @Composable
-    fun BookData(adminViewModel: AdminViewModel) {
+    fun BookData(adminViewModel: AdminViewModel, navController: NavController) {
         val books by adminViewModel.books.collectAsState()
         LaunchedEffect(Unit) {
             adminViewModel.getAllBooksForUI()
@@ -35,7 +39,7 @@ class ShowBookData {
                     modifier = Modifier
                         .background(Color.White)
                         .padding(paddingValues),
-                    contentAlignment = Alignment.TopCenter
+                    contentAlignment = Alignment.TopCenter,
                 ) {
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),
@@ -45,11 +49,28 @@ class ShowBookData {
                         items(books) { book ->
                             BookDataCard().CreateCard(
                                 item = book,
-                                onUpdateClick = { /* TODO: Implement update */ },
-                                onDeleteClick = { adminViewModel.deleteBook(book.bookId) }
+                                onUpdateClick = { navController.navigate("editBook/${book.bookId}") },
+                                onDeleteClick = { adminViewModel.deleteBook(book.bookId) },
+                                openBook = { navController.navigate("bookDetail/${book.bookId}") }
                             )
                         }
                     }
+                }
+            },
+            bottomBar = {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(5.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    AddBookButton {
+                        navController.navigate(Screen.AddBook.route) {
+                            popUpTo(Screen.BookData.route) { inclusive = true }
+                            launchSingleTop = true
+                        }
+                    }
+
                 }
             }
         )

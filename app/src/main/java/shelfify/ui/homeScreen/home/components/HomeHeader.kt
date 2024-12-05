@@ -22,68 +22,47 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.shelfify.R
-import shelfify.routers.Screen
-import shelfify.ui.homeScreen.searchScreen.components.SearchButton
 import shelfify.ui.theme.MainColor
 
 
 @Composable
-fun HomeHeader(fullname: String, navController: NavController, onClick: () -> Unit) {
+fun HomeHeader(fullname: String, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(210.dp)
-    ) {
-
-        Box(
+            .height(170.dp)
+            .clip(RoundedCornerShape(bottomStart = 40.dp, bottomEnd = 40.dp))
+            .background(MainColor)
+    )
+    Column {
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(170.dp)
-                .clip(RoundedCornerShape(bottomStart = 40.dp, bottomEnd = 40.dp))
-                .background(MainColor)
-        )
-        Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(30.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Text(
-                        text = "Hi, $fullname",
-                        color = Color.White,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "Let's reservation a book today",
-                        color = Color.White,
-                        fontSize = 11.sp,
-                    )
-                }
-                Image(
-                    painter = painterResource(id = R.drawable.cart),
-                    contentDescription = "cart",
-                    modifier = Modifier
-                        .size(25.dp)
-                        .clickable { onClick() }
+                .padding(30.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
+                Text(
+                    text = "Hi, $fullname",
+                    color = Color.White,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "Let's reservation a book today",
+                    color = Color.White,
+                    fontSize = 11.sp,
                 )
             }
-        }
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomEnd)
-                .padding(10.dp, 10.dp, 10.dp, 15.dp)
-        ) {
-            SearchButton().Button {
-                navController.navigate(Screen.SearchScreen.route)
-            }
+            Image(
+                painter = painterResource(id = R.drawable.cart),
+                contentDescription = "cart",
+                modifier = Modifier
+                    .size(25.dp)
+                    .clickable { onClick() }
+            )
         }
     }
 }

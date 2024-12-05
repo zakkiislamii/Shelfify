@@ -18,11 +18,11 @@ import shelfify.be.services.viewModel.CartViewModel
 import shelfify.data.dataMapping.CartBookUI
 import shelfify.data.dataMapping.CartWithBook
 import shelfify.ui.components.card.CartCard
-
 @Composable
 fun CartBody(
     cartList: List<CartWithBook>,
-    isEmpty: Boolean, cartViewModel: CartViewModel,
+    isEmpty: Boolean,
+    cartViewModel: CartViewModel,
 ) {
     Box(
         modifier = Modifier
@@ -42,11 +42,15 @@ fun CartBody(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     items(cartList) { cartWithBook ->
-                        val imageResource = if (cartWithBook.bookImage.startsWith("http")) {
-                            R.drawable.ic_launcher_background
-                        } else {
-                            cartWithBook.bookImage.toIntOrNull()
-                                ?: R.drawable.ic_launcher_background
+                        val imageResource = when {
+                            cartWithBook.bookImage?.startsWith("http") == true -> {
+                                R.drawable.ic_launcher_background
+                            }
+                            cartWithBook.bookImage != null -> {
+                                cartWithBook.bookImage.toIntOrNull()
+                                    ?: R.drawable.ic_launcher_background
+                            }
+                            else -> R.drawable.ic_launcher_background
                         }
 
                         val cardBookUI = CartBookUI(
