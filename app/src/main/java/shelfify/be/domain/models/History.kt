@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import shelfify.contracts.enumerations.Status
 import java.util.Date
 
 @Entity(
@@ -36,6 +37,9 @@ data class History(
 
     @ColumnInfo(name = "book_id")
     val bookId: Int,
+
+    @ColumnInfo(name = "status_history")
+    val statusHistory: Status,
 
     @ColumnInfo(name = "reservation_id")
     val reservationId: Int,

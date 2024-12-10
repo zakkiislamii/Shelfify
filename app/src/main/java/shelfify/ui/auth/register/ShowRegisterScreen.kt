@@ -57,7 +57,7 @@ class ShowRegisterScreen {
                         context = context,
                         message = "Registration Successful: ${user.fullName}",
                     )
-                    navController.navigate(Screen.Login.route)
+                    navController.navigate(Screen.Auth.Login.route)
                 }
 
                 is Result.Error -> {
@@ -76,7 +76,7 @@ class ShowRegisterScreen {
 
         Scaffold(
             topBar = {
-                RegisterHeader(onClick = { navController.navigate(Screen.Login.route) })
+                RegisterHeader(onClick = { navController.navigate(Screen.Auth.Login.route) })
             }
         ) { paddingValues ->
             Box(
@@ -157,7 +157,7 @@ class ShowRegisterScreen {
                         }
                     }
 
-                    ToLogin(onClick = { navController.navigate(Screen.Login.route) })
+                    ToLogin(onClick = { navController.navigate(Screen.Auth.Login.route) })
                 }
             }
         }

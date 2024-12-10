@@ -9,5 +9,6 @@ data class HistoryWithBooksAndReservation(
     val bookTitles: String,
     val bookWriter: String,
     val bookId: Int,
+    val stock : Int,
     val createdAt: Date,
 )

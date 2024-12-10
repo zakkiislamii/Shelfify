@@ -19,6 +19,7 @@ import shelfify.be.domain.repositories.UserRepository
 import shelfify.data.dataMapping.BookUI
 import shelfify.data.dataMapping.FavBooks
 import shelfify.data.dataMapping.MemberHistoryCardUI
+import shelfify.data.dataMapping.MemberReserveCardUI
 import shelfify.utils.response.Result
 import java.util.Calendar
 import java.util.Date
@@ -44,7 +45,6 @@ class AdminViewModel(
         }
     }
 
-    // Delete a user
     fun deleteUser(userId: Int) {
         viewModelScope.launch {
             try {
@@ -70,20 +70,14 @@ class AdminViewModel(
     private suspend fun uploadImage(imageUri: Uri, bookId: Int): String {
         return try {
             val storageRef = storage.reference
-
-            // Ubah path untuk book images
             val filename = "book_images/${bookId}_${System.currentTimeMillis()}.jpg"
             val imageRef = storageRef.child(filename)
 
-            // Upload dengan metadata
             val metadata = storageMetadata {
                 contentType = "image/jpeg"
             }
 
-            // Upload file
             imageRef.putFile(imageUri, metadata).await()
-
-            // Return download URL
             imageRef.downloadUrl.await().toString()
 
         } catch (e: Exception) {
@@ -97,18 +91,16 @@ class AdminViewModel(
         viewModelScope.launch {
             _addBookState.value = Result.Loading
             try {
-                // Upload image jika ada
                 val bookImageUrl = if (imageUri != null) {
                     uploadImage(imageUri, book.bookId)
                 } else {
                     null
                 }
-                // Buat salinan book dengan URL gambar yang baru
+
                 val bookWithImage = book.copy(
                     bookImage = bookImageUrl
                 )
 
-                // Insert book ke database
                 bookRepository.insertBook(bookWithImage)
                 _addBookState.value = Result.Success(Unit)
 
@@ -123,7 +115,6 @@ class AdminViewModel(
         viewModelScope.launch {
             _addBookState.value = Result.Loading
             try {
-                // Upload image jika ada
                 val bookImageUrl = if (imageUri != null) {
                     uploadImage(imageUri, book.bookId)
                 } else {
@@ -133,7 +124,6 @@ class AdminViewModel(
                     bookImage = bookImageUrl
                 )
 
-                // Insert book ke database
                 bookRepository.updateBook(bookWithImage)
                 _addBookState.value = Result.Success(Unit)
 
@@ -143,12 +133,11 @@ class AdminViewModel(
         }
     }
 
-
-    private val _memberHistory = MutableStateFlow<List<MemberHistoryCardUI>>(emptyList())
-    val memberHistory: StateFlow<List<MemberHistoryCardUI>> = _memberHistory
-    fun getMemberHistory(userId: Int) {
+    private val _memberHistoryForAdmin = MutableStateFlow<List<MemberHistoryCardUI>>(emptyList())
+    val memberHistoryForAdmin: StateFlow<List<MemberHistoryCardUI>> = _memberHistoryForAdmin
+    fun getMemberHistoryForAdmin(userId: Int) {
         viewModelScope.launch {
-            historyRepository.getMemberHistoryByUserId(userId)
+            historyRepository.getMemberHistoryByUserIdForAdmin(userId)
                 .collect { history ->
                     val groupedHistory = history
                         .groupBy { it.reservationStatus }
@@ -168,7 +157,7 @@ class AdminViewModel(
                                     )
                                 }
                         }
-                    _memberHistory.value = groupedHistory
+                    _memberHistoryForAdmin.value = groupedHistory
                 }
         }
     }
@@ -195,6 +184,20 @@ class AdminViewModel(
             try {
                 reservationRepository.getFavBooks().collect { bookList ->
                     _bookReservationSummary.value = bookList
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private val _memberReservations = MutableStateFlow<List<MemberReserveCardUI>>(emptyList())
+    val memberReservations: StateFlow<List<MemberReserveCardUI>> = _memberReservations
+    fun getMemberReservations() {
+        viewModelScope.launch {
+            try {
+                reservationRepository.getMemberReservations().collect { reservations ->
+                    _memberReservations.value = reservations
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

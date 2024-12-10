@@ -73,13 +73,13 @@ class NavigationBar {
                 navbarItems.forEach { item ->
                     val isSelected = currentRoute == when (item.title) {
                         "Home" -> Screen.Home.route
-                        "History" -> Screen.History.route
-                        "Notifications" -> Screen.Notification.route
-                        "Profile" -> Screen.Profile.route
+                        "History" -> Screen.Member.History.route
+                        "Notifications" -> Screen.Member.Notification.route
+                        "Profile" -> Screen.Member.Profile.route
                         "Member\nData" -> Screen.Home.route
-                        "Book\nData" -> Screen.BookData.route
-                        "Favorite\nBook" -> Screen.FavoriteBook.route
-                        "Reservation\nData" -> Screen.ReservationData.route
+                        "Book\nData" -> Screen.Admin.BookData.route
+                        "Favorite\nBook" -> Screen.Admin.FavoriteBook.route
+                        "Reservation\nData" -> Screen.Admin.ReservationData.route
                         else -> ""
                     }
 
@@ -94,17 +94,17 @@ class NavigationBar {
                                     restoreState = true
                                 }
 
-                                "History" -> navController.navigate(Screen.History.route) {
+                                "History" -> navController.navigate(Screen.Member.History.route) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
 
-                                "Notifications" -> navController.navigate(Screen.Notification.route) {
+                                "Notifications" -> navController.navigate(Screen.Member.Notification.route) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
 
-                                "Profile" -> navController.navigate(Screen.Profile.route) {
+                                "Profile" -> navController.navigate(Screen.Member.Profile.route) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
@@ -114,17 +114,17 @@ class NavigationBar {
                                     restoreState = true
                                 }
 
-                                "Book\nData" -> navController.navigate(Screen.BookData.route) {
+                                "Book\nData" -> navController.navigate(Screen.Admin.BookData.route) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
 
-                                "Favorite\nBook" -> navController.navigate(Screen.FavoriteBook.route) {
+                                "Favorite\nBook" -> navController.navigate(Screen.Admin.FavoriteBook.route) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }
 
-                                "Reservation\nData" -> navController.navigate(Screen.ReservationData.route) {
+                                "Reservation\nData" -> navController.navigate(Screen.Admin.ReservationData.route) {
                                     launchSingleTop = true
                                     restoreState = true
                                 }

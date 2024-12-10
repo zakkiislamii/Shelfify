@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import shelfify.contracts.enumerations.Status
 import java.util.Date
 
 @Entity(
@@ -38,6 +39,9 @@ data class Notification(
 
     @ColumnInfo(name = "reservation_id")
     val reservationId: Int,
+
+    @ColumnInfo(name = "status_notification")
+    val statusNotification: Status,
 
     @ColumnInfo(name = "message")
     val message: String,

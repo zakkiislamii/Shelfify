@@ -103,7 +103,7 @@ class ShowEditBookScreen {
         Scaffold(
             topBar = {
                 EditBookHeader {
-                    navController.navigate(Screen.BookData.route)
+                    navController.navigate(Screen.Admin.BookData.route)
                 }
             },
             content = { paddingValues ->
@@ -202,7 +202,8 @@ class ShowEditBookScreen {
                         bookImage = imageUrl.takeIf { it.isNotEmpty() }
                     )
                     adminViewModel.updateBook(updatedBook, selectedImageUri)
-                    navController.navigate(Screen.BookData.route)
+                    CustomToast().showToast(context, "Berhasil mengedit buku!")
+                    navController.navigate(Screen.Admin.BookData.route)
                 }
             }
         )

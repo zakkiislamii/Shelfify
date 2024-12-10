@@ -1,7 +1,6 @@
 package shelfify.ui.library.bookDetail.components
 
 import android.content.Context
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -26,11 +25,13 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil3.compose.AsyncImage
+import com.example.shelfify.R
 import shelfify.data.dataMapping.BookDetailData
 import shelfify.data.modal.ModalConfig
 import shelfify.data.modal.ModalConfigWarning
@@ -56,7 +57,6 @@ class BookDetailBody {
         val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
         val role = sharedPreferences.getString("role", "") ?: ""
 
-        // Memastikan book tidak kosong dan masih tersedia
         if (book.stock == 0) {
             LaunchedEffect(Unit) {
                 navController.navigate("home")
@@ -64,7 +64,6 @@ class BookDetailBody {
             return
         }
 
-        // Modal konfigurasi untuk konfirmasi ke keranjang
         val cartModalConfig = remember {
             ModalConfig(
                 title = "Cart Confirmation",
@@ -74,7 +73,6 @@ class BookDetailBody {
             )
         }
 
-        // Modal konfigurasi untuk konfirmasi pemesanan
         val reservationModalConfig = remember {
             ModalConfig(
                 title = "Reservation Confirmation",
@@ -84,7 +82,6 @@ class BookDetailBody {
             )
         }
 
-        // Modal peringatan ketika ada reservasi aktif
         val warningModalConfig = remember {
             ModalConfigWarning(
                 title = "Warning",
@@ -93,21 +90,18 @@ class BookDetailBody {
             )
         }
 
-        // Modal konfirmasi
         ConfirmationModal(
             isVisible = showConfirmDialog,
             config = cartModalConfig,
             onDismiss = { showConfirmDialog = false }
         )
 
-        // Modal konfirmasi reservasi
         ConfirmationModal(
             isVisible = showConfirmReservationDialog,
             config = reservationModalConfig,
             onDismiss = { showConfirmReservationDialog = false }
         )
 
-        // Modal peringatan
         WarningModal(
             isVisible = showWarningDialog,
             config = warningModalConfig,
@@ -166,12 +160,12 @@ private fun BookImage(book: BookDetailData) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Image(
-            painter = painterResource(id = book.bookImage),
-            contentDescription = "Book Cover",
+        val imageUrl = book.bookImage ?: ""
+        AsyncImage(
+            model = if (imageUrl.isNotEmpty() && imageUrl.startsWith("https")) imageUrl else R.drawable.ic_launcher_background,
+            contentDescription = book.title,
             modifier = Modifier
-                .fillMaxWidth()
-                .shadow(1.dp, shape = RoundedCornerShape(16.dp)),
+                .fillMaxSize(),
             contentScale = ContentScale.Crop
         )
         Text(
@@ -243,7 +237,8 @@ private fun BookDescription(book: BookDetailData) {
             text = book.description ?: "No description available",
             color = Color.Black,
             fontSize = 10.sp,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }

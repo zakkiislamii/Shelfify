@@ -16,6 +16,12 @@ class HistoryRepository(private val historyDao: HistoryDao) : HistoryRepositoryC
         return historyDao.getHistoryByUserIdAndStatus(userId, status)
     }
 
+    override fun getMemberHistoryByUserIdForAdmin(
+        userId: Int,
+    ): Flow<List<MemberHistoryCardUI>> {
+        return historyDao.getMemberHistoryByUserIdForAdmin(userId)
+    }
+
     override fun getMemberHistoryByUserId(
         userId: Int,
     ): Flow<List<MemberHistoryCardUI>> {

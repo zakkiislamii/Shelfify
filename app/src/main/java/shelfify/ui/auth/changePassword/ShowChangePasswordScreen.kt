@@ -43,7 +43,7 @@ class ShowChangePasswordScreen {
                         context = context,
                         message = "Password telah diubah! Silahkan login $email"
                     )
-                    navController.navigate(Screen.Login.route)
+                    navController.navigate(Screen.Auth.Login.route)
                 }
 
                 is Result.Error -> {
@@ -62,7 +62,7 @@ class ShowChangePasswordScreen {
 
         Scaffold(
             topBar = {
-                ChangePasswordHeader(onClick = { navController.navigate(Screen.ForgotPassword.route) })
+                ChangePasswordHeader(onClick = { navController.navigate(Screen.Auth.ForgotPassword.route) })
             },
             content = { paddingValues ->
                 Box(

@@ -26,17 +26,4 @@ interface UserDao {
 
     @Query("SELECT * FROM Users")
     suspend fun getAllUsers(): List<User>
-
-    @Query(
-        """
-        SELECT * FROM Users 
-        WHERE full_name LIKE :query 
-        OR email LIKE :query 
-        OR faculty LIKE :query
-    """
-    )
-    suspend fun searchUsers(query: String): List<User>
-
-    @Query("SELECT * FROM Users WHERE faculty = :faculty")
-    suspend fun getUsersByFaculty(faculty: String): List<User>
 }

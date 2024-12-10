@@ -1,6 +1,5 @@
 package shelfify.ui.components.card
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,10 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
+import com.example.shelfify.R
 import shelfify.contracts.card.CardBookComponent
 import shelfify.data.dataMapping.CartBookUI
 
@@ -44,15 +44,15 @@ class CartCard : CardBookComponent<CartBookUI> {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Row(modifier = Modifier.weight(1f)) {
-                    Image(
-                        painter = painterResource(id = item.bookImage),
+                    val imageUrl = item.bookImage ?: ""
+                    AsyncImage(
+                        model = if (imageUrl.isNotEmpty() && imageUrl.startsWith("https")) imageUrl else R.drawable.ic_launcher_background,
                         contentDescription = item.title,
                         modifier = Modifier
                             .width(120.dp)
                             .fillMaxHeight(),
-                        contentScale = ContentScale.Crop
+                        contentScale = ContentScale.Fit
                     )
-
                     Column(
                         modifier = Modifier
                             .padding(15.dp)

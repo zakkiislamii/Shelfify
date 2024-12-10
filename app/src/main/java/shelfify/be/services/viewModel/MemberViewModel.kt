@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.storageMetadata
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -19,37 +20,29 @@ class MemberViewModel(
     private val userRepository: UserRepository,
     private val storage: FirebaseStorage,
 ) : ViewModel() {
-    private val _updateUserState = MutableStateFlow<Result<User>>(Result.Loading)
-    val updateUserState: StateFlow<Result<User>> = _updateUserState
+    private val _updateUserState = MutableStateFlow<Result<User>?>(null)
+    val updateUserState: StateFlow<Result<User>?> = _updateUserState
+
     private suspend fun uploadImage(imageUri: Uri, userId: Int): String {
         return try {
-            // Create storage reference
             val storageRef = storage.reference
-
-            // Generate unique filename
             val filename = "profile_images/${userId}_${System.currentTimeMillis()}.jpg"
             val imageRef = storageRef.child(filename)
-
-            // Try to delete old image if exists
             val user = userRepository.getProfile(userId).getOrNull()
-            try {
-                user?.profileImage?.let { oldImageUrl ->
+            user?.profileImage?.let { oldImageUrl ->
+                try {
                     val oldImageRef = storage.getReferenceFromUrl(oldImageUrl)
                     oldImageRef.delete().await()
+                } catch (e: Exception) {
+                    Log.w("MemberViewModel", "Failed to delete old image: ${e.message}")
                 }
-            } catch (e: Exception) {
-                // Ignore delete errors
             }
 
-            // Upload new image with metadata
             val metadata = storageMetadata {
                 contentType = "image/jpeg"
             }
 
-            // Upload file
             val uploadTask = imageRef.putFile(imageUri, metadata).await()
-
-            // Get download URL
             imageRef.downloadUrl.await().toString()
         } catch (e: Exception) {
             Log.e("MemberViewModel", "Upload failed", e)
@@ -57,7 +50,6 @@ class MemberViewModel(
         }
     }
 
-    // Update user function
     fun updateUser(
         userId: Int,
         fullName: String,
@@ -74,12 +66,11 @@ class MemberViewModel(
                 val userResult = userRepository.getProfile(userId)
                 if (userResult.isFailure) {
                     _updateUserState.value = Result.Error("User tidak ditemukan")
+                    delay(100)
+                    resetUpdateProfileState()
                     return@launch
                 }
-
                 val existingUser = userResult.getOrNull() ?: return@launch
-
-                // Upload image if provided
                 val profileImageUrl = if (newImageUri != null) {
                     try {
                         uploadImage(newImageUri, userId)
@@ -90,8 +81,6 @@ class MemberViewModel(
                 } else {
                     existingUser.profileImage
                 }
-
-                // Create updated user
                 val updatedUser = existingUser.copy(
                     fullName = fullName,
                     email = email,
@@ -102,18 +91,27 @@ class MemberViewModel(
                     updatedAt = Date()
                 )
 
-                // Update user
                 userRepository.updateUser(updatedUser).fold(
                     onSuccess = {
                         _updateUserState.value = Result.Success(it)
+                        delay(100)
+                        resetUpdateProfileState()
                     },
                     onFailure = { e ->
                         _updateUserState.value = Result.Error(e.message ?: "Update gagal")
+                        delay(100)
+                        resetUpdateProfileState()
                     }
                 )
             } catch (e: Exception) {
                 _updateUserState.value = Result.Error(e.message ?: "Unknown error")
+                delay(100)
+                resetUpdateProfileState()
             }
         }
+    }
+
+    fun resetUpdateProfileState() {
+        _updateUserState.value = null
     }
 }

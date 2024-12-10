@@ -40,7 +40,16 @@ fun BookScreenBody(
         bookViewModel.booksByCategoryState.collect { result ->
             when (result) {
                 is Result.Success -> {
-                    books = result.data.map { it.BookUI() }
+                    books = result.data.map { book ->
+                        BookUI(
+                            bookId = book.bookId,
+                            title = book.title,
+                            writer = book.writer,
+                            stock = book.stock,
+                            bookImage = book.bookImage,
+                            category = book.category
+                        )
+                    }
                     loading = false
                 }
 
@@ -84,9 +93,7 @@ fun BookScreenBody(
             }
 
             else -> {
-                // Filter out books with stock 0
                 val availableBooks = books.filter { it.stock > 0 }
-
                 if (availableBooks.isEmpty()) {
                     Text(text = "No books available in this category")
                 } else {

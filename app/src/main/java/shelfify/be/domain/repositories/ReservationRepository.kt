@@ -4,7 +4,9 @@ import kotlinx.coroutines.flow.Flow
 import shelfify.be.dao.ReservationDao
 import shelfify.be.domain.models.Reservation
 import shelfify.be.domain.repositoryContract.ReservationRepositoryContract
+import shelfify.contracts.enumerations.Status
 import shelfify.data.dataMapping.FavBooks
+import shelfify.data.dataMapping.MemberReserveCardUI
 
 class ReservationRepository(private val reservationDao: ReservationDao) :
     ReservationRepositoryContract {
@@ -22,6 +24,18 @@ class ReservationRepository(private val reservationDao: ReservationDao) :
 
     override fun getFavBooks(): Flow<List<FavBooks>> {
         return reservationDao.getFavBooks()
+    }
+
+    override fun getMemberReservations(): Flow<List<MemberReserveCardUI>> {
+        return reservationDao.getMemberReservations()
+    }
+
+    override suspend fun updateReservationStatus(
+        userId: Int,
+        reservationId: Int,
+        newStatus: Status,
+    ) {
+        return reservationDao.updateReservationStatus(userId, reservationId, newStatus)
     }
 
 }

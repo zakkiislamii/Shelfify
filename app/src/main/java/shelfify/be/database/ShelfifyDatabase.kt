@@ -29,7 +29,7 @@ import shelfify.utils.converter.DateConverter
         Notification::class,
         History::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 @TypeConverters(
@@ -59,11 +59,9 @@ abstract class ShelfifyDatabase : RoomDatabase() {
                 ShelfifyDatabase::class.java,
                 "Shelfify.db"
             )
-                // Aktifkan foreign key constraints
                 .addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        // Aktifkan foreign key constraints setelah pembuatan database
                         db.execSQL("PRAGMA foreign_keys = ON")
                     }
                 })

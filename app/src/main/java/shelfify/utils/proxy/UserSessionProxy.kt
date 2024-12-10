@@ -6,19 +6,20 @@ import shelfify.data.session.UserSession
 
 class UserSessionProxy(private val realUserSessionData: UserSessionData) : UserSessionData {
     override fun getUserSession(context: Context): UserSession {
-        val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
-        val isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false)
-
-        if (!isLoggedIn) {
-            sharedPreferences.edit().clear().apply()
+        val session = realUserSessionData.getUserSession(context)
+        if (!session.isLoggedIn) {
+            clearSession(context)
             return UserSession(
                 isLoggedIn = false,
                 userId = 0,
                 email = null,
-                role = null,
+                role = null
             )
         }
-        return realUserSessionData.getUserSession(context)
+        return session
+    }
+    override fun clearSession(context: Context) {
+        realUserSessionData.clearSession(context)
     }
 }
 

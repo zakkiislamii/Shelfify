@@ -29,9 +29,9 @@ class ShowHistoryMemberScreen {
         userId: Int,
         fullName: String,
     ) {
-        val memberHistory by adminViewModel.memberHistory.collectAsState()
+        val memberHistory by adminViewModel.memberHistoryForAdmin.collectAsState()
         LaunchedEffect(userId) {
-            adminViewModel.getMemberHistory(userId)
+            adminViewModel.getMemberHistoryForAdmin(userId)
         }
         Scaffold(
             topBar = {

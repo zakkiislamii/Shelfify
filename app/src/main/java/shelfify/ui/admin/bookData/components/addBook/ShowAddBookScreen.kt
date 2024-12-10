@@ -55,7 +55,7 @@ class ShowAddBookScreen {
         Scaffold(
             topBar = {
                 AddBookHeader {
-                    navController.navigate(Screen.BookData.route)
+                    navController.navigate(Screen.Admin.BookData.route)
                 }
             },
             content = { paddingValues ->
@@ -166,7 +166,8 @@ class ShowAddBookScreen {
                         bookImage = imageUrl.takeIf { it.isNotEmpty() }
                     )
                     adminViewModel.insertBook(book, selectedImageUri)
-                    navController.navigate(Screen.BookData.route)
+                    CustomToast().showToast(context, "Berhasil menambahkan buku!")
+                    navController.navigate(Screen.Admin.BookData.route)
                 }
             }
         )

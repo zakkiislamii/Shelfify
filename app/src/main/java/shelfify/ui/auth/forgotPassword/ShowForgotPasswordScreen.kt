@@ -60,7 +60,7 @@ class ShowForgotPasswordScreen {
 
         Scaffold(
             topBar = {
-                ForgotPasswordHeader(onClick = { navController.navigate(Screen.Login.route) })
+                ForgotPasswordHeader(onClick = { navController.navigate(Screen.Auth.Login.route) })
             },
             content = { paddingValues ->
                 Box(

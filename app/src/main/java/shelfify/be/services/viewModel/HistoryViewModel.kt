@@ -15,4 +15,5 @@ class HistoryViewModel(private val historyRepository: HistoryRepository) : ViewM
         return historyRepository.getHistoryByUserIdAndStatus(userId, status)
     }
 
+
 }

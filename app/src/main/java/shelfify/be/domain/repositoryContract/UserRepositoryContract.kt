@@ -17,7 +17,6 @@ interface UserRepositoryContract {
     suspend fun deleteUser(userId: Int): Result<Boolean>
     suspend fun getProfile(userId: Int): Result<User>
     fun getAllUsers(): Flow<List<User>>
-    fun searchUsers(query: String): Flow<List<User>>
     suspend fun getUserByEmail(email: String): Result<User>
     suspend fun changePassword(
         userId: Int,

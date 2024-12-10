@@ -28,6 +28,7 @@ import shelfify.ui.auth.login.components.LoginField
 import shelfify.ui.auth.login.components.ToForgotPassword
 import shelfify.ui.auth.login.components.ToRegister
 import shelfify.utils.helpers.LoginFieldValidate
+import shelfify.utils.loading.LoadingIndicator
 import shelfify.utils.response.Result
 import shelfify.utils.toast.CustomToast
 
@@ -41,7 +42,26 @@ class ShowLoginScreen {
         val passwordState = remember { mutableStateOf("") }
         val loginField = LoginField()
         val context = LocalContext.current
+        val loginState by authViewModel.loginState.collectAsState()
 
+        LaunchedEffect(loginState) {
+            when (loginState) {
+                is Result.Success -> {
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Auth.Login.route) { inclusive = true }
+                    }
+                }
+
+                is Result.Error -> {
+                    CustomToast().showToast(
+                        context,
+                        (loginState as Result.Error).message,
+                    )
+                }
+
+                else -> {}
+            }
+        }
 
         Scaffold(
             topBar = { HeaderLogin() }
@@ -73,7 +93,7 @@ class ShowLoginScreen {
                             .padding(end = 30.dp),
                         contentAlignment = Alignment.CenterEnd
                     ) {
-                        ToForgotPassword(onClick = { navController.navigate(Screen.ForgotPassword.route) })
+                        ToForgotPassword(onClick = { navController.navigate(Screen.Auth.ForgotPassword.route) })
                     }
 
                     LoginButton().Button {
@@ -84,10 +104,9 @@ class ShowLoginScreen {
                             )
                         ) {
                             authViewModel.login(emailState.value, passwordState.value, context)
-                            navController.navigate(Screen.Home.route)
                         }
                     }
-                    ToRegister(onClick = { navController.navigate(Screen.Register.route) })
+                    ToRegister(onClick = { navController.navigate(Screen.Auth.Register.route) })
                 }
             }
         }

@@ -18,17 +18,20 @@ interface HistoryDao {
     @Transaction
     @Query(
         """
-        SELECT r.status AS reservationStatus, 
-               b.book_image AS bookImage, 
-               b.book_id AS bookId,
-               b.title AS bookTitles, 
-               b.writer AS bookWriter, 
-               h.created_at AS createdAt
+     SELECT 
+            r.status AS reservationStatus,
+            b.book_image AS bookImage,
+            b.title AS bookTitles,
+            b.stock AS stock,
+            b.writer AS bookWriter,
+            b.book_id AS bookId,
+            h.created_at AS createdAt
         FROM Histories h
-        INNER JOIN Reservations r ON h.reservation_id = r.reservation_id
         INNER JOIN Books b ON h.book_id = b.book_id
-        WHERE h.user_id = :userId
-        AND r.status = :status
+        INNER JOIN Reservations r ON h.reservation_id = r.reservation_id
+        WHERE r.status = :status 
+        AND h.user_id = :userId
+        GROUP BY b.book_id, r.reservation_id
         ORDER BY h.created_at DESC
     """
     )
@@ -41,20 +44,39 @@ interface HistoryDao {
     @Query(
         """
     SELECT h.user_id AS userId,
-           r.status AS reservationStatus,
-           COUNT(r.reservation_id) AS totalReserve,
-           h.created_at AS createdAt,
-           GROUP_CONCAT(b.title, ', ') AS bookTitles
-    FROM Histories h
-    INNER JOIN Reservations r ON h.reservation_id = r.reservation_id
-    INNER JOIN Books b ON h.book_id = b.book_id
-    WHERE h.user_id = :userId
-    GROUP BY h.user_id, r.status, h.created_at
-    ORDER BY h.created_at DESC
+               h.status_history AS reservationStatus,
+               COUNT(DISTINCT r.reservation_id) AS totalReserve,
+               h.created_at AS createdAt,
+               GROUP_CONCAT(DISTINCT b.title) AS bookTitles
+        FROM Histories h
+        LEFT JOIN Reservations r ON h.reservation_id = r.reservation_id
+        LEFT JOIN Books b ON h.book_id = b.book_id
+        WHERE h.user_id = :userId
+        GROUP BY h.created_at
+        ORDER BY h.created_at DESC
+    """
+    )
+    fun getMemberHistoryByUserIdForAdmin(
+        userId: Int,
+    ): Flow<List<MemberHistoryCardUI>>
+
+    @Transaction
+    @Query(
+        """
+ SELECT h.user_id AS userId,
+       r.status AS reservationStatus,
+       COUNT(DISTINCT r.reservation_id) AS totalReserve,
+       h.created_at AS createdAt,
+       GROUP_CONCAT(DISTINCT b.title) AS bookTitles
+FROM Histories h
+LEFT JOIN Reservations r ON h.reservation_id = r.reservation_id
+LEFT JOIN Books b ON h.book_id = b.book_id
+WHERE h.user_id = :userId
+GROUP BY h.created_at
+ORDER BY h.created_at DESC
     """
     )
     fun getMemberHistoryByUserId(
         userId: Int,
     ): Flow<List<MemberHistoryCardUI>>
-
 }

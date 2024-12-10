@@ -74,6 +74,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit.v115)
     androidTestImplementation(libs.androidx.espresso.core.v351)
+    implementation("io.coil-kt.coil3:coil-compose:3.0.4")
 
     val roomVersion = "2.6.1"
 

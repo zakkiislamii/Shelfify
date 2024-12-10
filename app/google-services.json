@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "385871278476",
-    "project_id": "nusarasa-444e7",
-    "storage_bucket": "nusarasa-444e7.firebasestorage.app"
+    "project_number": "859068882245",
+    "project_id": "ciet-storage",
+    "storage_bucket": "ciet-storage.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:385871278476:android:b1d2ae9d50edaf2af9a6a9",
+        "mobilesdk_app_id": "1:859068882245:android:a04a89109f64d9f828b22c",
         "android_client_info": {
           "package_name": "com.example.shelfify"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDj_KG-yT_LgmwYECD-JLYSV50DN1FjsY4"
+          "current_key": "AIzaSyAXqYoy8J_BVchtogzsd_SJcltN1NMJSlk"
         }
       ],
       "services": {

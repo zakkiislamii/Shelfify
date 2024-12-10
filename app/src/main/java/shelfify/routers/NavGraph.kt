@@ -1,37 +1,37 @@
 package shelfify.routers
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import shelfify.be.services.viewModel.AdminViewModel
-import shelfify.be.services.viewModel.AuthViewModel
-import shelfify.be.services.viewModel.BookViewModel
+import shelfify.data.viewModel.DataViewModel
 import shelfify.ui.admin.bookData.ShowBookData
 import shelfify.ui.admin.bookData.components.addBook.ShowAddBookScreen
 import shelfify.ui.admin.bookData.components.editBook.ShowEditBookScreen
 import shelfify.ui.admin.favoriteBook.ShowFavoriteData
 import shelfify.ui.admin.historyMember.ShowHistoryMemberScreen
 import shelfify.ui.admin.reservationData.ShowReservationData
+import shelfify.ui.admin.reservationData.components.viewDetailsReserve.ShowViewDetailsReserveScreen
 import shelfify.ui.auth.changePassword.ShowChangePasswordScreen
 import shelfify.ui.auth.forgotPassword.ShowForgotPasswordScreen
 import shelfify.ui.auth.login.ShowLoginScreen
 import shelfify.ui.auth.register.ShowRegisterScreen
 import shelfify.ui.homeScreen.allCategoryBookScreen.ShowAllCategoryBookScreen
 import shelfify.ui.homeScreen.home.ShowHomeScreen
-import shelfify.ui.homeScreen.member.cart.ShowCartScreen
-import shelfify.ui.homeScreen.member.history.ShowHistoryScreen
-import shelfify.ui.homeScreen.member.notification.ShowNotificationScreen
-import shelfify.ui.homeScreen.member.profile.ShowProfileScreen
-import shelfify.ui.homeScreen.member.setting.ShowSettingScreen
 import shelfify.ui.library.book.ShowBookScreen
 import shelfify.ui.library.bookDetail.ShowBookDetail
-
+import shelfify.ui.member.cart.ShowCartScreen
+import shelfify.ui.member.history.ShowHistoryScreen
+import shelfify.ui.member.notification.ShowNotificationScreen
+import shelfify.ui.member.profile.ShowProfileScreen
+import shelfify.ui.member.setting.ShowSettingScreen
 
 @Composable
 fun NavGraph(
@@ -45,173 +45,198 @@ fun NavGraph(
         startDestination = startDestination,
         modifier = modifier
     ) {
-        authRoutes(navController, viewModels.authViewModel)
-        adminRoutes(navController, viewModels.adminViewModel, viewModels.bookViewModel)
-        memberRoutes(navController, viewModels)
-        commonRoutes(navController, viewModels)
-        parameterizedRoutes(navController, viewModels)
-    }
-}
+        composable(
+            route = Screen.Auth.Login.route,
+            enterTransition = {
+                fadeIn(
+                    animationSpec = tween(
+                        durationMillis = 300,
+                        easing = LinearEasing
+                    )
+                )
+            },
+            exitTransition = {
+                fadeOut(
+                    animationSpec = tween(
+                        durationMillis = 300,
+                        easing = LinearEasing
+                    )
+                )
+            }
+        ) {
+            ShowLoginScreen().Login(navController, viewModels.authViewModel)
+        }
 
-// Extension function untuk rute autentikasi
-private fun NavGraphBuilder.authRoutes(
-    navController: NavController,
-    authViewModel: AuthViewModel,
-) {
-    composable(route = Screen.Login.route) {
-        ShowLoginScreen().Login(navController, authViewModel)
-    }
-    composable(route = Screen.Register.route) {
-        ShowRegisterScreen().Register(navController, authViewModel)
-    }
-    composable(route = Screen.ForgotPassword.route) {
-        ShowForgotPasswordScreen().ForgotPassword(navController, authViewModel)
-    }
-}
+        composable(route = Screen.Auth.Register.route) {
+            ShowRegisterScreen().Register(navController, viewModels.authViewModel)
+        }
+        composable(route = Screen.Auth.ForgotPassword.route) {
+            ShowForgotPasswordScreen().ForgotPassword(navController, viewModels.authViewModel)
+        }
 
-// Extension function untuk rute admin
-private fun NavGraphBuilder.adminRoutes(
-    navController: NavController,
-    adminViewModel: AdminViewModel,
-    bookViewModel: BookViewModel,
-) {
-    composable(route = Screen.AddBook.route) {
-        ShowAddBookScreen().AddBook(navController, adminViewModel)
-    }
-    composable(route = Screen.BookData.route) {
-        ShowBookData().BookData(adminViewModel, navController)
-    }
-    composable(route = Screen.FavoriteBook.route) {
-        ShowFavoriteData().FavoriteData(navController, adminViewModel)
-    }
-}
+        composable(route = Screen.Admin.AddBook.route) {
+            ShowAddBookScreen().AddBook(navController, viewModels.adminViewModel)
+        }
+        composable(route = Screen.Admin.BookData.route) {
+            ShowBookData().BookData(viewModels.adminViewModel, navController)
+        }
+        composable(route = Screen.Admin.FavoriteBook.route) {
+            ShowFavoriteData().FavoriteData(navController, viewModels.adminViewModel)
+        }
+        composable(route = Screen.Admin.ReservationData.route) {
+            ShowReservationData().ReservationData(
+                navController = navController,
+                adminViewModel = viewModels.adminViewModel,
+                reservationViewModel = viewModels.reservationViewModel
+            )
+        }
 
-// Extension function untuk rute member
-private fun NavGraphBuilder.memberRoutes(
-    navController: NavController,
-    viewModels: DataViewModel,
-) {
-    composable(route = Screen.Cart.route) {
-        ShowCartScreen().Cart(
-            navController = navController,
-            cartViewModel = viewModels.cartViewModel,
-            reservationViewModel = viewModels.reservationViewModel,
-            bookViewModel = viewModels.bookViewModel
-        )
-    }
-    composable(route = Screen.ReservationData.route) {
-        ShowReservationData().ReservationData()
-    }
-    composable(route = Screen.History.route) {
-        ShowHistoryScreen().HistoryScreen(viewModels.historyViewModel)
-    }
-}
+        composable(route = Screen.Member.Cart.route) {
+            ShowCartScreen().Cart(
+                navController = navController,
+                cartViewModel = viewModels.cartViewModel,
+                reservationViewModel = viewModels.reservationViewModel,
+                bookViewModel = viewModels.bookViewModel
+            )
+        }
 
-// Extension function untuk rute umum
-private fun NavGraphBuilder.commonRoutes(
-    navController: NavController,
-    viewModels: DataViewModel,
-) {
-    composable(route = Screen.Home.route) {
-        ShowHomeScreen().Homepage(
-            navController = navController,
-            authViewModel = viewModels.authViewModel,
-            adminViewModel = viewModels.adminViewModel
-        )
-    }
-    composable(route = Screen.SearchScreen.route) {
-        ShowAllCategoryBookScreen().AllCategoryBook(navController)
-    }
-    composable(route = Screen.Notification.route) {
-        ShowNotificationScreen().NotificationScreen(viewModels.notificationViewModel)
-    }
-    composable(route = Screen.Profile.route) {
-        ShowProfileScreen().ProfileScreen(
-            navController = navController,
-            authViewModel = viewModels.authViewModel,
-            memberViewModel = viewModels.memberViewModel
-        )
-    }
-    composable(route = Screen.Setting.route) {
-        ShowSettingScreen().Setting(navController, viewModels.authViewModel)
-    }
-}
+        composable(route = Screen.Member.History.route) {
+            ShowHistoryScreen().HistoryScreen(
+                navController = navController,
+                viewModels.historyViewModel
+            )
+        }
 
-// Extension function untuk rute dengan parameter
-private fun NavGraphBuilder.parameterizedRoutes(
-    navController: NavController,
-    viewModels: DataViewModel,
-) {
-    // Book Detail Route
-    composable(
-        route = Screen.BookDetail.route,
-        arguments = listOf(navArgument("id") { type = NavType.IntType })
-    ) { backStackEntry ->
-        val id = backStackEntry.arguments?.getInt("id") ?: 0
-        ShowBookDetail().BookDetail(
-            navController = navController,
-            bookViewModel = viewModels.bookViewModel,
-            cartViewModel = viewModels.cartViewModel,
-            reservationViewModel = viewModels.reservationViewModel,
-            id = id
-        )
-    }
+        composable(route = Screen.Home.route) {
+            ShowHomeScreen().Homepage(
+                navController = navController,
+                authViewModel = viewModels.authViewModel,
+                adminViewModel = viewModels.adminViewModel
+            )
+        }
 
-    // Book Screen Route
-    composable(
-        route = Screen.BookScreen.route,
-        arguments = listOf(navArgument("category") { type = NavType.StringType })
-    ) { backStackEntry ->
-        val category = backStackEntry.arguments?.getString("category") ?: ""
-        ShowBookScreen().BookScreen(
-            navController = navController,
-            bookViewModel = viewModels.bookViewModel,
-            category = category
-        )
-    }
+        composable(route = Screen.Member.SearchScreen.route) {
+            ShowAllCategoryBookScreen().AllCategoryBook(navController)
+        }
 
-    // Change Password Route
-    composable(
-        route = Screen.ChangePassword.route,
-        arguments = listOf(navArgument("email") { type = NavType.StringType })
-    ) { backStackEntry ->
-        val email = backStackEntry.arguments?.getString("email") ?: ""
-        ShowChangePasswordScreen().ChangePassword(
-            navController = navController,
-            authViewModel = viewModels.authViewModel,
-            email = email
-        )
-    }
+        composable(route = Screen.Member.Notification.route) {
+            ShowNotificationScreen().NotificationScreen(viewModels.notificationViewModel)
+        }
 
-    // Edit Book Route
-    composable(
-        route = Screen.EditBook.route,
-        arguments = listOf(navArgument("bookId") { type = NavType.IntType })
-    ) { backStackEntry ->
-        val bookId = backStackEntry.arguments?.getInt("bookId") ?: 0
-        ShowEditBookScreen().EditData(
-            navController = navController,
-            adminViewModel = viewModels.adminViewModel,
-            bookViewModel = viewModels.bookViewModel,
-            bookId = bookId
-        )
-    }
+        composable(route = Screen.Member.Profile.route) {
+            ShowProfileScreen().ProfileScreen(
+                navController = navController,
+                authViewModel = viewModels.authViewModel,
+                memberViewModel = viewModels.memberViewModel
+            )
+        }
 
-    // History Member Route
-    composable(
-        route = Screen.HistoryMember.route,
-        arguments = listOf(
-            navArgument("userId") { type = NavType.IntType },
-            navArgument("fullName") { type = NavType.StringType }
-        )
-    ) { backStackEntry ->
-        val userId = backStackEntry.arguments?.getInt("userId") ?: 0
-        val fullName = backStackEntry.arguments?.getString("fullName") ?: ""
-        ShowHistoryMemberScreen().HistoryMember(
-            navController = navController,
-            adminViewModel = viewModels.adminViewModel,
-            userId = userId,
-            fullName = fullName
-        )
+        composable(route = Screen.Member.Setting.route) {
+            ShowSettingScreen().Setting(navController, viewModels.authViewModel)
+        }
+
+        composable(
+            route = Screen.BookDetail.route,
+            arguments = listOf(navArgument("id") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getInt("id") ?: 0
+            ShowBookDetail().BookDetail(
+                navController = navController,
+                bookViewModel = viewModels.bookViewModel,
+                cartViewModel = viewModels.cartViewModel,
+                reservationViewModel = viewModels.reservationViewModel,
+                id = id
+            )
+        }
+
+        composable(
+            route = Screen.Member.BookScreen.route,
+            arguments = listOf(navArgument("category") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val category = backStackEntry.arguments?.getString("category") ?: ""
+            ShowBookScreen().BookScreen(
+                navController = navController,
+                bookViewModel = viewModels.bookViewModel,
+                category = category
+            )
+        }
+
+        composable(
+            route = Screen.Auth.ChangePassword.route,
+            arguments = listOf(navArgument("email") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val email = backStackEntry.arguments?.getString("email") ?: ""
+            ShowChangePasswordScreen().ChangePassword(
+                navController = navController,
+                authViewModel = viewModels.authViewModel,
+                email = email
+            )
+        }
+
+        composable(
+            route = Screen.Admin.EditBook.route,
+            arguments = listOf(navArgument("bookId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val bookId = backStackEntry.arguments?.getInt("bookId") ?: 0
+            ShowEditBookScreen().EditData(
+                navController = navController,
+                adminViewModel = viewModels.adminViewModel,
+                bookViewModel = viewModels.bookViewModel,
+                bookId = bookId
+            )
+        }
+
+        composable(
+            route = Screen.Admin.ViewDetails.route,
+            arguments = listOf(
+                navArgument("fullName") { type = NavType.StringType },
+                navArgument("title") { type = NavType.StringType },
+                navArgument("writer") { type = NavType.StringType },
+                navArgument("reservationId") { type = NavType.StringType },
+                navArgument("bookId") { type = NavType.StringType },
+                navArgument("bookImage") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = ""
+                },
+                navArgument("userId") { type = NavType.IntType }
+            )
+        ) { backStackEntry ->
+            val fullName = backStackEntry.arguments?.getString("fullName") ?: ""
+            val title = backStackEntry.arguments?.getString("title") ?: ""
+            val writer = backStackEntry.arguments?.getString("writer") ?: ""
+            val reservationId = backStackEntry.arguments?.getString("reservationId") ?: ""
+            val bookImage = backStackEntry.arguments?.getString("bookImage") ?: ""
+            val userId = backStackEntry.arguments?.getInt("userId") ?: 0
+            val bookId = backStackEntry.arguments?.getString("bookId") ?: ""
+            ShowViewDetailsReserveScreen().ViewDetailsReserve(
+                navController = navController,
+                reservationViewModel = viewModels.reservationViewModel,
+                fullName = fullName,
+                title = title,
+                writer = writer,
+                reservationId = reservationId,
+                bookImage = bookImage,
+                userId = userId,
+                bookId = bookId
+            )
+        }
+
+        composable(
+            route = Screen.Admin.HistoryMember.route,
+            arguments = listOf(
+                navArgument("userId") { type = NavType.IntType },
+                navArgument("fullName") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val userId = backStackEntry.arguments?.getInt("userId") ?: 0
+            val fullName = backStackEntry.arguments?.getString("fullName") ?: ""
+            ShowHistoryMemberScreen().HistoryMember(
+                navController = navController,
+                adminViewModel = viewModels.adminViewModel,
+                userId = userId,
+                fullName = fullName
+            )
+        }
     }
 }

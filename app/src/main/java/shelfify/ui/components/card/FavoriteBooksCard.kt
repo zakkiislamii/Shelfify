@@ -6,8 +6,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -24,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.example.shelfify.R
 import shelfify.contracts.card.CardFavBooks
 import shelfify.data.dataMapping.FavBooks
@@ -52,14 +55,15 @@ class FavoriteBooksCard : CardFavBooks<FavBooks> {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_background),
+                val imageUrl = item.bookImage ?: ""
+                AsyncImage(
+                    model = if (imageUrl.isNotEmpty() && imageUrl.startsWith("https")) imageUrl else R.drawable.ic_launcher_background,
                     contentDescription = item.title,
-                    modifier = Modifier,
-                    contentScale = ContentScale.Crop
+                    modifier = Modifier
+                        .width(120.dp)
+                        .fillMaxHeight(),
+                    contentScale = ContentScale.Fit
                 )
-
                 Column(
                     modifier = Modifier
                         .padding(15.dp)

@@ -5,4 +5,5 @@ import shelfify.data.session.UserSession
 
 interface UserSessionData {
     fun getUserSession(context: Context): UserSession
+    fun clearSession(context: Context)
 }

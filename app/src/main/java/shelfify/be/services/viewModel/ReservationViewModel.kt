@@ -4,10 +4,14 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -20,6 +24,7 @@ import shelfify.be.domain.repositories.HistoryRepository
 import shelfify.be.domain.repositories.NotificationRepository
 import shelfify.be.domain.repositories.ReservationRepository
 import shelfify.contracts.enumerations.Status
+import shelfify.data.dataMapping.MemberReserveCardUI
 import shelfify.utils.response.Result
 
 class ReservationViewModel(
@@ -34,8 +39,6 @@ class ReservationViewModel(
     val reservations: StateFlow<List<Reservation>> = _reservations
 
     private val _addReservationState = MutableStateFlow<Result<Unit>>(Result.Success(Unit))
-
-    // Get reservations by userId
     fun getReservationsByUserId(userId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -66,8 +69,6 @@ class ReservationViewModel(
         }
     }
 
-
-    // Add reservation from book detail
     suspend fun addReservationFromBookDetail(bookId: Int, reservation: Reservation) {
         try {
             val book = bookRepository.getBookById(bookId) ?: throw Exception("Book not found")
@@ -75,12 +76,14 @@ class ReservationViewModel(
             val notification = Notification(
                 userId = reservation.userId,
                 reservationId = reservationId.toInt(),
-                message = getNotificationMessage(Status.PENDING, book.title)
+                message = getNotificationMessage(Status.PENDING, book.title),
+                statusNotification = Status.PENDING
             )
             val history = History(
                 userId = reservation.userId,
                 reservationId = reservationId.toInt(),
-                bookId = reservation.bookId
+                bookId = reservation.bookId,
+                statusHistory = Status.PENDING
             )
             notificationRepository.addNotification(notification)
             historyRepository.addHistory(history)
@@ -91,20 +94,15 @@ class ReservationViewModel(
         }
     }
 
-    // Add multiple reservations
     suspend fun addReservation(reservations: List<Reservation>) {
         try {
             _addReservationState.value = Result.Loading
             val reservationIds = mutableListOf<Long>()
             val bookTitles = mutableListOf<String>()
-
-            // Collect all book titles first
             reservations.forEach { reservation ->
                 val book = bookRepository.getBookById(reservation.bookId)
                 book?.title?.let { bookTitles.add(it) }
             }
-
-            // Create reservations and collect IDs
             val asyncTasks = reservations.map { reservation ->
                 viewModelScope.async(Dispatchers.IO) {
                     try {
@@ -114,7 +112,8 @@ class ReservationViewModel(
                         val history = History(
                             userId = reservation.userId,
                             reservationId = id.toInt(),
-                            bookId = reservation.bookId
+                            bookId = reservation.bookId,
+                            statusHistory = Status.PENDING
                         )
                         historyRepository.addHistory(history)
                         cartRepository.deleteCartAfterReserve(bookId = reservation.bookId)
@@ -129,17 +128,15 @@ class ReservationViewModel(
             }
 
             asyncTasks.forEach { it.await() }
-
-            // Create a single notification for all books
             if (reservationIds.isNotEmpty()) {
                 val notification = Notification(
                     userId = reservations[0].userId,
                     reservationId = reservationIds[0].toInt(),
-                    message = getNotificationMessage(Status.PENDING, bookTitles)
+                    message = getNotificationMessage(Status.PENDING, bookTitles),
+                    statusNotification = Status.PENDING
                 )
                 notificationRepository.addNotification(notification)
             }
-
             if (reservations.isNotEmpty()) {
                 getReservationsByUserId(reservations[0].userId)
             }
@@ -156,7 +153,89 @@ class ReservationViewModel(
         return getNotificationMessage(status, listOf(bookTitle))
     }
 
-    // Generate the notification message based on reservation status
+    private val _memberReservations = MutableStateFlow<List<MemberReserveCardUI>>(emptyList())
+    private var memberReservationsJob: Job? = null
+    private fun getMemberReservations() {
+        memberReservationsJob?.cancel()
+        memberReservationsJob = viewModelScope.launch {
+            try {
+                reservationRepository.getMemberReservations().collect { reservations ->
+                    _memberReservations.value = reservations
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        memberReservationsJob?.cancel()
+    }
+
+    private val _updateStatus = MutableStateFlow<Result<Unit>?>(null)
+    val updateStatus: StateFlow<Result<Unit>?> = _updateStatus.asStateFlow()
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+
+    fun updateReservationStatus(
+        userId: Int,
+        reservationIds: String,
+        newStatus: Status,
+        bookTitles: List<String>,
+        bookIds: String,
+    ) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                val reservationIdsList = reservationIds.split(",").map { it.trim().toInt() }
+                val bookIdsList = bookIds.split(",").map { it.trim().toInt() }
+
+                if (reservationIdsList.size != bookIdsList.size) {
+                    throw IllegalArgumentException("Jumlah reservationIds dan bookIds harus sama.")
+                }
+
+                val updateJobs = reservationIdsList.map { reservationId ->
+                    async(Dispatchers.IO) {
+                        reservationRepository.updateReservationStatus(
+                            userId,
+                            reservationId,
+                            newStatus
+                        )
+                    }
+                }
+                updateJobs.awaitAll()
+                val notification = Notification(
+                    userId = userId,
+                    reservationId = reservationIdsList.first(),
+                    message = getNotificationMessage(newStatus, bookTitles),
+                    statusNotification = newStatus
+                )
+                notificationRepository.addNotification(notification)
+                reservationIdsList.forEachIndexed { index, reservationId ->
+                    val history = History(
+                        userId = userId,
+                        reservationId = reservationId,
+                        bookId = bookIdsList[index],
+                        statusHistory = newStatus
+                    )
+                    historyRepository.addHistory(history)
+                }
+                _updateStatus.value = Result.Success(Unit)
+                getMemberReservations()
+                delay(100)
+                resetUpdateStatus()
+            } catch (e: Exception) {
+                _updateStatus.value =
+                    Result.Error(e.message ?: "Failed to update reservation status")
+                delay(100)
+                resetUpdateStatus()
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
     private fun getNotificationMessage(status: Status, bookTitles: List<String>): String {
         val formattedTitles = when {
             bookTitles.isEmpty() -> "Unknown Books"
@@ -167,13 +246,16 @@ class ReservationViewModel(
                 "$allExceptLast and '${bookTitles.last()}'"
             }
         }
-
         val isPlural = bookTitles.size > 1
         return when (status) {
-            Status.PENDING -> "Your reservation for the book${if (isPlural) "s" else ""} $formattedTitles was successful! Please visit the History to pick up your book${if (isPlural) "s" else ""}."
-            Status.REJECTED -> "Your reservation for the book${if (isPlural) "s" else ""} $formattedTitles has been canceled because the book${if (isPlural) "s were" else " was"} not picked up at the History within the specified time."
+            Status.PENDING -> "Your reservation for the book${if (isPlural) "s" else ""} $formattedTitles was successful! Please visit the Library to pick up your book${if (isPlural) "s" else ""}."
+            Status.REJECTED -> "Your reservation for the book${if (isPlural) "s" else ""} $formattedTitles has been canceled because the book${if (isPlural) "s were" else " was"} not picked up at the Library within the specified time."
             Status.BORROWED -> "The book${if (isPlural) "s" else ""} $formattedTitles ${if (isPlural) "have" else "has"} been successfully borrowed! Make sure to return ${if (isPlural) "them" else "it"} on time."
             Status.RETURNED -> "The book${if (isPlural) "s" else ""} $formattedTitles ${if (isPlural) "have" else "has"} been returned, have a nice day!"
         }
+    }
+
+    fun resetUpdateStatus() {
+        _updateStatus.value = null
     }
 }

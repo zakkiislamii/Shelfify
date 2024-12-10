@@ -81,7 +81,20 @@ class ShowBookDetail {
             ) {
                 when (val result = bookState.value) {
                     is Result.Success -> {
-                        val book = result.data?.BookDetailData()
+                        val book = result.data?.let {
+                            BookDetailData(
+                                bookId = it.bookId,
+                                title = result.data.title,
+                                writer = result.data.writer,
+                                stock = result.data.stock,
+                                pages = result.data.pages,
+                                bookImage = result.data.bookImage,
+                                language = result.data.language,
+                                description = result.data.description,
+                                category = result.data.category
+                            )
+                        }
+
                         if (book != null) {
                             BookDetailBody().BookDetail(
                                 book = book,

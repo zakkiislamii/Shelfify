@@ -1,75 +1,106 @@
 package shelfify.routers
 
 import android.content.Context
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import shelfify.be.services.viewModel.AdminViewModel
-import shelfify.be.services.viewModel.AuthViewModel
-import shelfify.be.services.viewModel.BookViewModel
-import shelfify.be.services.viewModel.CartViewModel
-import shelfify.be.services.viewModel.HistoryViewModel
-import shelfify.be.services.viewModel.MemberViewModel
-import shelfify.be.services.viewModel.NotificationViewModel
-import shelfify.be.services.viewModel.ReservationViewModel
 import shelfify.be.services.viewModelProvider.ViewModelProvider
 import shelfify.contracts.enumerations.Role
 import shelfify.ui.admin.memberData.components.MemberDataHeader
 import shelfify.ui.components.navbar.NavigationBar
-
-// UserSessionManager.kt
-class UserSessionManager(private val context: Context) {
-    private val prefs = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
-    val isLoggedIn: Boolean get() = prefs.getBoolean("is_logged_in", false)
-    val userRole: String get() = prefs.getString("role", "") ?: ""
-}
+import shelfify.utils.proxy.RealUserSessionData
+import shelfify.utils.proxy.UserSessionProxy
+import shelfify.utils.response.Result
+import shelfify.utils.toast.CustomToast
 
 @Composable
 fun AppNavHost(navController: NavHostController) {
     val context = LocalContext.current
-    val sessionManager = remember { UserSessionManager(context) }
-    val viewModels = ViewModelProvider(context).createViewModels(LocalViewModelStoreOwner.current!!)
+    val viewModels = ViewModelProvider.getInstance(context)
+        .createViewModels(LocalViewModelStoreOwner.current!!)
+    val userSessionData = remember { UserSessionProxy(RealUserSessionData()) }
+    val userSession = userSessionData.getUserSession(context)
+    var startDestination by remember { mutableStateOf(Screen.Auth.Login.route) }
+
+    LaunchedEffect(Unit) {
+        val sharedPrefs = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPrefs.getBoolean("is_logged_in", false)
+        val hasValidRole = sharedPrefs.getString("role", null)?.let { role ->
+            role in listOf(Role.ADMIN.toString(), Role.MEMBER.toString())
+        } ?: false
+
+        startDestination = if (isLoggedIn && hasValidRole) {
+            Screen.Home.route
+        } else {
+            Screen.Auth.Login.route
+        }
+    }
 
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
-    val hideNavbar = currentRoute in NavigationConfig.hiddenNavbarRoutes
-    val hideTopBar = currentRoute in NavigationConfig.hiddenTopBarRoutes
+    val hidden = currentRoute in NavigationConfig.hidden
+    val logoutState by viewModels.authViewModel.logoutState.collectAsState()
+    LaunchedEffect(logoutState) {
+        when (logoutState) {
+            is Result.Success -> {
+                navController.navigate(Screen.Auth.Login.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        inclusive = true
+                        saveState = false
+                    }
+                    restoreState = false
+                    launchSingleTop = true
+                }
+            }
+            is Result.Error -> {
+                CustomToast().showToast(
+                    context,
+                    (logoutState as Result.Error).message
+                )
+            }
+            else -> {}
+        }
+    }
 
     Scaffold(
         bottomBar = {
-            if (!hideNavbar && sessionManager.isLoggedIn) {
-                NavigationBar().Navbar(navController)
+            if (!hidden) {
+                if (userSession.isLoggedIn) {
+                    NavigationBar().Navbar(navController)
+                }
             }
         },
         topBar = {
-            if (sessionManager.userRole == Role.ADMIN.toString() && !hideTopBar && sessionManager.isLoggedIn) {
-                MemberDataHeader {
-                    viewModels.authViewModel.logout(context)
+            if (!hidden) {
+                if (userSession.role == Role.ADMIN.toString()) {
+                    MemberDataHeader {
+                        context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+                            .edit()
+                            .clear()
+                            .apply()
+                        viewModels.authViewModel.logout(context)
+                    }
                 }
             }
         }
     ) { paddingValues ->
         NavGraph(
             navController = navController,
-            startDestination = Screen.Home.route,
+            startDestination = startDestination,
             viewModels = viewModels,
             modifier = Modifier.padding(paddingValues)
         )
     }
 }
-
-data class DataViewModel(
-    val authViewModel: AuthViewModel,
-    val bookViewModel: BookViewModel,
-    val memberViewModel: MemberViewModel,
-    val cartViewModel: CartViewModel,
-    val historyViewModel: HistoryViewModel,
-    val reservationViewModel: ReservationViewModel,
-    val notificationViewModel: NotificationViewModel,
-    val adminViewModel: AdminViewModel,
-)

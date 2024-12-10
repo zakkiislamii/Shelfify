@@ -65,8 +65,8 @@ class ShowBookData {
                     contentAlignment = Alignment.Center
                 ) {
                     AddBookButton {
-                        navController.navigate(Screen.AddBook.route) {
-                            popUpTo(Screen.BookData.route) { inclusive = true }
+                        navController.navigate(Screen.Admin.AddBook.route) {
+                            popUpTo(Screen.Admin.BookData.route) { inclusive = true }
                             launchSingleTop = true
                         }
                     }

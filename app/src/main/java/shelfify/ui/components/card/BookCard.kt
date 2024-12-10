@@ -1,6 +1,5 @@
 package shelfify.ui.components.card
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -16,13 +15,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.example.shelfify.R
 import shelfify.contracts.card.CardBookComponent
 import shelfify.data.dataMapping.BookUI
@@ -34,21 +33,21 @@ class BookCard : CardBookComponent<BookUI> {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(Color.White)
                 .clickable { onClick() }
                 .padding(8.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
         ) {
             Row(modifier = Modifier.fillMaxSize()) {
-                Image(
-                    painter = painterResource(id = item.bookImage.toInt()),
+                val imageUrl = item.bookImage ?: ""
+                AsyncImage(
+                    model = if (imageUrl.isNotEmpty() && imageUrl.startsWith("https")) imageUrl else R.drawable.ic_launcher_background,
                     contentDescription = item.title,
                     modifier = Modifier
                         .width(120.dp)
-                        .fillMaxSize()
                         .fillMaxHeight(),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Fit
                 )
-
                 Column(
                     modifier = Modifier
                         .padding(15.dp)
@@ -87,37 +86,6 @@ class BookCard : CardBookComponent<BookUI> {
                     )
                 }
             }
-        }
-    }
-
-    @Composable
-    fun BookCardPreview() {
-        val sampleBook = BookUI(
-            bookImage = R.drawable.ic_launcher_background,
-            title = "Sample Book Title",
-            writer = "Author Name",
-            category = "Category Name",
-            stock = 10,
-            bookId = 10
-        )
-
-        BookCard().CreateCard(
-            item = sampleBook,
-            onClick = { /* handle click */ }
-        )
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun BookCardWithBackgroundPreview() {
-        // Preview the BookCard with background color
-        Card(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
-            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
-        ) {
-            BookCardPreview()
         }
     }
 }

@@ -16,6 +16,10 @@ interface HistoryRepositoryContract {
         userId: Int,
     ): Flow<List<MemberHistoryCardUI>>
 
+    fun getMemberHistoryByUserIdForAdmin(
+        userId: Int,
+    ): Flow<List<MemberHistoryCardUI>>
+
     suspend fun addHistory(history: History)
 
 }

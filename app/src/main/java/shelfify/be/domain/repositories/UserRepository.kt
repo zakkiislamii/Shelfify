@@ -110,13 +110,6 @@ class UserRepository(private val userDao: UserDao) : UserRepositoryContract {
         }
     }
 
-    override fun searchUsers(query: String): Flow<List<User>> = flow {
-        try {
-            emit(userDao.searchUsers("%$query%"))
-        } catch (e: Exception) {
-            emit(emptyList())
-        }
-    }
 
     override suspend fun getUserByEmail(email: String): Result<User> {
         return try {

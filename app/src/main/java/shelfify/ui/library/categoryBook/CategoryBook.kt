@@ -56,7 +56,7 @@ fun CategoryBook(
                         category = category,
                         onClick = {
                             if (category.name == "See All") {
-                                navController.navigate(Screen.SearchScreen.route)
+                                navController.navigate(Screen.Member.SearchScreen.route)
                             } else {
                                 navController.navigate("book/${Uri.encode(category.name)}")
                             }

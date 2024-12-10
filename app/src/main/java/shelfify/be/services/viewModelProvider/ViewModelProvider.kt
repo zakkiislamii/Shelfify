@@ -12,9 +12,9 @@ import shelfify.be.domain.repositories.NotificationRepository
 import shelfify.be.domain.repositories.ReservationRepository
 import shelfify.be.domain.repositories.UserRepository
 import shelfify.be.services.viewModelFactory.ViewModelFactory
-import shelfify.routers.DataViewModel
+import shelfify.data.viewModel.DataViewModel
 
-class ViewModelProvider(context: Context) {
+class ViewModelProvider private constructor(context: Context) {
     private val database = ShelfifyDatabase.getInstance(context)
     private val viewModelFactory = ViewModelFactory(
         UserRepository(database.userDao()),
@@ -36,4 +36,14 @@ class ViewModelProvider(context: Context) {
         notificationViewModel = viewModel(owner, factory = viewModelFactory),
         adminViewModel = viewModel(owner, factory = viewModelFactory)
     )
+
+    companion object {
+        @Volatile
+        private var INSTANCE: ViewModelProvider? = null
+        fun getInstance(context: Context): ViewModelProvider {
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: ViewModelProvider(context).also { INSTANCE = it }
+            }
+        }
+    }
 }
