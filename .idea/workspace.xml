@@ -13,8 +13,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="394b4b7e-e62f-43c0-8d77-a290854ad1e3" name="Changes" comment="tes2">
-<<<<<<< Updated upstream
-=======
       <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/be/services/viewModelProvider/ViewModelProvider.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/card/CardFavBooks.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/contracts/field/BookField.kt" afterDir="false" />
@@ -321,17 +319,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/dependencies-accessors/f0d86ef8c5f27a90ffdb0e7cbc51b1267cd7e230/metadata.bin" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/dependencies-accessors/f0d86ef8c5f27a90ffdb0e7cbc51b1267cd7e230/sources/org/gradle/accessors/dm/LibrariesForLibs.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/dependencies-accessors/f0d86ef8c5f27a90ffdb0e7cbc51b1267cd7e230/sources/org/gradle/accessors/dm/LibrariesForLibsInPluginsBlock.java" beforeDir="false" />
->>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-<<<<<<< Updated upstream
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -377,7 +370,6 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/categoryBook/CategoryBook.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/ui/library/categoryBook/CategoryBook.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/factory/CardComponentFactory.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/proxy/UserSessionProxy.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/shelfify/utils/proxy/UserSessionProxy.kt" afterDir="false" />
->>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -484,35 +476,6 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
-<<<<<<< Updated upstream
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Project/FindIT/Shelfify",
-    "project.structure.last.edited": "SDK Location",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "Errors",
-    "show.migrate.to.gradle.popup": "false"
-  },
-  "keyToStringList": {
-    "com.android.tools.idea.sqlite.queryhistory": [
-      "INSERT INTO Books (title, writer, isbn, publisher, publication_year, language, stock, pages, description, category, book_image, created_at, updated_at) \nVALUES \n('The Adventure of Sherlock Holmes', 'Arthur Conan Doyle', '9780451524935', 'Penguin Classics', 1892, 'English', 10, 320, 'Sherlock Holmes solves a variety of mysteries.', 'Action & Adventure', 'sherlock_holmes.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Treasure Island', 'Robert Louis Stevenson', '9780486289443', 'Dover Thrift Editions', 1883, 'English', 8, 240, 'A story of pirates and buried treasure.', 'Action & Adventure', 'treasure_island.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Batu dan Api', 'Rizki D. Alimudin', '9786020883702', 'Gramedia', 2015, 'Indonesian', 15, 350, 'Cerita petualangan penuh teka-teki dan misteri.', 'Action & Adventure', 'batu_dan_api.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('La Isla del Tesoro', 'Robert Louis Stevenson', '9780142437247', 'Penguin Classics', 1883, 'Spanish', 12, 280, 'Una historia de piratas y aventuras en busca de un tesoro.', 'Action & Adventure', 'isla_tesoro.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Penghancur Segitiga Bermuda', 'Muhammad Arif', '9786023701422', 'Mizan', 2017, 'Indonesian', 5, 190, 'Novel petualangan yang penuh dengan ketegangan.', 'Action & Adventure', 'segitiga_bermuda.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Antiques: The Collector Guide', 'John Smith', '9780764312018', 'Schiffer Publishing', 2000, 'English', 7, 215, 'A guide to collecting antiques, from furniture to glassware.', 'Antiques & Collectibles', 'antiques_guide.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Art of the 19th Century', 'Alice Johnson', '9780393038324', 'Norton', 1998, 'English', 10, 350, 'Explores the evolution of art movements and famous artists of the 19th century.', 'Antiques & Collectibles', 'art_19th_century.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Koleksi Seni Klasik', 'Dewi Pratama', '9786022346789', 'Gramedia', 2010, 'Indonesian', 20, 290, 'Panduan untuk koleksi seni klasik Indonesia dan dunia.', 'Antiques & Collectibles', 'koleksi_seni.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Coleccionando Antigüedades', 'Luis Sánchez', '9788435002789', 'RBA', 2005, 'Spanish', 6, 210, 'Guía para coleccionar antigüedades, desde relojes hasta cerámica.', 'Antiques & Collectibles', 'coleccionando_antiguedades.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Kolektor Barang Antik', 'Andi Setiawan', '9786028477598', 'Erlangga', 2013, 'Indonesian', 9, 330, 'Cara sukses mengoleksi barang antik dengan nilai sejarah.', 'Antiques & Collectibles', 'kolektor_barang_antik.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Principles of Economics', 'N. Gregory Mankiw', '9780538453057', 'Cengage Learning', 2014, 'English', 20, 450, 'Comprehensive introduction to economic theory.', 'Business & Economics', 'principles_economics.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('The Intelligent Investor', 'Benjamin Graham', '9780060555665', 'HarperBusiness', 1949, 'English', 18, 600, 'The classic book on value investing and financial analysis.', 'Business & Economics', 'intelligent_investor.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Ekonomi Makro', 'M. Yuliana', '9789797637220', 'Alfabeta', 2012, 'Indonesian', 25, 400, 'Buku ini menjelaskan teori-teori ekonomi makro yang berlaku.', 'Business & Economics', 'ekonomi_makro.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('El Capital', 'Karl Marx', '9780140447982', 'Penguin Classics', 1867, 'Spanish', 22, 800, 'La obra maestra de Marx sobre la economía capitalista.', 'Business & Economics', 'el_capital.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Manajemen Bisnis', 'Budi Santosa', '9786021188997', 'Erlangga', 2014, 'Indonesian', 30, 500, 'Pendekatan praktis untuk memahami manajemen bisnis.', 'Business & Economics', 'manajemen_bisnis.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Introduction to Algorithms', 'Thomas H. Cormen', '9780262033848', 'MIT Press', 2009, 'English', 40, 1312, 'Comprehensive guide to algorithms and data structures.', 'Computer', 'intro_algorithms.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Clean Code: A Handbook of Agile Software Craftsmanship', 'Robert C. Martin', '9780132350884', 'Prentice Hall', 2008, 'English', 35, 464, 'Guide to writing clean, readable, and maintainable code.', 'Computer', 'clean_code.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Pemrograman Java untuk Pemula', 'Andi Wijaya', '9786022405971', 'Erlangga', 2015, 'Indonesian', 10, 500, 'Buku ini mengajarkan dasar-dasar pemrograman Java.', 'Computer', 'pemrograman_java.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Estructura de Datos', 'José A. Romero', '9788433960195', 'McGraw-Hill', 2010, 'Spanish', 15, 320, 'Explicación de las estructuras de datos básicas y su implementación.', 'Computer', 'estructura_datos.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Algoritmos: Teoría y Práctica', 'Gerardo López', '9788499545156', 'Anaya Multimedia', 2018, 'Spanish', 20, 480, 'Introducción a los algoritmos y su aplicación práctica.', 'Computer', 'algoritmos_practica.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('The Art of Electronics', 'Paul Horowitz', '9780521809269', 'Cambridge University Press', 2015, 'English', 12, 1312, 'Comprehensive resource for electronic circuit design.', 'Engineering', 'art_of_electronics.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Electrical Engineering: Principles and Applications', 'Allan R. Hambley', '9780134602911', 'Pearson', 2017, 'English', 15, 800, 'Covers the fundamentals of electrical engineering and its applications.', 'Engineering', 'electrical_engineering.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Dasar Teknik Elektro', 'Budi Santosa', '9786022348900', 'Erlangga', 2014, 'Indonesian', 18, 750, 'Buku yang membahas dasar-dasar teknik elektro dan aplikasinya.', 'Engineering', 'dasar_teknik_ elektro.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Ingeniería Industrial', 'Carlos García', '9788491728005', 'McGraw-Hill', 2016, 'Spanish', 10, 640, 'Guía completa sobre la ingeniería industrial y sus aplicaciones.', 'Engineering', 'ingenieria_industrial.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Rekayasa Perangkat Lunak', 'Ika Pratiwi', '9786023453723', 'Erlangga', 2017, 'Indonesian', 20, 400, 'Buku ini memberikan pemahaman tentang rekayasa perangkat lunak.', 'Engineering', 'rekayasa_perangkat_lunak.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Dracula', 'Bram Stoker', '9780141439846', 'Penguin Classics', 1897, 'English', 8, 500, 'The classic Gothic horror novel about Count Dracula.', 'Horror', 'dracula.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Frankenstein', 'Mary Shelley', '9780486282114', 'Dover Thrift Editions', 1818, 'English', 7, 280, 'A tale of horror and science gone awry.', 'Horror', 'frankenstein.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Hantu-hantu Indonesia', 'Sari Dewi', '9786022283700', 'Erlangga', 2015, 'Indonesian', 12, 400, 'Kisah-kisah hantu dan mitos-mitos terkenal di Indonesia.', 'Horror', 'hantu_indonesia.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('El Exorcista', 'William Peter Blatty', '9788497595207', 'Alianza Editorial', 1971, 'Spanish', 10, 400, 'Un thriller psicológico de horror que explora la posesión demoníaca.', 'Horror', 'el_exorcista.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Kisah Horor Tersembunyi', 'Aditya Putra', '9786028456727', 'Mizan', 2018, 'Indonesian', 8, 320, 'Cerita horor yang datang dari tempat-tempat tak terduga.', 'Horror', 'kisah_horor_tersembunyi.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('The 7 Habits of Highly Effective Families', 'Stephen R. Covey', '9780743556311', 'Free Press', 2004, 'English', 14, 400, 'A guide to building strong family relationships and success.', 'Family & Relationship', '7_habits_families.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('The Family Table', 'Vicki Lansky', '9781884734691', 'Book Peddlers', 2000, 'English', 16, 200, 'Practical advice for creating a warm family environment.', 'Family & Relationship', 'family_table.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Membangun Keluarga Bahagia', 'Hendri S. Soesanto', '9789797917252', 'Mizan', 2015, 'Indonesian', 12, 280, 'Panduan untuk menciptakan keharmonisan dalam keluarga.', 'Family & Relationship', 'keluarga_bahagia.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('La Familia Primero', 'Ana María García', '9788497776349', 'Editorial Planeta', 2012, 'Spanish', 10, 340, 'Una guía para fortalecer los lazos familiares y mejorar las relaciones.', 'Family & Relationship', 'familia_primero.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Menjadi Keluarga Sehat', 'Taufik Hidayat', '9786022317242', 'Erlangga', 2018, 'Indonesian', 18, 320, 'Cara menciptakan keluarga yang sehat dan harmonis.', 'Family & Relationship', 'keluarga_sehat.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Pride and Prejudice', 'Jane Austen', '9780141040349', 'Penguin Classics', 1813, 'English', 25, 480, 'A classic love story about Elizabeth Bennet and Mr. Darcy.', 'Love & Romance', 'pride_prejudice.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Romeo and Juliet', 'William Shakespeare', '9780743477116', 'Simon & Schuster', 1597, 'English', 30, 200, 'A timeless tragedy of two young lovers.', 'Love & Romance', 'romeo_juliet.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Cinta Sejati', 'Rina Indra', '9786020342920', 'Gramedia', 2015, 'Indonesian', 20, 350, 'Cerita tentang cinta sejati yang penuh emosi.', 'Love & Romance', 'cinta_sejati.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Amor Eterno', 'Isabel Allende', '9780060090840', 'HarperCollins', 1987, 'Spanish', 18, 400, 'Una historia de amor que desafía al tiempo y al destino.', 'Love & Romance', 'amor_eterno.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),\n('Kisah Cinta Tak Terlupakan', 'Ayu Lestari', '9786023084723', 'Gramedia', 2020, 'Indonesian', 15, 380, 'Cerita cinta yang mengharukan dan penuh makna.', 'Love & Romance', 'kisah_cinta.jpg', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);",
-      "select * from books where title = \"Amor Eterno\"",
-      "select * from books where title = \"Amor\"",
-      "select * from books where title = \"Romeo and Juliet\"",
-      "select book_image from Books"
-    ],
-    "kotlin-gradle-user-dirs": [
-      "F:\\GitHub\\Shelfify\\.gradle\\8.5"
-    ]
-  }
-}]]></component>
-  <component name="PsdUISettings">
-    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
-  </component>
-=======
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "F:/Downloads",
@@ -533,7 +496,6 @@
     ]
   }
 }]]></component>
->>>>>>> Stashed changes
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\GitHub\Shelfify\app\src\main\java\shelfify\ui\admin\bookData\components\editBook\button" />
@@ -702,8 +664,6 @@
     <MESSAGE value="tes2" />
     <option name="LAST_COMMIT_MESSAGE" value="tes2" />
   </component>
-<<<<<<< Updated upstream
-=======
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -718,5 +678,4 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
->>>>>>> Stashed changes
 </project>
