@@ -13,6 +13,10 @@ class NotificationRepository(private val notificationDao: NotificationDao) :
         return notificationDao.getNotificationsByUserId(userId)
     }
 
+    override suspend fun deleteNotificationsByUserId(userId: Int) {
+        return notificationDao.deleteNotificationsByUserId(userId)
+    }
+
     override suspend fun addNotification(notification: Notification) {
         notificationDao.addNotification(notification)
     }

@@ -21,5 +21,5 @@ interface HistoryRepositoryContract {
     ): Flow<List<MemberHistoryCardUI>>
 
     suspend fun addHistory(history: History)
-
+    suspend fun deleteHistoryByUserId(userId: Int)
 }

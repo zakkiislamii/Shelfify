@@ -38,4 +38,8 @@ class ReservationRepository(private val reservationDao: ReservationDao) :
         return reservationDao.updateReservationStatus(userId, reservationId, newStatus)
     }
 
+    override suspend fun deleteReservationsByUserId(userId: Int) {
+        return reservationDao.deleteReservationsByUserId(userId)
+    }
+
 }

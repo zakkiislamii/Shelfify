@@ -77,4 +77,7 @@ ORDER BY r.created_at DESC
 
     @Insert
     suspend fun insertReservation(reservation: Reservation): Long
+
+    @Query("DELETE FROM Reservations WHERE user_id = :userId")
+    suspend fun deleteReservationsByUserId(userId: Int)
 }

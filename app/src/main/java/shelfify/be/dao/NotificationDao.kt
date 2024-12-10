@@ -33,5 +33,8 @@ interface NotificationDao {
 
     @Insert
     suspend fun addNotification(notification: Notification)
+
+    @Query("DELETE FROM Notifications WHERE user_id = :userId")
+    suspend fun deleteNotificationsByUserId(userId: Int)
 }
 

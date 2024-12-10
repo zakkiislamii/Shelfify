@@ -77,17 +77,10 @@ class UserRepository(private val userDao: UserDao) : UserRepositoryContract {
     }
 
 
-    override suspend fun deleteUser(userId: Int): Result<Boolean> {
-        return try {
-            val user = userDao.getUserById(userId)
-                ?: return Result.failure(Exception("User tidak ditemukan"))
-
-            val rowsDeleted = userDao.deleteUser(userId)
-            Result.success(rowsDeleted > 0)
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
+    override suspend fun deleteUser(userId: Int) {
+        return userDao.deleteUser(userId)
     }
+
 
     override suspend fun getProfile(userId: Int): Result<User> {
         return try {

@@ -7,4 +7,5 @@ import shelfify.data.dataMapping.NotificationWithBooksAndReservation
 interface NotificationRepositoryContract {
     fun getNotificationsByUserId(userId: Int): Flow<List<NotificationWithBooksAndReservation>>
     suspend fun addNotification(notification: Notification)
+    suspend fun deleteNotificationsByUserId(userId: Int)
 }

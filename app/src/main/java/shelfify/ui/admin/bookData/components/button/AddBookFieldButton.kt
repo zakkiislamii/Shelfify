@@ -61,9 +61,3 @@ class AddBookFieldButton : Button {
         )
     }
 }
-
-@Preview
-@Composable
-fun ButtonPreviews() {
-    AddBookFieldButton().Button {}
-}

@@ -13,4 +13,5 @@ interface ReservationRepositoryContract {
     fun getFavBooks(): Flow<List<FavBooks>>
     fun getMemberReservations(): Flow<List<MemberReserveCardUI>>
     suspend fun updateReservationStatus(userId: Int, reservationId: Int, newStatus: Status)
+    suspend fun deleteReservationsByUserId(userId: Int)
 }

@@ -35,6 +35,9 @@ interface CartDao {
     @Query("DELETE FROM Carts WHERE cart_id = :cartId")
     suspend fun deleteCartById(cartId: Int)
 
+    @Query("DELETE FROM Carts WHERE user_id = :userId")
+    suspend fun deleteCartByUserId(userId: Int)
+
     @Query("DELETE FROM Carts WHERE book_id = :bookId")
     suspend fun deleteCartAfterReserve(bookId: Int)
 
@@ -57,4 +60,5 @@ interface CartDao {
     """
     )
     fun getCartsWithBooksByUserId(userId: Int): Flow<List<CartWithBook>>
+
 }

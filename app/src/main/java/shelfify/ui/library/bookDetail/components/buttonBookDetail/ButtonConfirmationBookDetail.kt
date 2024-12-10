@@ -82,13 +82,3 @@ class ButtonConfirmationBookDetail : Button {
         )
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-private fun ButtonPreviews() {
-    Row(modifier = Modifier.fillMaxWidth()) {
-        ButtonConfirmationBookDetail().YesButton {}
-        ButtonConfirmationBookDetail().CancelButton {}
-    }
-
-}

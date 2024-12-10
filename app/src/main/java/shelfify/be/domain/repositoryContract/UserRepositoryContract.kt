@@ -13,8 +13,7 @@ interface UserRepositoryContract {
         faculty: String,
         password: String,
     ): Result<User>
-
-    suspend fun deleteUser(userId: Int): Result<Boolean>
+    suspend fun deleteUser(userId: Int)
     suspend fun getProfile(userId: Int): Result<User>
     fun getAllUsers(): Flow<List<User>>
     suspend fun getUserByEmail(email: String): Result<User>

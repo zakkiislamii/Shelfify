@@ -22,6 +22,10 @@ class HistoryRepository(private val historyDao: HistoryDao) : HistoryRepositoryC
         return historyDao.getMemberHistoryByUserIdForAdmin(userId)
     }
 
+    override  suspend fun deleteHistoryByUserId(userId: Int){
+        return historyDao.deleteHistoryByUserId(userId)
+    }
+
     override fun getMemberHistoryByUserId(
         userId: Int,
     ): Flow<List<MemberHistoryCardUI>> {

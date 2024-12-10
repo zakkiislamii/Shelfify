@@ -10,4 +10,5 @@ interface CartRepositoryContract {
     suspend fun isBookExistsInCart(userId: Int, bookId: Int): Boolean
     suspend fun getCartsWithBooksByUserId(userId: Int): Flow<List<CartWithBook>>
     suspend fun deleteCartAfterReserve(bookId: Int)
+    suspend fun deleteCartByUserId(userId: Int)
 }

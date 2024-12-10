@@ -13,7 +13,9 @@ import kotlinx.coroutines.tasks.await
 import shelfify.be.domain.models.Book
 import shelfify.be.domain.models.User
 import shelfify.be.domain.repositories.BookRepository
+import shelfify.be.domain.repositories.CartRepository
 import shelfify.be.domain.repositories.HistoryRepository
+import shelfify.be.domain.repositories.NotificationRepository
 import shelfify.be.domain.repositories.ReservationRepository
 import shelfify.be.domain.repositories.UserRepository
 import shelfify.data.dataMapping.BookUI
@@ -29,6 +31,8 @@ class AdminViewModel(
     private val reservationRepository: ReservationRepository,
     private val historyRepository: HistoryRepository,
     private val bookRepository: BookRepository,
+    private val cartRepository: CartRepository,
+    private val notificationRepository: NotificationRepository,
     private val storage: FirebaseStorage,
 ) : ViewModel() {
     private val _users = MutableStateFlow<List<User>>(emptyList())
@@ -48,13 +52,19 @@ class AdminViewModel(
     fun deleteUser(userId: Int) {
         viewModelScope.launch {
             try {
+                cartRepository.deleteCartByUserId(userId)
+                historyRepository.deleteHistoryByUserId(userId)
+                reservationRepository.deleteReservationsByUserId(userId)
+                notificationRepository.deleteNotificationsByUserId(userId)
                 userRepository.deleteUser(userId)
                 getAllUsers()
+                Log.d("AdminViewModel", "User deleted successfully")
             } catch (e: Exception) {
-                e.printStackTrace()
+                Log.e("AdminViewModel", "Delete failed", e)
             }
         }
     }
+
 
     fun deleteBook(bookId: Int) {
         viewModelScope.launch {

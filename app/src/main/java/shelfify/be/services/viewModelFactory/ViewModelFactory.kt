@@ -46,6 +46,8 @@ class ViewModelFactory(
                 reservationRepository,
                 historyRepository,
                 bookRepository,
+                cartRepository,
+                notificationRepository,
                 storage = FirebaseStorage.getInstance()
             ) as T
         }

@@ -138,107 +138,107 @@ class BookDetailBody {
             BookDescription(book)
         }
     }
-}
 
-@Composable
-private fun BookActions(onReservationClick: () -> Unit, onCartClick: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 30.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        ButtonBookDetails().ReservationButton(onReservationClick)
-        ButtonBookDetails().CartButton(onCartClick)
-    }
-}
-
-@Composable
-private fun BookImage(book: BookDetailData) {
-    Column(
-        modifier = Modifier.padding(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        val imageUrl = book.bookImage ?: ""
-        AsyncImage(
-            model = if (imageUrl.isNotEmpty() && imageUrl.startsWith("https")) imageUrl else R.drawable.ic_launcher_background,
-            contentDescription = book.title,
+    @Composable
+    private fun BookActions(onReservationClick: () -> Unit, onCartClick: () -> Unit) {
+        Column(
             modifier = Modifier
-                .fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
-        Text(
-            text = book.title,
-            fontSize = 15.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-        )
-        Text(
-            text = book.writer,
-            fontSize = 11.sp,
-            color = Color.DarkGray,
-        )
+                .fillMaxWidth()
+                .padding(vertical = 30.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ButtonBookDetails().ReservationButton(onReservationClick)
+            ButtonBookDetails().CartButton(onCartClick)
+        }
     }
-}
 
-@Composable
-private fun BookStats(book: BookDetailData, scrollState: ScrollState) {
-    Row(
-        modifier = Modifier
-            .padding(20.dp)
-            .shadow(1.dp, shape = RoundedCornerShape(1.dp))
-            .fillMaxWidth()
-            .horizontalScroll(scrollState),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        StatItem("Language", book.language)
-        StatItem("Stock", book.stock.toString())
-        StatItem("Pages", book.pages.toString())
-        StatItem("Borrowing\nDuration", "7 Days")
+    @Composable
+    private fun BookImage(book: BookDetailData) {
+        Column(
+            modifier = Modifier.padding(20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            val imageUrl = book.bookImage ?: ""
+            AsyncImage(
+                model = if (imageUrl.isNotEmpty() && imageUrl.startsWith("https")) imageUrl else R.drawable.ic_launcher_background,
+                contentDescription = book.title,
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = book.title,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+            )
+            Text(
+                text = book.writer,
+                fontSize = 11.sp,
+                color = Color.DarkGray,
+            )
+        }
     }
-}
 
-@Composable
-private fun StatItem(label: String, value: String) {
-    Column(
-        modifier = Modifier.padding(10.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(
-            text = label,
-            color = Color.Black,
-            fontSize = 8.sp,
-        )
-        Text(
-            text = value,
-            color = MainColor,
-            fontSize = if (label.contains("\n")) 10.sp else 8.sp,
-        )
+    @Composable
+    private fun BookStats(book: BookDetailData, scrollState: ScrollState) {
+        Row(
+            modifier = Modifier
+                .padding(20.dp)
+                .shadow(1.dp, shape = RoundedCornerShape(1.dp))
+                .fillMaxWidth()
+                .horizontalScroll(scrollState),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            StatItem("Language", book.language)
+            StatItem("Stock", book.stock.toString())
+            StatItem("Pages", book.pages.toString())
+            StatItem("Borrowing\nDuration", "7 Days")
+        }
     }
-}
 
-@Composable
-private fun BookDescription(book: BookDetailData) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 30.dp),
-    ) {
-        Text(
-            text = "Books Description",
-            color = MainColor,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.align(Alignment.Start)
-        )
-        Text(
-            text = book.description ?: "No description available",
-            color = Color.Black,
-            fontSize = 10.sp,
-            textAlign = TextAlign.Justify,
-            modifier = Modifier.fillMaxWidth()
-        )
+    @Composable
+    private fun StatItem(label: String, value: String) {
+        Column(
+            modifier = Modifier.padding(10.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(
+                text = label,
+                color = Color.Black,
+                fontSize = 8.sp,
+            )
+            Text(
+                text = value,
+                color = MainColor,
+                fontSize = if (label.contains("\n")) 10.sp else 8.sp,
+            )
+        }
+    }
+
+    @Composable
+    private fun BookDescription(book: BookDetailData) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 30.dp),
+        ) {
+            Text(
+                text = "Books Description",
+                color = MainColor,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.align(Alignment.Start)
+            )
+            Text(
+                text = book.description ?: "No description available",
+                color = Color.Black,
+                fontSize = 10.sp,
+                textAlign = TextAlign.Justify,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
     }
 }

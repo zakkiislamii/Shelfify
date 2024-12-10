@@ -1,5 +1,6 @@
 package shelfify.ui.components.card
 
+import android.util.Log
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -176,6 +177,7 @@ class ReserveDataCard : CardReserveComponent<MemberReserveCardUI> {
                 if (item.reservationStatus == Status.PENDING) {
                     ButtonReserveMember().ViewReservationButton {
                         try {
+                            val bookImage = item.bookImage ?: ""
                             val route =
                                 Screen.Admin.ViewDetails.route.replace("{fullName}", item.fullName)
                                     .replace("{title}", item.title)
@@ -183,7 +185,7 @@ class ReserveDataCard : CardReserveComponent<MemberReserveCardUI> {
                                     .replace("{reservationId}", item.reservationId)
                                     .replace(
                                         "{bookImage}",
-                                        URLEncoder.encode(item.bookImage, "UTF-8")
+                                        URLEncoder.encode(bookImage, "UTF-8")
                                     )
                                     .replace("{userId}", item.userId.toString())
                                     .replace("{bookId}", item.bookId)
@@ -194,6 +196,7 @@ class ReserveDataCard : CardReserveComponent<MemberReserveCardUI> {
                                 context,
                                 "Error navigating: ${e.message}",
                             )
+                            Log.d("error nav", e.message.toString())
                         }
                     }
                 } else if (item.reservationStatus == Status.BORROWED) {

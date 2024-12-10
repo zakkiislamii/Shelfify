@@ -12,6 +12,10 @@ class CartRepository(private val cartDao: CartDao) : CartRepositoryContract {
         return cartDao.insertCartAndUpdateStock(cart)
     }
 
+    override suspend fun deleteCartByUserId(userId: Int) {
+        return cartDao.deleteCartByUserId(userId)
+    }
+
     override suspend fun deleteCart(cartId: Int, bookId: Int) {
         return cartDao.deleteCartAndUpdateStock(cartId, bookId)
     }

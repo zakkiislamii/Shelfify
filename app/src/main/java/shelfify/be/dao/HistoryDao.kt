@@ -15,6 +15,9 @@ interface HistoryDao {
     @Insert
     suspend fun addHistory(history: History)
 
+    @Query("DELETE FROM Histories WHERE user_id = :userId")
+    suspend fun deleteHistoryByUserId(userId: Int)
+
     @Transaction
     @Query(
         """

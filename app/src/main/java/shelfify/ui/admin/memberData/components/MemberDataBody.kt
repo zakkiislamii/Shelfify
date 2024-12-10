@@ -1,5 +1,6 @@
 package shelfify.ui.admin.memberData.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -22,6 +23,7 @@ fun MemberDataBody(adminViewModel: AdminViewModel, navController: NavController)
 
     LaunchedEffect(Unit) {
         adminViewModel.getAllUsers()
+        Log.d("MemberDataBody", "Users updated: ${users.size}")
     }
 
     val filteredUsers = users.filter { it.role != Role.ADMIN }
